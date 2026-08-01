@@ -49,5 +49,9 @@ fi
 # Import 
 info "Importing sql/local_setup.sql into '${DB_NAME}'..."
 "$MYSQL_BIN" "${MYSQL_OPTS[@]}" "$DB_NAME" < "$REPO_ROOT/sql/local_setup.sql"
+
+info "Importing sql/migrate_add_languages.sql into '${DB_NAME}'..."
+"$MYSQL_BIN" "${MYSQL_OPTS[@]}" "$DB_NAME" < "$REPO_ROOT/sql/migrate_add_languages.sql"
+
 success "Database reset complete. Seed data restored."
 echo ""
