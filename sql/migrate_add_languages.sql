@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS `translations` (
 INSERT IGNORE INTO `languages` (`code`, `name`) VALUES
   ('en', 'English'),
   ('fr', 'Français');
+  
+  
 
 -- Seed translation pages
 INSERT IGNORE INTO `translation_pages` (`page_key`) VALUES

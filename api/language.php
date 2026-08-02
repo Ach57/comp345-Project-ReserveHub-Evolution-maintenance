@@ -3,6 +3,21 @@
 header('Content-Type: application/json');
 require_once 'db.php';
 
+$action = $_GET['action'] ?? null;
+
+// action=languages: return all active languages
+if ($action === 'languages') {
+    try {
+        $stmt = $pdo->query("SELECT code, name FROM languages WHERE is_active = 1 ORDER BY code");
+        echo json_encode($stmt->fetchAll());
+    } catch (PDOException $e) {
+        http_response_code(500);
+        echo json_encode([]);
+    }
+    exit;
+}
+
+// default: return translations for a given lang + page 
 $lang = $_GET['lang'] ?? 'en';
 $page = $_GET['page'] ?? null;
 
