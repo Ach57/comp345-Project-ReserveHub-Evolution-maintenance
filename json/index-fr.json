@@ -59,6 +59,11 @@
   "index.filters.steakhouse": "Grilladerie",
 
   "index.featured.loading": "Chargement des Restaurants en Vedette...",
+  "index.featured.noRestaurants": "Aucun restaurant trouvé dans cette catégorie.",
+  "index.featured.serverError": "Impossible de se connecter au serveur.",
+  "index.featured.noImage": "Aucune Image Disponible",
+  "index.featured.reserve": "Réserver une Table",
+  "index.featured.openNow": "Ouvert maintenant",
   "index.featured.viewAll": "Voir tous les Restaurants",
 
   "index.testimonials.tag": "Ce Que Disent Nos Clients",
