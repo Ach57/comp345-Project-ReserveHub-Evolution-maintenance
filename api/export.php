@@ -15,13 +15,75 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+// Admin will get everyone's data
+// User will only get their own data
 $user_id = (int) $_SESSION['user_id'];
+$is_admin = ($_SESSION['role'] ?? '') === 'admin';
 // --- Query reservation data -----------------------------------------------
 // No user input is interpolated into this query, but we use a prepared
 // statement per the security requirement. The JOINs mirror the existing
 // admin "reservations" endpoint so column semantics stay consistent.
+
+// Once everything is implemented, remove this toggle
+$USE_SAMPLE_DATA = true;
 try {
-    $rows = get_reservation_history($pdo, $user_id);
+    if ($USE_SAMPLE_DATA) {
+        $rows = [
+            [
+                'reservation_id'   => 1001,
+                'user_name'        => 'ME',
+                'restaurant_name'  => 'FOOD',
+                'reservation_date' => '2026-01-01',
+                'reservation_time' => '19:30',
+                'guests'           => 4,
+                'status'           => 'Confirmed',
+            ],
+            [
+                'reservation_id'   => 1002,
+                'user_name'        => 'LEBRON JAMES',
+                'restaurant_name'  => 'LEBRON JAMES RESTAURANT',
+                'reservation_date' => '2026-08-12',
+                'reservation_time' => '18:00',
+                'guests'           => 2,
+                'status'           => 'Cancelled',
+            ],
+        ];
+    }elseif ($is_admin){
+        $stmt = $pdo->prepare("
+            SELECT
+                res.booking_id       AS reservation_id,
+                u.name               AS user_name,
+                r.name               AS restaurant_name,
+                res.date             AS reservation_date,
+                res.reservation_time AS reservation_time,
+                res.guest_count      AS guests,
+                res.status           AS status
+            FROM reservations res
+            JOIN users u        ON res.customer_id   = u.user_id
+            JOIN restaurants r  ON res.restaurant_id = r.restaurant_id
+            ORDER BY res.date DESC, res.reservation_time DESC
+        ");
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }else{
+        $stmt = $pdo->prepare("
+            SELECT
+                res.booking_id       AS reservation_id,
+                u.name               AS user_name,
+                r.name               AS restaurant_name,
+                res.date             AS reservation_date,
+                res.reservation_time AS reservation_time,
+                res.guest_count      AS guests,
+                res.status           AS status
+            FROM reservations res
+            JOIN users u        ON res.customer_id   = u.user_id
+            JOIN restaurants r  ON res.restaurant_id = r.restaurant_id
+            WHERE res.customer_id = :user_id
+            ORDER BY res.date DESC, res.reservation_time DESC
+        ");
+        $stmt->execute(['user_id' => $user_id]);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 } catch (PDOException $e) {
     header('Content-Type: application/json');
     http_response_code(500);
