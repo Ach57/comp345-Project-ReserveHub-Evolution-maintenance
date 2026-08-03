@@ -38,6 +38,7 @@
         <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
             <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
         </a>
+        <button class="reserve-btn" onclick="downloadReservationsCSV()" id="exportCsvBtn"><i class="fa-solid fa-file-pdf"></i><span localization-key="profile.nav.exportCSV"> Export Reservations to CSV</span></button>
         <div class="top-btn-container" id="auth-buttons">
             <!-- Will be populated by session.js -->
         </div>
@@ -498,6 +499,10 @@
                     showToast(data.message, 'error');
                 }
             });
+        }
+        // csv export. just kept it simple. no fancy messages for now
+        function downloadReservationsCSV(){
+            window.location.href = '../api/export_reservations.php';
         }
     </script>
 
