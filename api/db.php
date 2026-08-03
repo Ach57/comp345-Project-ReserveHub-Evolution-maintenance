@@ -58,4 +58,35 @@ try {
 } catch (\PDOException $e) {
     die(json_encode(['success' => false, 'message' => 'Database Connection Failed: ' . $e->getMessage()]));
 }
+
+if (!function_exists('get_reservation_history')) {
+    function get_reservation_history(PDO $pdo, int $user_id): array
+    {
+        // THESE ARE JUST SAMPLE ROWS PLEASE REPLACE WITH DATABASE QUERIES IN THE SAME FORMAT AND RETURN AS AN ARRAY
+        // - user_id is passed as an argument from the logged-in session -> database query should use this to only get the reservations from that specific user
+        // - the exporting part expects an array in this format
+        $sampleRows=[
+            [
+                'reservation_id' => 1001,
+                'user_name' => 'ME',
+                'restaurant_name' => 'FOOD',
+                'reservation_date' => '2026-01-01',
+                'reservation_time' => '19:30',
+                'guests' => 10000,
+                'status' => 'Confirmed'
+            ],
+            [
+                'reservation_id' => 1002,
+                'user_name' => 'LEBRON JAMES',
+                'restaurant_name' => 'LEBRON JAMES RESTAURANT',
+                'reservation_date' => '2026-08-12',
+                'reservation_time' => '18:00',
+                'guests' => 2,
+                'status' => 'Cancelled'
+            ]
+
+        ];
+        return $sampleRows;
+    }
+}
 ?>
