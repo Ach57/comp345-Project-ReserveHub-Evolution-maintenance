@@ -1,380 +1,791 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Terms of Service | ReserveHub</title>
-    <meta name="description"
-        content="Read ReserveHub's Terms of Service to understand the rules and guidelines governing your use of our restaurant reservation platform.">
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/legal.css">
-</head>
+    <meta
+      name="description"
+      content="Read ReserveHub's Terms of Service to understand the rules and guidelines governing your use of our restaurant reservation platform."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/legal.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
-        <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
-            <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
-        </a>
+      <a
+        href="index.html"
+        aria-label="ReserveHub Homepage"
+        class="nav-logo-link"
+      >
+        <img
+          src="../pictures/reservehub-full-logo-light-mode.png"
+          alt="ReserveHub Logo"
+          class="top-logo"
+        />
+      </a>
 
-        <div class="top-btn-container" role="navigation" aria-label="Main navigation">
-            <a href="index.html" class="top-btn" localization-key="nav.home">HOME</a>
-            <a href="index.html#how-it-works" class="top-btn" localization-key="nav.how">HOW IT WORKS</a>
-            <a href="index.html#featured" class="top-btn" localization-key="nav.restaurants">RESTAURANTS</a>
-            <a href="contact.html" class="top-btn" localization-key="nav.contact">CONTACT</a>
-            <div id="auth-buttons" style="display: flex; gap: 4px;">
-                <a href="login-signup.html" class="top-btn btn-cta" id="signupBtn" localization-key="nav.login">SIGN UP / LOG IN</a>
-            </div>
-            <div class="language-picker">
-                <i class="fa-solid fa-globe"></i>
-                <select class="terms-language-localization language-select" aria-label="Select language">
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                </select>
-            </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon"></i>
-                <i class="fa-solid fa-sun"></i>
-            </button>
+      <div
+        class="top-btn-container"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <a href="index.html" class="top-btn" localization-key="nav.home"
+          >HOME</a
+        >
+        <a
+          href="index.html#how-it-works"
+          class="top-btn"
+          localization-key="nav.how"
+          >HOW IT WORKS</a
+        >
+        <a
+          href="index.html#featured"
+          class="top-btn"
+          localization-key="nav.restaurants"
+          >RESTAURANTS</a
+        >
+        <a href="contact.html" class="top-btn" localization-key="nav.contact"
+          >CONTACT</a
+        >
+        <div id="auth-buttons" style="display: flex; gap: 4px">
+          <a
+            href="login-signup.html"
+            class="top-btn btn-cta"
+            id="signupBtn"
+            localization-key="nav.login"
+            >SIGN UP / LOG IN</a
+          >
         </div>
-
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
+        <div class="language-picker">
+          <i class="fa-solid fa-globe"></i>
+          <select
+            class="terms-language-localization language-select"
+            aria-label="Select language"
+          >
+            <!-- populated by localization.js -->
+          </select>
+        </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
         </button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <!-- Mobile Nav -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="mob-link" localization-key="mobile.home">Home</a>
-        <a href="index.html#how-it-works" class="mob-link" localization-key="mobile.how">How It Works</a>
-        <a href="index.html#featured" class="mob-link" localization-key="mobile.restaurants">Restaurants</a>
-        <a href="contact.html" class="mob-link" localization-key="mobile.contact">Contact</a>
-        <div id="mob-auth-buttons">
-            <a href="login-signup.html" class="mob-link mob-cta" localization-key="mobile.login">Sign Up / Log In</a>
-        </div>
-        <div class="language-picker">
-            <i class="fa-solid fa-globe"></i>
-            <select class="terms-language-localization language-select" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-            </select>
-        </div>
-        <a href="javascript:void(0)" class="mob-link" id="mobile-theme-toggle" style="margin-top: 20px;" localization-key="mobile.theme">
-            <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
-        </a>
+      <a href="index.html" class="mob-link" localization-key="mobile.home"
+        >Home</a
+      >
+      <a
+        href="index.html#how-it-works"
+        class="mob-link"
+        localization-key="mobile.how"
+        >How It Works</a
+      >
+      <a
+        href="index.html#featured"
+        class="mob-link"
+        localization-key="mobile.restaurants"
+        >Restaurants</a
+      >
+      <a href="contact.html" class="mob-link" localization-key="mobile.contact"
+        >Contact</a
+      >
+      <div id="mob-auth-buttons">
+        <a
+          href="login-signup.html"
+          class="mob-link mob-cta"
+          localization-key="mobile.login"
+          >Sign Up / Log In</a
+        >
+      </div>
+      <div class="language-picker">
+        <i class="fa-solid fa-globe"></i>
+        <select
+          class="terms-language-localization language-select"
+          aria-label="Select language"
+        >
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <a
+        href="javascript:void(0)"
+        class="mob-link"
+        id="mobile-theme-toggle"
+        style="margin-top: 20px"
+        localization-key="mobile.theme"
+      >
+        <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
+      </a>
     </div>
 
     <!-- ===== LEGAL PAGE CONTENT ===== -->
     <main class="legal-main">
+      <!-- Hero Banner -->
+      <div class="legal-hero">
+        <div class="legal-hero-inner">
+          <div class="legal-hero-icon">
+            <i class="fa-solid fa-file-contract"></i>
+          </div>
+          <span class="section-tag" localization-key="terms.hero.tag"
+            >Please Read Carefully</span
+          >
+          <h1 class="legal-hero-title" localization-key="terms.hero.title">
+            Terms of Service
+          </h1>
+          <p class="legal-hero-sub">
+            <span localization-key="terms.hero.updated">Last updated:</span>
+            <strong>May 11, 2026</strong>
+          </p>
+        </div>
+      </div>
 
-        <!-- Hero Banner -->
-        <div class="legal-hero">
-            <div class="legal-hero-inner">
-                <div class="legal-hero-icon">
-                    <i class="fa-solid fa-file-contract"></i>
-                </div>
-                <span class="section-tag" localization-key="terms.hero.tag">Please Read Carefully</span>
-                <h1 class="legal-hero-title" localization-key="terms.hero.title">Terms of Service</h1>
-                <p class="legal-hero-sub">
-                    <span localization-key="terms.hero.updated">Last updated:</span>
-                    <strong>May 11, 2026</strong>
-                </p>
+      <div class="legal-container">
+        <!-- Table of Contents -->
+        <aside class="legal-toc" id="legalToc">
+          <h3>
+            <i class="fa-solid fa-list"></i>
+            <span localization-key="terms.toc.title">Contents</span>
+          </h3>
+          <ul>
+            <li>
+              <a href="#acceptance"
+                >1.
+                <span localization-key="terms.toc.acceptance"
+                  >Acceptance of Terms</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#eligibility"
+                >2.
+                <span localization-key="terms.toc.eligibility"
+                  >Eligibility</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#accounts"
+                >3.
+                <span localization-key="terms.toc.accounts"
+                  >User Accounts</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#reservations"
+                >4.
+                <span localization-key="terms.toc.reservations"
+                  >Reservations</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#conduct"
+                >5.
+                <span localization-key="terms.toc.conduct"
+                  >User Conduct</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#content"
+                >6.
+                <span localization-key="terms.toc.content"
+                  >User Content</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#restaurants"
+                >7.
+                <span localization-key="terms.toc.restaurants"
+                  >Restaurant Partners</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#ip"
+                >8.
+                <span localization-key="terms.toc.ip"
+                  >Intellectual Property</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#disclaimer"
+                >9.
+                <span localization-key="terms.toc.disclaimer"
+                  >Disclaimer</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#liability"
+                >10.
+                <span localization-key="terms.toc.liability"
+                  >Limitation of Liability</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#termination"
+                >11.
+                <span localization-key="terms.toc.termination"
+                  >Termination</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#governing"
+                >12.
+                <span localization-key="terms.toc.governing"
+                  >Governing Law</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#contact-us"
+                >13.
+                <span localization-key="terms.toc.contact">Contact Us</span></a
+              >
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <article class="legal-content">
+          <section id="acceptance" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-handshake"></i>
             </div>
-        </div>
+            <h2 localization-key="terms.acceptance.title">
+              1. Acceptance of Terms
+            </h2>
+            <p localization-key="terms.acceptance.p1">
+              By accessing or using the ReserveHub platform ("Service"), you
+              agree to be bound by these Terms of Service ("Terms"). If you do
+              not agree to all of these Terms, you may not access or use the
+              Service.
+            </p>
+            <p localization-key="terms.acceptance.p2">
+              These Terms apply to all visitors, users, and others who access or
+              use the Service. We reserve the right to update these Terms at any
+              time. Your continued use of the Service following any changes
+              constitutes acceptance of the new Terms.
+            </p>
+            <div class="legal-callout info">
+              <i class="fa-solid fa-circle-info"></i>
+              <span localization-key="terms.acceptance.callout"
+                >These Terms are a legally binding agreement between you and
+                ReserveHub. Please read them thoroughly.</span
+              >
+            </div>
+          </section>
 
-        <div class="legal-container">
+          <section id="eligibility" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+            <h2 localization-key="terms.eligibility.title">2. Eligibility</h2>
+            <p localization-key="terms.eligibility.intro">
+              To use ReserveHub, you must:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <span localization-key="terms.eligibility.item1.p1"
+                  >Be at least</span
+                >
+                <strong
+                  ><span localization-key="terms.eligibility.item1.p2"
+                    >13 years of age</span
+                  ></strong
+                >
+                <span localization-key="terms.eligibility.item1.p3"
+                  >. Users under 18 must have parental or guardian
+                  consent.</span
+                >
+              </li>
+              <li localization-key="terms.eligibility.item2">
+                Be capable of forming a legally binding contract.
+              </li>
+              <li localization-key="terms.eligibility.item3">
+                Not be prohibited from using the Service under applicable laws.
+              </li>
+              <li localization-key="terms.eligibility.item4">
+                Provide accurate and truthful information when creating an
+                account.
+              </li>
+            </ul>
+          </section>
 
-            <!-- Table of Contents -->
-            <aside class="legal-toc" id="legalToc">
-                <h3><i class="fa-solid fa-list"></i> <span localization-key="terms.toc.title">Contents</span></h3>
-                <ul>
-                    <li><a href="#acceptance">1. <span localization-key="terms.toc.acceptance">Acceptance of Terms</span></a></li>
-                    <li><a href="#eligibility">2. <span localization-key="terms.toc.eligibility">Eligibility</span></a></li>
-                    <li><a href="#accounts">3. <span localization-key="terms.toc.accounts">User Accounts</span></a></li>
-                    <li><a href="#reservations">4. <span localization-key="terms.toc.reservations">Reservations</span></a></li>
-                    <li><a href="#conduct">5. <span localization-key="terms.toc.conduct">User Conduct</span></a></li>
-                    <li><a href="#content">6. <span localization-key="terms.toc.content">User Content</span></a></li>
-                    <li><a href="#restaurants">7. <span localization-key="terms.toc.restaurants">Restaurant Partners</span></a></li>
-                    <li><a href="#ip">8. <span localization-key="terms.toc.ip">Intellectual Property</span></a></li>
-                    <li><a href="#disclaimer">9. <span localization-key="terms.toc.disclaimer">Disclaimer</span></a></li>
-                    <li><a href="#liability">10. <span localization-key="terms.toc.liability">Limitation of Liability</span></a></li>
-                    <li><a href="#termination">11. <span localization-key="terms.toc.termination">Termination</span></a></li>
-                    <li><a href="#governing">12. <span localization-key="terms.toc.governing">Governing Law</span></a></li>
-                    <li><a href="#contact-us">13. <span localization-key="terms.toc.contact">Contact Us</span></a></li>
-                </ul>
-            </aside>
+          <section id="accounts" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-user-gear"></i>
+            </div>
+            <h2 localization-key="terms.accounts.title">3. User Accounts</h2>
+            <h3 localization-key="terms.accounts.registration.title">
+              3.1 Registration
+            </h3>
+            <p localization-key="terms.accounts.registration.description">
+              You may need to register for an account to access certain
+              features. You agree to provide accurate, complete, and current
+              information and to update it as necessary.
+            </p>
 
-            <!-- Main Content -->
-            <article class="legal-content">
+            <h3 localization-key="terms.accounts.security.title">
+              3.2 Account Security
+            </h3>
+            <ul class="legal-list">
+              <li localization-key="terms.accounts.security.item1">
+                You are responsible for maintaining the confidentiality of your
+                login credentials.
+              </li>
+              <li localization-key="terms.accounts.security.item2">
+                You must notify us immediately of any unauthorised use of your
+                account.
+              </li>
+              <li localization-key="terms.accounts.security.item3">
+                ReserveHub is not liable for losses resulting from unauthorised
+                account access due to your failure to secure your credentials.
+              </li>
+            </ul>
 
-                <section id="acceptance" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-handshake"></i></div>
-                    <h2 localization-key="terms.acceptance.title">1. Acceptance of Terms</h2>
-                    <p localization-key="terms.acceptance.p1">By accessing or using the ReserveHub platform ("Service"), you agree to be bound by these
-                        Terms of Service ("Terms"). If you do not agree to all of these Terms, you may not access
-                        or use the Service.</p>
-                    <p localization-key="terms.acceptance.p2">These Terms apply to all visitors, users, and others who access or use the Service. We reserve
-                        the right to update these Terms at any time. Your continued use of the Service following
-                        any changes constitutes acceptance of the new Terms.</p>
-                    <div class="legal-callout info">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span localization-key="terms.acceptance.callout">These Terms are a legally binding agreement between you and ReserveHub. Please read them
-                            thoroughly.</span>
-                    </div>
-                </section>
+            <h3 localization-key="terms.accounts.oneAccount.title">
+              3.3 One Account per User
+            </h3>
+            <p localization-key="terms.accounts.oneAccount.description">
+              You may not create multiple accounts. We reserve the right to
+              merge or terminate duplicate accounts.
+            </p>
+          </section>
 
-                <section id="eligibility" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-id-card"></i></div>
-                    <h2 localization-key="terms.eligibility.title">2. Eligibility</h2>
-                    <p localization-key="terms.eligibility.intro">To use ReserveHub, you must:</p>
-                    <ul class="legal-list">
-                        <li>
-                            <span localization-key="terms.eligibility.item1.p1">Be at least</span>
-                            <strong><span localization-key="terms.eligibility.item1.p2">13 years of age</span></strong>
-                            <span localization-key="terms.eligibility.item1.p3">. Users under 18 must have parental or
-                            guardian consent.</span>
-                        </li>
-                        <li localization-key="terms.eligibility.item2">Be capable of forming a legally binding contract.</li>
-                        <li localization-key="terms.eligibility.item3">Not be prohibited from using the Service under applicable laws.</li>
-                        <li localization-key="terms.eligibility.item4">Provide accurate and truthful information when creating an account.</li>
-                    </ul>
-                </section>
+          <section id="reservations" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h2 localization-key="terms.reservations.title">4. Reservations</h2>
+            <h3 localization-key="terms.reservations.booking.title">
+              4.1 Booking
+            </h3>
+            <p localization-key="terms.reservations.booking.description">
+              ReserveHub acts as an intermediary between diners and restaurant
+              partners. By making a reservation, you enter into an agreement
+              with the restaurant, not ReserveHub.
+            </p>
 
-                <section id="accounts" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-user-gear"></i></div>
-                    <h2 localization-key="terms.accounts.title">3. User Accounts</h2>
-                    <h3 localization-key="terms.accounts.registration.title">3.1 Registration</h3>
-                    <p localization-key="terms.accounts.registration.description">You may need to register for an account to access certain features. You agree to provide
-                        accurate, complete, and current information and to update it as necessary.</p>
+            <h3 localization-key="terms.reservations.cancellations.title">
+              4.2 Cancellations &amp; No-Shows
+            </h3>
+            <ul class="legal-list">
+              <li localization-key="terms.reservations.cancellations.item1">
+                Cancellation policies vary by restaurant and will be clearly
+                displayed before you confirm a booking.
+              </li>
+              <li localization-key="terms.reservations.cancellations.item2">
+                Repeated no-shows may result in temporary or permanent
+                suspension of your booking privileges.
+              </li>
+              <li localization-key="terms.reservations.cancellations.item3">
+                ReserveHub is not responsible for restaurant cancellations, but
+                we will endeavour to notify you promptly.
+              </li>
+            </ul>
 
-                    <h3 localization-key="terms.accounts.security.title">3.2 Account Security</h3>
-                    <ul class="legal-list">
-                        <li localization-key="terms.accounts.security.item1">You are responsible for maintaining the confidentiality of your login credentials.</li>
-                        <li localization-key="terms.accounts.security.item2">You must notify us immediately of any unauthorised use of your account.</li>
-                        <li localization-key="terms.accounts.security.item3">ReserveHub is not liable for losses resulting from unauthorised account access due to
-                            your failure to secure your credentials.</li>
-                    </ul>
+            <h3 localization-key="terms.reservations.accuracy.title">
+              4.3 Accuracy
+            </h3>
+            <p localization-key="terms.reservations.accuracy.description">
+              Restaurant information (menus, hours, availability, pricing) is
+              provided by our restaurant partners. While we make reasonable
+              efforts to ensure accuracy, we cannot guarantee that all
+              information is current.
+            </p>
 
-                    <h3 localization-key="terms.accounts.oneAccount.title">3.3 One Account per User</h3>
-                    <p localization-key="terms.accounts.oneAccount.description">You may not create multiple accounts. We reserve the right to merge or terminate duplicate
-                        accounts.</p>
-                </section>
+            <div class="legal-callout warning">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span localization-key="terms.reservations.warning"
+                >Always confirm your reservation details directly with the
+                restaurant if you have any concerns.</span
+              >
+            </div>
+          </section>
 
-                <section id="reservations" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h2 localization-key="terms.reservations.title">4. Reservations</h2>
-                    <h3 localization-key="terms.reservations.booking.title">4.1 Booking</h3>
-                    <p localization-key="terms.reservations.booking.description">ReserveHub acts as an intermediary between diners and restaurant partners. By making a
-                        reservation, you enter into an agreement with the restaurant, not ReserveHub.</p>
+          <section id="conduct" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2 localization-key="terms.conduct.title">5. User Conduct</h2>
+            <p localization-key="terms.conduct.intro">
+              You agree not to use the Service to:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="terms.conduct.item1">
+                Violate any local, national, or international law or regulation.
+              </li>
+              <li localization-key="terms.conduct.item2">
+                Make fraudulent or speculative reservations.
+              </li>
+              <li localization-key="terms.conduct.item3">
+                Harass, abuse, or harm restaurant staff or other users.
+              </li>
+              <li localization-key="terms.conduct.item4">
+                Transmit spam, malware, or other harmful code.
+              </li>
+              <li localization-key="terms.conduct.item5">
+                Scrape, crawl, or systematically extract data from the platform.
+              </li>
+              <li localization-key="terms.conduct.item6">
+                Attempt to gain unauthorised access to any part of the Service.
+              </li>
+              <li localization-key="terms.conduct.item7">
+                Impersonate any person or entity.
+              </li>
+              <li localization-key="terms.conduct.item8">
+                Engage in any conduct that restricts or inhibits others from
+                using the Service.
+              </li>
+            </ul>
+            <p localization-key="terms.conduct.conclusion">
+              Violation of these rules may result in immediate account
+              termination and, where applicable, legal action.
+            </p>
+          </section>
 
-                    <h3 localization-key="terms.reservations.cancellations.title">4.2 Cancellations &amp; No-Shows</h3>
-                    <ul class="legal-list">
-                        <li localization-key="terms.reservations.cancellations.item1">Cancellation policies vary by restaurant and will be clearly displayed before you
-                            confirm a booking.</li>
-                        <li localization-key="terms.reservations.cancellations.item2">Repeated no-shows may result in temporary or permanent suspension of your booking
-                            privileges.</li>
-                        <li localization-key="terms.reservations.cancellations.item3">ReserveHub is not responsible for restaurant cancellations, but we will endeavour to
-                            notify you promptly.</li>
-                    </ul>
+          <section id="content" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+            <h2 localization-key="terms.content.title">6. User Content</h2>
+            <h3 localization-key="terms.content.reviews.title">
+              6.1 Reviews &amp; Ratings
+            </h3>
+            <p localization-key="terms.content.reviews.description">
+              When you submit reviews, ratings, or other content ("User
+              Content"), you grant ReserveHub a non-exclusive, royalty-free,
+              worldwide licence to use, display, and distribute that content on
+              our platform.
+            </p>
 
-                    <h3 localization-key="terms.reservations.accuracy.title">4.3 Accuracy</h3>
-                    <p localization-key="terms.reservations.accuracy.description">Restaurant information (menus, hours, availability, pricing) is provided by our restaurant
-                        partners. While we make reasonable efforts to ensure accuracy, we cannot guarantee that all
-                        information is current.</p>
+            <h3 localization-key="terms.content.standards.title">
+              6.2 Content Standards
+            </h3>
+            <p localization-key="terms.content.standards.intro">
+              User Content must not:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="terms.content.standards.item1">
+                Be defamatory, obscene, offensive, or misleading.
+              </li>
+              <li localization-key="terms.content.standards.item2">
+                Infringe third-party intellectual property rights.
+              </li>
+              <li localization-key="terms.content.standards.item3">
+                Include personal information about other individuals without
+                their consent.
+              </li>
+              <li localization-key="terms.content.standards.item4">
+                Be generated by bots or artificial means to manipulate ratings.
+              </li>
+            </ul>
 
-                    <div class="legal-callout warning">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <span localization-key="terms.reservations.warning">Always confirm your reservation details directly with the restaurant if you have any
-                            concerns.</span>
-                    </div>
-                </section>
+            <h3 localization-key="terms.content.removal.title">6.3 Removal</h3>
+            <p localization-key="terms.content.removal.description">
+              We reserve the right to remove User Content that violates these
+              standards without prior notice.
+            </p>
+          </section>
 
-                <section id="conduct" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h2 localization-key="terms.conduct.title">5. User Conduct</h2>
-                    <p localization-key="terms.conduct.intro">You agree not to use the Service to:</p>
-                    <ul class="legal-list">
-                        <li localization-key="terms.conduct.item1">Violate any local, national, or international law or regulation.</li>
-                        <li localization-key="terms.conduct.item2">Make fraudulent or speculative reservations.</li>
-                        <li localization-key="terms.conduct.item3">Harass, abuse, or harm restaurant staff or other users.</li>
-                        <li localization-key="terms.conduct.item4">Transmit spam, malware, or other harmful code.</li>
-                        <li localization-key="terms.conduct.item5">Scrape, crawl, or systematically extract data from the platform.</li>
-                        <li localization-key="terms.conduct.item6">Attempt to gain unauthorised access to any part of the Service.</li>
-                        <li localization-key="terms.conduct.item7">Impersonate any person or entity.</li>
-                        <li localization-key="terms.conduct.item8">Engage in any conduct that restricts or inhibits others from using the Service.</li>
-                    </ul>
-                    <p localization-key="terms.conduct.conclusion">Violation of these rules may result in immediate account termination and, where applicable,
-                        legal action.</p>
-                </section>
+          <section id="restaurants" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h2 localization-key="terms.restaurants.title">
+              7. Restaurant Partners
+            </h2>
+            <p localization-key="terms.restaurants.intro">
+              ReserveHub is a platform that connects diners with restaurant
+              partners. Please note:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="terms.restaurants.item1">
+                Restaurants listed on ReserveHub operate independently and are
+                solely responsible for their food, service, and compliance with
+                health and safety regulations.
+              </li>
+              <li localization-key="terms.restaurants.item2">
+                ReserveHub does not endorse any specific restaurant and is not
+                responsible for the quality of food, service, or any dining
+                experience.
+              </li>
+              <li localization-key="terms.restaurants.item3">
+                Any disputes arising from your dining experience should be
+                resolved directly with the restaurant.
+              </li>
+              <li localization-key="terms.restaurants.item4">
+                Pricing, menus, and hours displayed are subject to change at the
+                restaurant's discretion.
+              </li>
+            </ul>
+          </section>
 
-                <section id="content" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <h2 localization-key="terms.content.title">6. User Content</h2>
-                    <h3 localization-key="terms.content.reviews.title">6.1 Reviews &amp; Ratings</h3>
-                    <p localization-key="terms.content.reviews.description">When you submit reviews, ratings, or other content ("User Content"), you grant ReserveHub a
-                        non-exclusive, royalty-free, worldwide licence to use, display, and distribute that content
-                        on our platform.</p>
+          <section id="ip" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-copyright"></i>
+            </div>
+            <h2 localization-key="terms.ip.title">8. Intellectual Property</h2>
+            <p localization-key="terms.ip.p1">
+              All content on the ReserveHub platform — including but not limited
+              to the logo, design, text, graphics, and software — is the
+              exclusive property of ReserveHub and protected by applicable
+              intellectual property laws.
+            </p>
+            <p localization-key="terms.ip.p2">
+              You may not reproduce, distribute, modify, create derivative works
+              of, publicly display, or exploit any content from our platform
+              without our express written permission.
+            </p>
+          </section>
 
-                    <h3 localization-key="terms.content.standards.title">6.2 Content Standards</h3>
-                    <p localization-key="terms.content.standards.intro">User Content must not:</p>
-                    <ul class="legal-list">
-                        <li localization-key="terms.content.standards.item1">Be defamatory, obscene, offensive, or misleading.</li>
-                        <li localization-key="terms.content.standards.item2">Infringe third-party intellectual property rights.</li>
-                        <li localization-key="terms.content.standards.item3">Include personal information about other individuals without their consent.</li>
-                        <li localization-key="terms.content.standards.item4">Be generated by bots or artificial means to manipulate ratings.</li>
-                    </ul>
+          <section id="disclaimer" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <h2 localization-key="terms.disclaimer.title">
+              9. Disclaimer of Warranties
+            </h2>
+            <p>
+              <span localization-key="terms.disclaimer.intro.p1"
+                >The Service is provided on an
+              </span>
+              <strong
+                ><span localization-key="terms.disclaimer.intro.p2"
+                  >"as is"</span
+                ></strong
+              >
+              <span localization-key="terms.disclaimer.intro.p3"> and </span>
+              <strong
+                ><span localization-key="terms.disclaimer.intro.p4"
+                  >"as available"</span
+                ></strong
+              >
+              <span localization-key="terms.disclaimer.intro.p5">
+                basis without warranties of any kind, either express or implied,
+                including but not limited to:</span
+              >
+            </p>
+            <ul class="legal-list">
+              <li localization-key="terms.disclaimer.item1">
+                Fitness for a particular purpose.
+              </li>
+              <li localization-key="terms.disclaimer.item2">
+                Uninterrupted or error-free operation.
+              </li>
+              <li localization-key="terms.disclaimer.item3">
+                Accuracy or reliability of information provided by restaurant
+                partners.
+              </li>
+              <li localization-key="terms.disclaimer.item4">
+                Freedom from viruses or other harmful components.
+              </li>
+            </ul>
+          </section>
 
-                    <h3 localization-key="terms.content.removal.title">6.3 Removal</h3>
-                    <p localization-key="terms.content.removal.description">We reserve the right to remove User Content that violates these standards without prior
-                        notice.</p>
-                </section>
+          <section id="liability" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <h2 localization-key="terms.liability.title">
+              10. Limitation of Liability
+            </h2>
+            <p localization-key="terms.liability.intro">
+              To the maximum extent permitted by law, ReserveHub and its
+              affiliates, officers, employees, and agents shall not be liable
+              for any:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="terms.liability.item1">
+                Indirect, incidental, special, or consequential damages.
+              </li>
+              <li localization-key="terms.liability.item2">
+                Loss of profits, revenue, data, or goodwill.
+              </li>
+              <li localization-key="terms.liability.item3">
+                Damages arising from your reliance on information obtained
+                through the Service.
+              </li>
+              <li localization-key="terms.liability.item4">
+                Damages resulting from unauthorised access to or alteration of
+                your transmissions or data.
+              </li>
+            </ul>
+            <p localization-key="terms.liability.conclusion">
+              Our total liability to you for all claims arising from use of the
+              Service shall not exceed the greater of: (a) the amount you paid
+              to ReserveHub in the 12 months prior to the claim, or (b) $100.
+            </p>
+          </section>
 
-                <section id="restaurants" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-utensils"></i></div>
-                    <h2 localization-key="terms.restaurants.title">7. Restaurant Partners</h2>
-                    <p localization-key="terms.restaurants.intro">ReserveHub is a platform that connects diners with restaurant partners. Please note:</p>
-                    <ul class="legal-list">
-                        <li localization-key="terms.restaurants.item1">Restaurants listed on ReserveHub operate independently and are solely responsible for
-                            their food, service, and compliance with health and safety regulations.</li>
-                        <li localization-key="terms.restaurants.item2">ReserveHub does not endorse any specific restaurant and is not responsible for the
-                            quality of food, service, or any dining experience.</li>
-                        <li localization-key="terms.restaurants.item3">Any disputes arising from your dining experience should be resolved directly with the
-                            restaurant.</li>
-                        <li localization-key="terms.restaurants.item4">Pricing, menus, and hours displayed are subject to change at the restaurant's
-                            discretion.</li>
-                    </ul>
-                </section>
+          <section id="termination" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-ban"></i>
+            </div>
+            <h2 localization-key="terms.termination.title">11. Termination</h2>
+            <p localization-key="terms.termination.intro">
+              We may suspend or terminate your access to the Service at our sole
+              discretion, without notice, for conduct that we believe:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="terms.termination.item1">
+                Violates these Terms or any applicable law.
+              </li>
+              <li localization-key="terms.termination.item2">
+                Is harmful to other users, restaurant partners, third parties,
+                or ReserveHub.
+              </li>
+              <li localization-key="terms.termination.item3">
+                Is fraudulent or abusive in nature.
+              </li>
+            </ul>
+            <p localization-key="terms.termination.conclusion">
+              You may terminate your account at any time by contacting us. Upon
+              termination, your right to use the Service ceases immediately.
+            </p>
+          </section>
 
-                <section id="ip" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-copyright"></i></div>
-                    <h2 localization-key="terms.ip.title">8. Intellectual Property</h2>
-                    <p localization-key="terms.ip.p1">All content on the ReserveHub platform — including but not limited to the logo, design,
-                        text, graphics, and software — is the exclusive property of ReserveHub and protected by
-                        applicable intellectual property laws.</p>
-                    <p localization-key="terms.ip.p2">You may not reproduce, distribute, modify, create derivative works of, publicly display, or
-                        exploit any content from our platform without our express written permission.</p>
-                </section>
+          <section id="governing" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-gavel"></i>
+            </div>
+            <h2 localization-key="terms.governing.title">12. Governing Law</h2>
+            <p localization-key="terms.governing.p1">
+              These Terms shall be governed by and construed in accordance with
+              the laws of the jurisdiction in which ReserveHub is incorporated,
+              without regard to its conflict of law provisions.
+            </p>
+            <p localization-key="terms.governing.p2">
+              Any disputes arising under these Terms shall be subject to the
+              exclusive jurisdiction of the courts in that jurisdiction. You
+              waive any objection to venue in such courts.
+            </p>
+          </section>
 
-                <section id="disclaimer" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-                    <h2 localization-key="terms.disclaimer.title">9. Disclaimer of Warranties</h2>
-                    <p>
-                        <span localization-key="terms.disclaimer.intro.p1">The Service is provided on an </span>
-                        <strong><span localization-key="terms.disclaimer.intro.p2">"as is"</span></strong>
-                        <span localization-key="terms.disclaimer.intro.p3"> and </span>
-                        <strong><span localization-key="terms.disclaimer.intro.p4">"as available"</span></strong>
-                        <span localization-key="terms.disclaimer.intro.p5"> basis without warranties of any kind, either express or implied, including but not limited to:</span>
-                    </p>
-                    <ul class="legal-list">
-                        <li localization-key="terms.disclaimer.item1">Fitness for a particular purpose.</li>
-                        <li localization-key="terms.disclaimer.item2">Uninterrupted or error-free operation.</li>
-                        <li localization-key="terms.disclaimer.item3">Accuracy or reliability of information provided by restaurant partners.</li>
-                        <li localization-key="terms.disclaimer.item4">Freedom from viruses or other harmful components.</li>
-                    </ul>
-                </section>
+          <section id="contact-us" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <h2 localization-key="terms.contact.title">13. Contact Us</h2>
+            <p localization-key="terms.contact.intro">
+              If you have any questions about these Terms of Service, please
+              contact us:
+            </p>
+            <div class="legal-contact-card">
+              <div class="legal-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:legal@reservehub.com">legal@reservehub.com</a>
+              </div>
+              <div class="legal-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span localization-key="terms.contact.address"
+                  >ReserveHub HQ, 123 Dining Avenue, Food City, FC 12345</span
+                >
+              </div>
+            </div>
+          </section>
 
-                <section id="liability" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <h2 localization-key="terms.liability.title">10. Limitation of Liability</h2>
-                    <p localization-key="terms.liability.intro">To the maximum extent permitted by law, ReserveHub and its affiliates, officers, employees,
-                        and agents shall not be liable for any:</p>
-                    <ul class="legal-list">
-                        <li localization-key="terms.liability.item1">Indirect, incidental, special, or consequential damages.</li>
-                        <li localization-key="terms.liability.item2">Loss of profits, revenue, data, or goodwill.</li>
-                        <li localization-key="terms.liability.item3">Damages arising from your reliance on information obtained through the Service.</li>
-                        <li localization-key="terms.liability.item4">Damages resulting from unauthorised access to or alteration of your transmissions or
-                            data.</li>
-                    </ul>
-                    <p localization-key="terms.liability.conclusion">Our total liability to you for all claims arising from use of the Service shall not exceed
-                        the greater of: (a) the amount you paid to ReserveHub in the 12 months prior to the claim,
-                        or (b) $100.</p>
-                </section>
-
-                <section id="termination" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-ban"></i></div>
-                    <h2 localization-key="terms.termination.title">11. Termination</h2>
-                    <p localization-key="terms.termination.intro">We may suspend or terminate your access to the Service at our sole discretion, without
-                        notice, for conduct that we believe:</p>
-                    <ul class="legal-list">
-                        <li localization-key="terms.termination.item1">Violates these Terms or any applicable law.</li>
-                        <li localization-key="terms.termination.item2">Is harmful to other users, restaurant partners, third parties, or ReserveHub.</li>
-                        <li localization-key="terms.termination.item3">Is fraudulent or abusive in nature.</li>
-                    </ul>
-                    <p localization-key="terms.termination.conclusion">You may terminate your account at any time by contacting us. Upon termination, your right
-                        to use the Service ceases immediately.</p>
-                </section>
-
-                <section id="governing" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-gavel"></i></div>
-                    <h2 localization-key="terms.governing.title">12. Governing Law</h2>
-                    <p localization-key="terms.governing.p1">These Terms shall be governed by and construed in accordance with the laws of the
-                        jurisdiction in which ReserveHub is incorporated, without regard to its conflict of law
-                        provisions.</p>
-                    <p localization-key="terms.governing.p2">Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of
-                        the courts in that jurisdiction. You waive any objection to venue in such courts.</p>
-                </section>
-
-                <section id="contact-us" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <h2 localization-key="terms.contact.title">13. Contact Us</h2>
-                    <p localization-key="terms.contact.intro">If you have any questions about these Terms of Service, please contact us:</p>
-                    <div class="legal-contact-card">
-                        <div class="legal-contact-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <a href="mailto:legal@reservehub.com">legal@reservehub.com</a>
-                        </div>
-                        <div class="legal-contact-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span localization-key="terms.contact.address">ReserveHub HQ, 123 Dining Avenue, Food City, FC 12345</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Bottom Navigation -->
-                <div class="legal-bottom-nav">
-                    <a href="privacy-policy.html" class="legal-nav-btn">
-                        <i class="fa-solid fa-shield-halved"></i> <span localization-key="terms.bottomNav.privacy">Privacy Policy</span>
-                    </a>
-                    <a href="index.html" class="legal-nav-btn primary">
-                        <i class="fa-solid fa-house"></i> <span localization-key="terms.bottomNav.home">Back to Home</span>
-                    </a>
-                </div>
-
-            </article>
-        </div>
+          <!-- Bottom Navigation -->
+          <div class="legal-bottom-nav">
+            <a href="privacy-policy.html" class="legal-nav-btn">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span localization-key="terms.bottomNav.privacy"
+                >Privacy Policy</span
+              >
+            </a>
+            <a href="index.html" class="legal-nav-btn primary">
+              <i class="fa-solid fa-house"></i>
+              <span localization-key="terms.bottomNav.home">Back to Home</span>
+            </a>
+          </div>
+        </article>
+      </div>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer" id="contact">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="footer-logo">
-                <p class="footer-tagline" localization-key="footer.tagline">"All Restaurants, One Booking"</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4 localization-key="footer.company">Company</h4>
-                    <a href="about.html" localization-key="footer.about">About Us</a>
-                </div>
-                <div class="footer-col">
-                    <h4 localization-key="footer.support">Support</h4>
-                    <a href="help-center.html" localization-key="footer.help">Help Center</a>
-                    <a href="contact.html" localization-key="footer.contact">Contact Us</a>
-                    <a href="privacy-policy.html" localization-key="footer.privacy">Privacy Policy</a>
-                    <a href="terms-of-service.html" style="color:var(--orange);" localization-key="footer.terms">Terms of Service</a>
-                    <a href="admin.html" id="footerAdminLink" style="color:var(--orange);" localization-key="footer.admin">Admin Dashboard</a>
-                </div>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img
+            src="../pictures/reservehub-full-logo-light-mode.png"
+            alt="ReserveHub Logo"
+            class="footer-logo"
+          />
+          <p class="footer-tagline" localization-key="footer.tagline">
+            "All Restaurants, One Booking"
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p localization-key="footer.copyright">© 2026 ReserveHub. All rights reserved.</p>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4 localization-key="footer.company">Company</h4>
+            <a href="about.html" localization-key="footer.about">About Us</a>
+          </div>
+          <div class="footer-col">
+            <h4 localization-key="footer.support">Support</h4>
+            <a href="help-center.html" localization-key="footer.help"
+              >Help Center</a
+            >
+            <a href="contact.html" localization-key="footer.contact"
+              >Contact Us</a
+            >
+            <a href="privacy-policy.html" localization-key="footer.privacy"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              style="color: var(--orange)"
+              localization-key="footer.terms"
+              >Terms of Service</a
+            >
+            <a
+              href="admin.html"
+              id="footerAdminLink"
+              style="color: var(--orange)"
+              localization-key="footer.admin"
+              >Admin Dashboard</a
+            >
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p localization-key="footer.copyright">
+          © 2026 ReserveHub. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="../js/theme.js"></script>
@@ -382,27 +793,38 @@
     <script src="../js/session.js"></script>
     <script src="../js/localization.js"></script>
     <script>
-        // Scroll reveal
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-        }, { threshold: 0.1 });
-        reveals.forEach(r => observer.observe(r));
+      // Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      reveals.forEach((r) => observer.observe(r));
 
-        // Sticky TOC highlight
-        const sections = document.querySelectorAll('.legal-section');
-        const tocLinks = document.querySelectorAll('.legal-toc a');
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    tocLinks.forEach(l => l.classList.remove('active'));
-                    const active = document.querySelector(`.legal-toc a[href="#${entry.target.id}"]`);
-                    if (active) active.classList.add('active');
-                }
-            });
-        }, { rootMargin: '-20% 0px -70% 0px' });
-        sections.forEach(s => sectionObserver.observe(s));
+      // Sticky TOC highlight
+      const sections = document.querySelectorAll('.legal-section');
+      const tocLinks = document.querySelectorAll('.legal-toc a');
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tocLinks.forEach((l) => l.classList.remove('active'));
+              const active = document.querySelector(
+                `.legal-toc a[href="#${entry.target.id}"]`,
+              );
+              if (active) active.classList.add('active');
+            }
+          });
+        },
+        { rootMargin: '-20% 0px -70% 0px' },
+      );
+      sections.forEach((s) => sectionObserver.observe(s));
     </script>
-</body>
-
+  </body>
 </html>

@@ -1,346 +1,932 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Privacy Policy | ReserveHub</title>
-    <meta name="description"
-        content="Read ReserveHub's Privacy Policy to understand how we collect, use, and protect your personal information.">
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/legal.css">
-</head>
+    <meta
+      name="description"
+      content="Read ReserveHub's Privacy Policy to understand how we collect, use, and protect your personal information."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/legal.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
-        <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
-            <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
-        </a>
+      <a
+        href="index.html"
+        aria-label="ReserveHub Homepage"
+        class="nav-logo-link"
+      >
+        <img
+          src="../pictures/reservehub-full-logo-light-mode.png"
+          alt="ReserveHub Logo"
+          class="top-logo"
+        />
+      </a>
 
-        <div class="top-btn-container" role="navigation" aria-label="Main navigation">
-            <a href="index.html" class="top-btn" localization-key="policy.nav.home">HOME</a>
-            <a href="index.html#how-it-works" class="top-btn" localization-key="policy.nav.how">HOW IT WORKS</a>
-            <a href="index.html#featured" class="top-btn" localization-key="policy.nav.restaurants">RESTAURANTS</a>
-            <a href="contact.html" class="top-btn" localization-key="policy.nav.contact">CONTACT</a>
-            <div id="auth-buttons" style="display: flex; gap: 4px;">
-                <a href="login-signup.html" class="top-btn btn-cta" id="signupBtn" localization-key="policy.nav.login">SIGN UP / LOG IN</a>
-            </div>
-            <div class="language-picker">
-                <i class="fa-solid fa-globe"></i>
-                <select class="policy-language-localization language-select" aria-label="Select language">
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                </select>
-            </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon"></i>
-                <i class="fa-solid fa-sun"></i>
-            </button>
+      <div
+        class="top-btn-container"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <a href="index.html" class="top-btn" localization-key="policy.nav.home"
+          >HOME</a
+        >
+        <a
+          href="index.html#how-it-works"
+          class="top-btn"
+          localization-key="policy.nav.how"
+          >HOW IT WORKS</a
+        >
+        <a
+          href="index.html#featured"
+          class="top-btn"
+          localization-key="policy.nav.restaurants"
+          >RESTAURANTS</a
+        >
+        <a
+          href="contact.html"
+          class="top-btn"
+          localization-key="policy.nav.contact"
+          >CONTACT</a
+        >
+        <div id="auth-buttons" style="display: flex; gap: 4px">
+          <a
+            href="login-signup.html"
+            class="top-btn btn-cta"
+            id="signupBtn"
+            localization-key="policy.nav.login"
+            >SIGN UP / LOG IN</a
+          >
         </div>
-
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
+        <div class="language-picker">
+          <i class="fa-solid fa-globe"></i>
+          <select
+            class="policy-language-localization language-select"
+            aria-label="Select language"
+          >
+            <!-- populated by localization.js -->
+          </select>
+        </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
         </button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <!-- Mobile Nav -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="mob-link" localization-key="policy.mobile.home">Home</a>
-        <a href="index.html#how-it-works" class="mob-link" localization-key="policy.mobile.how">How It Works</a>
-        <a href="index.html#featured" class="mob-link" localization-key="policy.mobile.restaurants">Restaurants</a>
-        <a href="contact.html" class="mob-link" localization-key="policy.mobile.contact">Contact</a>
-        <div id="mob-auth-buttons">
-            <a href="login-signup.html" class="mob-link mob-cta" localization-key="policy.mobile.login">Sign Up / Log In</a>
-        </div>
-        <div class="language-picker">
-            <i class="fa-solid fa-globe"></i>
-            <select class="policy-language-localization language-select" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-            </select>
-        </div>
-        <a href="javascript:void(0)" localization-key="policy.mobile.theme" class="mob-link" id="mobile-theme-toggle" style="margin-top: 20px;">
-            <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
-        </a>
+      <a
+        href="index.html"
+        class="mob-link"
+        localization-key="policy.mobile.home"
+        >Home</a
+      >
+      <a
+        href="index.html#how-it-works"
+        class="mob-link"
+        localization-key="policy.mobile.how"
+        >How It Works</a
+      >
+      <a
+        href="index.html#featured"
+        class="mob-link"
+        localization-key="policy.mobile.restaurants"
+        >Restaurants</a
+      >
+      <a
+        href="contact.html"
+        class="mob-link"
+        localization-key="policy.mobile.contact"
+        >Contact</a
+      >
+      <div id="mob-auth-buttons">
+        <a
+          href="login-signup.html"
+          class="mob-link mob-cta"
+          localization-key="policy.mobile.login"
+          >Sign Up / Log In</a
+        >
+      </div>
+      <div class="language-picker">
+        <i class="fa-solid fa-globe"></i>
+        <select
+          class="policy-language-localization language-select"
+          aria-label="Select language"
+        >
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <a
+        href="javascript:void(0)"
+        localization-key="policy.mobile.theme"
+        class="mob-link"
+        id="mobile-theme-toggle"
+        style="margin-top: 20px"
+      >
+        <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
+      </a>
     </div>
 
     <!-- ===== LEGAL PAGE CONTENT ===== -->
     <main class="legal-main">
+      <!-- Hero Banner -->
+      <div class="legal-hero">
+        <div class="legal-hero-inner">
+          <div class="legal-hero-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <span class="section-tag" localization-key="policy.hero.tag"
+            >Your Privacy Matters</span
+          >
+          <h1 class="legal-hero-title" localization-key="policy.hero.title">
+            Privacy Policy
+          </h1>
+          <p class="legal-hero-sub">
+            <span localization-key="policy.hero.updated">Last updated: </span
+            ><strong
+              ><span localization-key="policy.hero.updated.date">
+                11, 2026
+              </span></strong
+            >
+          </p>
+        </div>
+      </div>
 
-        <!-- Hero Banner -->
-        <div class="legal-hero">
-            <div class="legal-hero-inner">
-                <div class="legal-hero-icon">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <span class="section-tag" localization-key="policy.hero.tag">Your Privacy Matters</span>
-            <h1 class="legal-hero-title" localization-key="policy.hero.title">Privacy Policy</h1>
-            <p class="legal-hero-sub"><span localization-key="policy.hero.updated">Last updated: </span><strong><span localization-key="policy.hero.updated.date"> 11, 2026 </span></strong></p>
+      <div class="legal-container">
+        <!-- Table of Contents -->
+        <aside class="legal-toc" id="legalToc">
+          <h3 localization-key="policy.toc.title">
+            <i class="fa-solid fa-list"></i> Contents
+          </h3>
+          <ul>
+            <li>
+              <a href="#intro" localization-key="policy.toc.item1"
+                >1. Introduction</a
+              >
+            </li>
+            <li>
+              <a href="#info-collect" localization-key="policy.toc.item2"
+                >2. Information We Collect</a
+              >
+            </li>
+            <li>
+              <a href="#how-use" localization-key="policy.toc.item3"
+                >3. How We Use Your Information</a
+              >
+            </li>
+            <li>
+              <a href="#sharing" localization-key="policy.toc.item4"
+                >4. Sharing Your Information</a
+              >
+            </li>
+            <li>
+              <a href="#cookies" localization-key="policy.toc.item5"
+                >5. Cookies &amp; Tracking</a
+              >
+            </li>
+            <li>
+              <a href="#security" localization-key="policy.toc.item6"
+                >6. Data Security</a
+              >
+            </li>
+            <li>
+              <a href="#retention" localization-key="policy.toc.item7"
+                >7. Data Retention</a
+              >
+            </li>
+            <li>
+              <a href="#rights" localization-key="policy.toc.item8"
+                >8. Your Rights</a
+              >
+            </li>
+            <li>
+              <a href="#children" localization-key="policy.toc.item9"
+                >9. Children's Privacy</a
+              >
+            </li>
+            <li>
+              <a href="#changes" localization-key="policy.toc.item10"
+                >10. Changes to This Policy</a
+              >
+            </li>
+            <li>
+              <a href="#contact-us" localization-key="policy.toc.item11"
+                >11. Contact Us</a
+              >
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <article class="legal-content">
+          <section id="intro" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-circle-info"></i>
             </div>
-        </div>
+            <h2 localization-key="policy.section1.title">1. Introduction</h2>
+            <p>
+              <span localization-key="policy.section1.paragraph1.start"
+                >Welcome to </span
+              ><strong
+                ><span localization-key="policy.section1.paragraph1.brand"
+                  >ReserveHub</span
+                ></strong
+              >
+              <span localization-key="policy.section1.paragraph1.end">
+                ("we", "us", or "our"). We are committed to protecting your
+                personal information and your right to privacy. This Privacy
+                Policy explains how we collect, use, disclose, and safeguard
+                your information when you visit our website and use our
+                services.</span
+              >
+            </p>
+            <p localization-key="policy.section1.paragraph2">
+              Please read this policy carefully. If you disagree with its terms,
+              please discontinue use of our platform.
+            </p>
+            <div class="legal-callout info">
+              <i class="fa-solid fa-circle-info"></i>
+              <span localization-key="policy.section1.callout"
+                >By using ReserveHub, you consent to the data practices
+                described in this policy.</span
+              >
+            </div>
+          </section>
 
-        <div class="legal-container">
+          <section id="info-collect" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-database"></i>
+            </div>
+            <h2 localization-key="policy.section2.title">
+              2. Information We Collect
+            </h2>
+            <p localization-key="policy.section2.intro">
+              We collect information in the following ways:
+            </p>
 
-            <!-- Table of Contents -->
-            <aside class="legal-toc" id="legalToc">
-                <h3 localization-key="policy.toc.title"><i class="fa-solid fa-list"></i> Contents</h3>
-            <ul>
-                <li><a href="#intro" localization-key="policy.toc.item1">1. Introduction</a></li>
-                <li><a href="#info-collect" localization-key="policy.toc.item2">2. Information We Collect</a></li>
-                <li><a href="#how-use" localization-key="policy.toc.item3">3. How We Use Your Information</a></li>
-                <li><a href="#sharing" localization-key="policy.toc.item4">4. Sharing Your Information</a></li>
-                <li><a href="#cookies" localization-key="policy.toc.item5">5. Cookies &amp; Tracking</a></li>
-                <li><a href="#security" localization-key="policy.toc.item6">6. Data Security</a></li>
-                <li><a href="#retention" localization-key="policy.toc.item7">7. Data Retention</a></li>
-                <li><a href="#rights" localization-key="policy.toc.item8">8. Your Rights</a></li>
-                <li><a href="#children" localization-key="policy.toc.item9">9. Children's Privacy</a></li>
-                <li><a href="#changes" localization-key="policy.toc.item10">10. Changes to This Policy</a></li>
-                <li><a href="#contact-us" localization-key="policy.toc.item11">11. Contact Us</a></li>
+            <h3 localization-key="policy.section2.subsection1.title">
+              2.1 Information You Provide
+            </h3>
+            <ul class="legal-list">
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item1.title"
+                    >Account Information:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item1.text"
+                  >Name, email address, password (hashed), and profile photo
+                  when you register.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item2.title"
+                    >Reservation Details:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item2.text"
+                  >Date, time, party size, special requests, and the restaurant
+                  you book.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item3.title"
+                    >Payment Information:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item3.text"
+                  >We do not store full card details; payments are processed by
+                  PCI-DSS-compliant third-party providers.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item4.title"
+                    >Communications:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item4.text"
+                  >Messages you send to us via contact forms or support
+                  channels.</span
+                >
+              </li>
             </ul>
-            </aside>
 
-            <!-- Main Content -->
-            <article class="legal-content">
+            <h3 localization-key="policy.section2.subsection2.title">
+              2.2 Information Collected Automatically
+            </h3>
+            <ul class="legal-list">
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item5.title"
+                    >Log Data:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item5.text"
+                  >IP address, browser type, pages visited, time and date of
+                  visits, and referring URLs.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item6.title"
+                    >Device Data:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item6.text"
+                  >Device type, operating system, and unique device
+                  identifiers.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item7.title"
+                    >Location Data:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item7.text"
+                  >Approximate location inferred from your IP address to suggest
+                  nearby restaurants.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section2.item8.title"
+                    >Cookies:</span
+                  ></strong
+                >
+                <span localization-key="policy.section2.item8.text"
+                  >See Section 5 for full cookie details.</span
+                >
+              </li>
+            </ul>
+          </section>
 
-                <section id="intro" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-circle-info"></i></div>
-                    <h2 localization-key="policy.section1.title">1. Introduction</h2>
-                    <p><span localization-key="policy.section1.paragraph1.start">Welcome to </span><strong><span localization-key="policy.section1.paragraph1.brand">ReserveHub</span></strong>
-                        <span localization-key="policy.section1.paragraph1.end"> ("we", "us", or "our"). We are committed to protecting your personal information and your right to privacy. 
-                        This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</span></p>
-                    <p localization-key="policy.section1.paragraph2">Please read this policy carefully. If you disagree with its terms, please discontinue use of our platform.</p>
-                    <div class="legal-callout info">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span localization-key="policy.section1.callout">By using ReserveHub, you consent to the data practices described in this policy.</span>
-                    </div>
-                </section>
+          <section id="how-use" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <h2 localization-key="policy.section3.title">
+              3. How We Use Your Information
+            </h2>
+            <p localization-key="policy.section3.intro">
+              We use the information we collect to:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="policy.section3.item1">
+                Create and manage your ReserveHub account.
+              </li>
+              <li localization-key="policy.section3.item2">
+                Process and confirm restaurant reservations.
+              </li>
+              <li localization-key="policy.section3.item3">
+                Send booking confirmations, reminders, and updates via email or
+                SMS.
+              </li>
+              <li localization-key="policy.section3.item4">
+                Personalise your experience and surface relevant restaurant
+                recommendations.
+              </li>
+              <li localization-key="policy.section3.item5">
+                Improve, test, and develop new features for our platform.
+              </li>
+              <li localization-key="policy.section3.item6">
+                Detect, prevent, and address fraud, abuse, or security
+                incidents.
+              </li>
+              <li localization-key="policy.section3.item7">
+                Comply with legal obligations and enforce our Terms of Service.
+              </li>
+              <li localization-key="policy.section3.item8">
+                Send promotional communications (with your consent, which you
+                may withdraw at any time).
+              </li>
+            </ul>
+            <div class="legal-callout success">
+              <i class="fa-solid fa-check-circle"></i>
+              <span localization-key="policy.section3.callout"
+                >We never sell your personal data to third parties for their own
+                marketing purposes.</span
+              >
+            </div>
+          </section>
 
-                <section id="info-collect" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-database"></i></div>
-                    <h2 localization-key="policy.section2.title">2. Information We Collect</h2>
-                    <p localization-key="policy.section2.intro">We collect information in the following ways:</p>
+          <section id="sharing" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-share-nodes"></i>
+            </div>
+            <h2 localization-key="policy.section4.title">
+              4. Sharing Your Information
+            </h2>
+            <p localization-key="policy.section4.intro">
+              We may share your information in limited circumstances:
+            </p>
 
-                    <h3 localization-key="policy.section2.subsection1.title">2.1 Information You Provide</h3>
-                    <ul class="legal-list">
-                        <li><strong><span localization-key="policy.section2.item1.title">Account Information:</span></strong> <span localization-key="policy.section2.item1.text">Name, email address, password (hashed), and profile photo when you register.</span></li>
-                        <li><strong><span localization-key="policy.section2.item2.title">Reservation Details:</span></strong> <span localization-key="policy.section2.item2.text">Date, time, party size, special requests, and the restaurant you book.</span></li>
-                        <li><strong><span localization-key="policy.section2.item3.title">Payment Information:</span></strong> <span localization-key="policy.section2.item3.text">We do not store full card details; payments are processed by PCI-DSS-compliant third-party providers.</span></li>
-                        <li><strong><span localization-key="policy.section2.item4.title">Communications:</span></strong> <span localization-key="policy.section2.item4.text">Messages you send to us via contact forms or support channels.</span></li>
-                    </ul>
+            <div class="legal-table-wrap">
+              <table class="legal-table">
+                <thead>
+                  <tr>
+                    <th localization-key="policy.section4.table.recipient">
+                      Recipient
+                    </th>
+                    <th localization-key="policy.section4.table.purpose">
+                      Purpose
+                    </th>
+                    <th localization-key="policy.section4.table.safeguards">
+                      Safeguards
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong localization-key="policy.section4.row1.recipient"
+                        >Restaurant Partners</strong
+                      >
+                    </td>
+                    <td localization-key="policy.section4.row1.purpose">
+                      Fulfil your reservation (name, party size, date/time)
+                    </td>
+                    <td localization-key="policy.section4.row1.safeguard">
+                      Data Processing Agreements
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong localization-key="policy.section4.row2.recipient"
+                        >Payment Processors</strong
+                      >
+                    </td>
+                    <td localization-key="policy.section4.row2.purpose">
+                      Handle secure payment transactions
+                    </td>
+                    <td localization-key="policy.section4.row2.safeguard">
+                      PCI-DSS Compliance
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong localization-key="policy.section4.row3.recipient"
+                        >Email / SMS Providers</strong
+                      >
+                    </td>
+                    <td localization-key="policy.section4.row3.purpose">
+                      Send transactional and marketing messages
+                    </td>
+                    <td localization-key="policy.section4.row3.safeguard">
+                      Data Processing Agreements
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong localization-key="policy.section4.row4.recipient"
+                        >Analytics Providers</strong
+                      >
+                    </td>
+                    <td localization-key="policy.section4.row4.purpose">
+                      Understand platform usage (anonymised)
+                    </td>
+                    <td localization-key="policy.section4.row4.safeguard">
+                      Data anonymisation / pseudonymisation
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong localization-key="policy.section4.row5.recipient"
+                        >Law Enforcement</strong
+                      >
+                    </td>
+                    <td localization-key="policy.section4.row5.purpose">
+                      Comply with legal obligations when required
+                    </td>
+                    <td localization-key="policy.section4.row5.safeguard">
+                      Only when legally compelled
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-                    <h3 localization-key="policy.section2.subsection2.title">2.2 Information Collected Automatically</h3>
-                    <ul class="legal-list">
-                        <li><strong><span localization-key="policy.section2.item5.title">Log Data:</span></strong> <span localization-key="policy.section2.item5.text">IP address, browser type, pages visited, time and date of visits, and referring URLs.</span></li>
-                        <li><strong><span localization-key="policy.section2.item6.title">Device Data:</span></strong> <span localization-key="policy.section2.item6.text">Device type, operating system, and unique device identifiers.</span></li>
-                        <li><strong><span localization-key="policy.section2.item7.title">Location Data:</span></strong> <span localization-key="policy.section2.item7.text">Approximate location inferred from your IP address to suggest nearby restaurants.</span></li>
-                        <li><strong><span localization-key="policy.section2.item8.title">Cookies:</span></strong> <span localization-key="policy.section2.item8.text">See Section 5 for full cookie details.</span></li>
-                    </ul>
-                </section>
+          <section id="cookies" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-cookie-bite"></i>
+            </div>
+            <h2 localization-key="policy.section5.title">
+              5. Cookies &amp; Tracking
+            </h2>
+            <p localization-key="policy.section5.intro">
+              We use cookies and similar tracking technologies to enhance your
+              experience:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <strong
+                  ><span localization-key="policy.section5.item1.title"
+                    >Essential Cookies:</span
+                  ></strong
+                >
+                <span localization-key="policy.section5.item1.text"
+                  >Required for the platform to function (e.g., authentication
+                  session tokens).</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section5.item2.title"
+                    >Preference Cookies:</span
+                  ></strong
+                >
+                <span localization-key="policy.section5.item2.text"
+                  >Remember your settings such as dark/light theme
+                  preference.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section5.item3.title"
+                    >Analytics Cookies:</span
+                  ></strong
+                >
+                <span localization-key="policy.section5.item3.text"
+                  >Help us understand how visitors interact with our site (e.g.,
+                  Google Analytics — data is anonymised).</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section5.item4.title"
+                    >Marketing Cookies:</span
+                  ></strong
+                >
+                <span localization-key="policy.section5.item4.text"
+                  >Used only with your explicit consent to deliver relevant
+                  ads.</span
+                >
+              </li>
+            </ul>
+            <p localization-key="policy.section5.paragraph">
+              You can control or delete cookies through your browser settings.
+              Disabling essential cookies may impair some features.
+            </p>
+          </section>
 
-                <section id="how-use" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-gears"></i></div>
-                    <h2 localization-key="policy.section3.title">3. How We Use Your Information</h2>
-                    <p localization-key="policy.section3.intro">We use the information we collect to:</p>
-                    <ul class="legal-list">
-                        <li localization-key="policy.section3.item1">Create and manage your ReserveHub account.</li>
-                        <li localization-key="policy.section3.item2">Process and confirm restaurant reservations.</li>
-                        <li localization-key="policy.section3.item3">Send booking confirmations, reminders, and updates via email or SMS.</li>
-                        <li localization-key="policy.section3.item4">Personalise your experience and surface relevant restaurant recommendations.</li>
-                        <li localization-key="policy.section3.item5">Improve, test, and develop new features for our platform.</li>
-                        <li localization-key="policy.section3.item6">Detect, prevent, and address fraud, abuse, or security incidents.</li>
-                        <li localization-key="policy.section3.item7">Comply with legal obligations and enforce our Terms of Service.</li>
-                        <li localization-key="policy.section3.item8">Send promotional communications (with your consent, which you may withdraw at any time).</li>
-                    </ul>
-                    <div class="legal-callout success">
-                        <i class="fa-solid fa-check-circle"></i>
-                        <span localization-key="policy.section3.callout">We never sell your personal data to third parties for their own marketing purposes.</span>
-                    </div>
-                </section>
+          <section id="security" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <h2 localization-key="policy.section6.title">6. Data Security</h2>
+            <p localization-key="policy.section6.intro">
+              We implement industry-standard technical and organisational
+              measures to protect your data, including:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="policy.section6.item1">
+                TLS/SSL encryption for all data in transit.
+              </li>
+              <li localization-key="policy.section6.item2">
+                Bcrypt hashing for stored passwords — we never store plain-text
+                passwords.
+              </li>
+              <li localization-key="policy.section6.item3">
+                Regular security audits and vulnerability assessments.
+              </li>
+              <li localization-key="policy.section6.item4">
+                Role-based access controls limiting who can access personal data
+                internally.
+              </li>
+            </ul>
+            <div class="legal-callout warning">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span localization-key="policy.section6.callout"
+                >No method of transmission over the internet is 100% secure.
+                While we strive to protect your data, we cannot guarantee
+                absolute security.</span
+              >
+            </div>
+          </section>
 
-                <section id="sharing" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-share-nodes"></i></div>
-                    <h2 localization-key="policy.section4.title">4. Sharing Your Information</h2>
-                    <p localization-key="policy.section4.intro">We may share your information in limited circumstances:</p>
+          <section id="retention" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h2 localization-key="policy.section7.title">7. Data Retention</h2>
+            <p localization-key="policy.section7.intro">
+              We retain your personal data only as long as necessary:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <strong
+                  ><span localization-key="policy.section7.item1.title"
+                    >Active accounts:</span
+                  ></strong
+                >
+                <span localization-key="policy.section7.item1.text"
+                  >Data is retained for the lifetime of your account.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section7.item2.title"
+                    >Deleted accounts:</span
+                  ></strong
+                >
+                <span localization-key="policy.section7.item2.text"
+                  >Most data is permanently deleted within 30 days. Certain
+                  records may be retained for up to 7 years to comply with
+                  legal/financial obligations.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section7.item3.title"
+                    >Reservation history:</span
+                  ></strong
+                >
+                <span localization-key="policy.section7.item3.text"
+                  >Kept for 3 years for dispute resolution and analytics
+                  purposes.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section7.item4.title"
+                    >Log data:</span
+                  ></strong
+                >
+                <span localization-key="policy.section7.item4.text"
+                  >Automatically purged after 90 days.</span
+                >
+              </li>
+            </ul>
+          </section>
 
-                    <div class="legal-table-wrap">
-                        <table class="legal-table">
-                            <thead>
-                                <tr>
-                                    <th localization-key="policy.section4.table.recipient">Recipient</th>
-                                    <th localization-key="policy.section4.table.purpose">Purpose</th>
-                                    <th localization-key="policy.section4.table.safeguards">Safeguards</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong localization-key="policy.section4.row1.recipient">Restaurant Partners</strong></td>
-                                    <td localization-key="policy.section4.row1.purpose">Fulfil your reservation (name, party size, date/time)</td>
-                                    <td localization-key="policy.section4.row1.safeguard">Data Processing Agreements</td>
-                                </tr>
-                                <tr>
-                                    <td><strong localization-key="policy.section4.row2.recipient">Payment Processors</strong></td>
-                                    <td localization-key="policy.section4.row2.purpose">Handle secure payment transactions</td>
-                                    <td localization-key="policy.section4.row2.safeguard">PCI-DSS Compliance</td>
-                                </tr>
-                                <tr>
-                                    <td><strong localization-key="policy.section4.row3.recipient">Email / SMS Providers</strong></td>
-                                    <td localization-key="policy.section4.row3.purpose">Send transactional and marketing messages</td>
-                                    <td localization-key="policy.section4.row3.safeguard">Data Processing Agreements</td>
-                                </tr>
-                                <tr>
-                                    <td><strong localization-key="policy.section4.row4.recipient">Analytics Providers</strong></td>
-                                    <td localization-key="policy.section4.row4.purpose">Understand platform usage (anonymised)</td>
-                                    <td localization-key="policy.section4.row4.safeguard">Data anonymisation / pseudonymisation</td>
-                                </tr>
-                                <tr>
-                                    <td><strong localization-key="policy.section4.row5.recipient">Law Enforcement</strong></td>
-                                    <td localization-key="policy.section4.row5.purpose">Comply with legal obligations when required</td>
-                                    <td localization-key="policy.section4.row5.safeguard">Only when legally compelled</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
+          <section id="rights" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h2 localization-key="policy.section8.title">8. Your Rights</h2>
+            <p localization-key="policy.section8.intro">
+              Depending on your jurisdiction, you may have the following rights
+              regarding your personal data:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <strong
+                  ><span localization-key="policy.section8.item1.title"
+                    >Access:</span
+                  ></strong
+                >
+                <span localization-key="policy.section8.item1.text"
+                  >Request a copy of the personal data we hold about you.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section8.item2.title"
+                    >Rectification:</span
+                  ></strong
+                >
+                <span localization-key="policy.section8.item2.text"
+                  >Ask us to correct inaccurate or incomplete data.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section8.item3.title"
+                    >Erasure:</span
+                  ></strong
+                >
+                <span localization-key="policy.section8.item3.text"
+                  >Request deletion of your personal data ("right to be
+                  forgotten").</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section8.item4.title"
+                    >Restriction:</span
+                  ></strong
+                >
+                <span localization-key="policy.section8.item4.text"
+                  >Ask us to limit how we process your data.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section8.item5.title"
+                    >Portability:</span
+                  ></strong
+                >
+                <span localization-key="policy.section8.item5.text"
+                  >Receive your data in a structured, machine-readable
+                  format.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section8.item6.title"
+                    >Objection:</span
+                  ></strong
+                >
+                <span localization-key="policy.section8.item6.text"
+                  >Object to processing based on legitimate interests or direct
+                  marketing.</span
+                >
+              </li>
+              <li>
+                <strong
+                  ><span localization-key="policy.section8.item7.title"
+                    >Withdraw Consent:</span
+                  ></strong
+                >
+                <span localization-key="policy.section8.item7.text"
+                  >Withdraw consent at any time where processing is
+                  consent-based.</span
+                >
+              </li>
+            </ul>
+            <p>
+              <span localization-key="policy.section8.contact.item1"
+                >To exercise any of these rights, contact us at </span
+              ><a
+                localization-key="policy.section8.contact.item2"
+                href="mailto:privacy@reservehub.com"
+              >
+                privacy@reservehub.com</a
+              ><span localization-key="policy.section8.contact.item3"
+                >. We will respond within 30 days.</span
+              >
+            </p>
+          </section>
 
-                <section id="cookies" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-cookie-bite"></i></div>
-                    <h2 localization-key="policy.section5.title">5. Cookies &amp; Tracking</h2>
-                    <p localization-key="policy.section5.intro">We use cookies and similar tracking technologies to enhance your experience:</p>
-                    <ul class="legal-list">
-                        <li><strong><span localization-key="policy.section5.item1.title">Essential Cookies:</span></strong> <span localization-key="policy.section5.item1.text">Required for the platform to function (e.g., authentication session tokens).</span></li>
-                        <li><strong><span localization-key="policy.section5.item2.title">Preference Cookies:</span></strong> <span localization-key="policy.section5.item2.text">Remember your settings such as dark/light theme preference.</span></li>
-                        <li><strong><span localization-key="policy.section5.item3.title">Analytics Cookies:</span></strong> <span localization-key="policy.section5.item3.text">Help us understand how visitors interact with our site (e.g., Google Analytics — data is anonymised).</span></li>
-                        <li><strong><span localization-key="policy.section5.item4.title">Marketing Cookies:</span></strong> <span localization-key="policy.section5.item4.text">Used only with your explicit consent to deliver relevant ads.</span></li>
-                    </ul>
-                    <p localization-key="policy.section5.paragraph">You can control or delete cookies through your browser settings. Disabling essential cookies may impair some features.</p>
-                </section>
+          <section id="children" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-child"></i>
+            </div>
+            <h2 localization-key="policy.section9.title">
+              9. Children's Privacy
+            </h2>
+            <p localization-key="policy.section9.paragraph">
+              ReserveHub is not directed at children under the age of 13. We do
+              not knowingly collect personal information from children. If you
+              believe we have inadvertently collected data from a child, please
+              contact us immediately and we will delete it promptly.
+            </p>
+          </section>
 
-                <section id="security" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-lock"></i></div>
-                    <h2 localization-key="policy.section6.title">6. Data Security</h2>
-                    <p localization-key="policy.section6.intro">We implement industry-standard technical and organisational measures to protect your data, including:</p>
-                    <ul class="legal-list">
-                        <li localization-key="policy.section6.item1">TLS/SSL encryption for all data in transit.</li>
-                        <li localization-key="policy.section6.item2">Bcrypt hashing for stored passwords — we never store plain-text passwords.</li>
-                        <li localization-key="policy.section6.item3">Regular security audits and vulnerability assessments.</li>
-                        <li localization-key="policy.section6.item4">Role-based access controls limiting who can access personal data internally.</li>
-                    </ul>
-                    <div class="legal-callout warning">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <span localization-key="policy.section6.callout">No method of transmission over the internet is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.</span>
-                    </div>
-                </section>
+          <section id="changes" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-rotate"></i>
+            </div>
+            <h2 localization-key="policy.section10.title">
+              10. Changes to This Policy
+            </h2>
+            <p localization-key="policy.section10.paragraph1">
+              We may update this Privacy Policy from time to time. When we make
+              significant changes, we will:
+            </p>
+            <ul class="legal-list">
+              <li localization-key="policy.section10.item1">
+                Update the "Last updated" date at the top of this page.
+              </li>
+              <li localization-key="policy.section10.item2">
+                Notify registered users via email or an in-app notification.
+              </li>
+            </ul>
+            <p localization-key="policy.section10.paragraph2">
+              Continued use of ReserveHub after changes constitute your
+              acceptance of the updated policy.
+            </p>
+          </section>
 
-                <section id="retention" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <h2 localization-key="policy.section7.title">7. Data Retention</h2>
-                    <p localization-key="policy.section7.intro">We retain your personal data only as long as necessary:</p>
-                    <ul class="legal-list">
-                        <li><strong><span localization-key="policy.section7.item1.title">Active accounts:</span></strong> <span localization-key="policy.section7.item1.text">Data is retained for the lifetime of your account.</span></li>
-                        <li><strong><span localization-key="policy.section7.item2.title">Deleted accounts:</span></strong> <span localization-key="policy.section7.item2.text">Most data is permanently deleted within 30 days. Certain records may be 
-                            retained for up to 7 years to comply with legal/financial obligations.</span></li>
-                        <li><strong><span localization-key="policy.section7.item3.title">Reservation history:</span></strong> <span localization-key="policy.section7.item3.text">Kept for 3 years for dispute resolution and analytics purposes.</span></li>
-                        <li><strong><span localization-key="policy.section7.item4.title">Log data:</span></strong> <span localization-key="policy.section7.item4.text">Automatically purged after 90 days.</span></li>
-                    </ul>
-                </section>
+          <section id="contact-us" class="legal-section reveal">
+            <div class="legal-section-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <h2 localization-key="policy.section11.title">11. Contact Us</h2>
+            <p localization-key="policy.section11.paragraph">
+              If you have questions, concerns, or requests regarding this
+              Privacy Policy, please reach out:
+            </p>
+            <div class="legal-contact-card">
+              <div class="legal-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a
+                  href="mailto:privacy@reservehub.com"
+                  localization-key="policy.section11.email"
+                  >privacy@reservehub.com</a
+                >
+              </div>
+              <div class="legal-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span localization-key="policy.section11.address"
+                  >ReserveHub HQ, 123 Dining Avenue, Food City, FC 12345</span
+                >
+              </div>
+            </div>
+          </section>
 
-                <section id="rights" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-user-shield"></i></div>
-                    <h2 localization-key="policy.section8.title">8. Your Rights</h2>
-                    <p localization-key="policy.section8.intro">Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
-                    <ul class="legal-list">
-                        <li><strong><span localization-key="policy.section8.item1.title">Access:</span></strong> <span localization-key="policy.section8.item1.text">Request a copy of the personal data we hold about you.</span></li>
-                        <li><strong><span localization-key="policy.section8.item2.title">Rectification:</span></strong> <span localization-key="policy.section8.item2.text">Ask us to correct inaccurate or incomplete data.</span></li>
-                        <li><strong><span localization-key="policy.section8.item3.title">Erasure:</span></strong> <span localization-key="policy.section8.item3.text">Request deletion of your personal data ("right to be forgotten").</span></li>
-                        <li><strong><span localization-key="policy.section8.item4.title">Restriction:</span></strong> <span localization-key="policy.section8.item4.text">Ask us to limit how we process your data.</span></li>
-                        <li><strong><span localization-key="policy.section8.item5.title">Portability:</span></strong> <span localization-key="policy.section8.item5.text">Receive your data in a structured, machine-readable format.</span></li>
-                        <li><strong><span localization-key="policy.section8.item6.title">Objection:</span></strong> <span localization-key="policy.section8.item6.text">Object to processing based on legitimate interests or direct marketing.</span></li>
-                        <li><strong><span localization-key="policy.section8.item7.title">Withdraw Consent:</span></strong> <span localization-key="policy.section8.item7.text">Withdraw consent at any time where processing is consent-based.</span></li>
-                    </ul>
-                    <p><span localization-key="policy.section8.contact.item1">To exercise any of these rights, contact us at </span><a localization-key="policy.section8.contact.item2"
-                            href="mailto:privacy@reservehub.com"> privacy@reservehub.com</a><span localization-key="policy.section8.contact.item3">. We will respond within 30 days.</span></p>
-                </section>
-
-                <section id="children" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-child"></i></div>
-                    <h2 localization-key="policy.section9.title">9. Children's Privacy</h2>
-                    <p localization-key="policy.section9.paragraph">ReserveHub is not directed at children under the age of 13.
-                         We do not knowingly collect personal information from children. If you believe we have inadvertently 
-                         collected data from a child, please contact us immediately and we will delete it promptly.</p>
-                </section>
-
-                <section id="changes" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-rotate"></i></div>
-                    <h2 localization-key="policy.section10.title">10. Changes to This Policy</h2>
-                    <p localization-key="policy.section10.paragraph1">We may update this Privacy Policy from time to time. When we make significant changes, we will:</p>
-                    <ul class="legal-list">
-                        <li localization-key="policy.section10.item1">Update the "Last updated" date at the top of this page.</li>
-                        <li localization-key="policy.section10.item2">Notify registered users via email or an in-app notification.</li>
-                    </ul>
-                    <p localization-key="policy.section10.paragraph2">Continued use of ReserveHub after changes constitute your acceptance of the updated policy.</p>
-                </section>
-
-                <section id="contact-us" class="legal-section reveal">
-                    <div class="legal-section-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <h2 localization-key="policy.section11.title">11. Contact Us</h2>
-                    <p localization-key="policy.section11.paragraph">If you have questions, concerns, or requests regarding this Privacy Policy, please reach out:</p>
-                    <div class="legal-contact-card">
-                        <div class="legal-contact-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <a href="mailto:privacy@reservehub.com" localization-key="policy.section11.email">privacy@reservehub.com</a>
-                        </div>
-                        <div class="legal-contact-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span localization-key="policy.section11.address">ReserveHub HQ, 123 Dining Avenue, Food City, FC 12345</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Bottom Navigation -->
-                <div class="legal-bottom-nav">
-                    <a href="terms-of-service.html" class="legal-nav-btn">
-                        <i class="fa-solid fa-file-contract"></i> <span localization-key="policy.bottom.terms">Terms of Service</span>
-                    </a>
-                    <a href="index.html" class="legal-nav-btn primary">
-                        <i class="fa-solid fa-house"></i> <span localization-key="policy.bottom.home">Back to Home</span>
-                    </a>
-                </div>
-
-            </article>
-        </div>
+          <!-- Bottom Navigation -->
+          <div class="legal-bottom-nav">
+            <a href="terms-of-service.html" class="legal-nav-btn">
+              <i class="fa-solid fa-file-contract"></i>
+              <span localization-key="policy.bottom.terms"
+                >Terms of Service</span
+              >
+            </a>
+            <a href="index.html" class="legal-nav-btn primary">
+              <i class="fa-solid fa-house"></i>
+              <span localization-key="policy.bottom.home">Back to Home</span>
+            </a>
+          </div>
+        </article>
+      </div>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer" id="contact">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="footer-logo">
-                <p class="footer-tagline" localization-key="policy.footer.tagline">"All Restaurants, One Booking"</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4 localization-key="policy.footer.company">Company</h4>
-                    <a href="about.html" localization-key="policy.footer.about">About Us</a>
-                </div>
-                <div class="footer-col">
-                    <h4 localization-key="policy.footer.support">Support</h4>
-                    <a href="help-center.html" localization-key="policy.footer.help">Help Center</a>
-                    <a href="contact.html" localization-key="policy.footer.contact">Contact Us</a>
-                    <a href="privacy-policy.html" localization-key="policy.footer.privacy" style="color:var(--orange);">Privacy Policy</a>
-                    <a href="terms-of-service.html" localization-key="policy.footer.terms">Terms of Service</a>
-                    <a href="admin.html" localization-key="policy.footer.admin" id="footerAdminLink" style="color:var(--orange);">Admin Dashboard</a>
-                </div>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img
+            src="../pictures/reservehub-full-logo-light-mode.png"
+            alt="ReserveHub Logo"
+            class="footer-logo"
+          />
+          <p class="footer-tagline" localization-key="policy.footer.tagline">
+            "All Restaurants, One Booking"
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p localization-key="policy.footer.copyright">© 2026 ReserveHub. All rights reserved.</p>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4 localization-key="policy.footer.company">Company</h4>
+            <a href="about.html" localization-key="policy.footer.about"
+              >About Us</a
+            >
+          </div>
+          <div class="footer-col">
+            <h4 localization-key="policy.footer.support">Support</h4>
+            <a href="help-center.html" localization-key="policy.footer.help"
+              >Help Center</a
+            >
+            <a href="contact.html" localization-key="policy.footer.contact"
+              >Contact Us</a
+            >
+            <a
+              href="privacy-policy.html"
+              localization-key="policy.footer.privacy"
+              style="color: var(--orange)"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              localization-key="policy.footer.terms"
+              >Terms of Service</a
+            >
+            <a
+              href="admin.html"
+              localization-key="policy.footer.admin"
+              id="footerAdminLink"
+              style="color: var(--orange)"
+              >Admin Dashboard</a
+            >
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p localization-key="policy.footer.copyright">
+          © 2026 ReserveHub. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="../js/theme.js"></script>
@@ -348,27 +934,38 @@
     <script src="../js/session.js"></script>
     <script src="../js/localization.js"></script>
     <script>
-        // Scroll reveal
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-        }, { threshold: 0.1 });
-        reveals.forEach(r => observer.observe(r));
+      // Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      reveals.forEach((r) => observer.observe(r));
 
-        // Sticky TOC highlight
-        const sections = document.querySelectorAll('.legal-section');
-        const tocLinks = document.querySelectorAll('.legal-toc a');
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    tocLinks.forEach(l => l.classList.remove('active'));
-                    const active = document.querySelector(`.legal-toc a[href="#${entry.target.id}"]`);
-                    if (active) active.classList.add('active');
-                }
-            });
-        }, { rootMargin: '-20% 0px -70% 0px' });
-        sections.forEach(s => sectionObserver.observe(s));
+      // Sticky TOC highlight
+      const sections = document.querySelectorAll('.legal-section');
+      const tocLinks = document.querySelectorAll('.legal-toc a');
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tocLinks.forEach((l) => l.classList.remove('active'));
+              const active = document.querySelector(
+                `.legal-toc a[href="#${entry.target.id}"]`,
+              );
+              if (active) active.classList.add('active');
+            }
+          });
+        },
+        { rootMargin: '-20% 0px -70% 0px' },
+      );
+      sections.forEach((s) => sectionObserver.observe(s));
     </script>
-</body>
-
+  </body>
 </html>

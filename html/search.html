@@ -1,108 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title localization-key="search.meta.title">Search Restaurants | ReserveHub</title>
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/search.css">
-</head>
-<body>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title localization-key="search.meta.title">
+      Search Restaurants | ReserveHub
+    </title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/search.css" />
+  </head>
+  <body>
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar scrolled" id="navbar">
-        <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
-            <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
-        </a>
-        <div class="top-btn-container" style="display: flex; gap: 4px; align-items: center;">
-            <a href="index.html" localization-key="search.nav.home" class="top-btn">HOME</a>
-            <div id="auth-buttons" style="display: flex; gap: 4px;">
-                <a href="login-signup.html" localization-key="search.nav.login" class="top-btn btn-cta">SIGN UP / LOG IN</a>
-            </div>
-            <div class="language-picker">
-                <i class="fa-solid fa-globe"></i>
-                <select class="search-language-localization language-select" aria-label="Select language">
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                </select>
-            </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" style="margin-left: 10px;">
-                <i class="fa-solid fa-moon"></i>
-                <i class="fa-solid fa-sun"></i>
-            </button>
+      <a
+        href="index.html"
+        aria-label="ReserveHub Homepage"
+        class="nav-logo-link"
+      >
+        <img
+          src="../pictures/reservehub-full-logo-light-mode.png"
+          alt="ReserveHub Logo"
+          class="top-logo"
+        />
+      </a>
+      <div
+        class="top-btn-container"
+        style="display: flex; gap: 4px; align-items: center"
+      >
+        <a href="index.html" localization-key="search.nav.home" class="top-btn"
+          >HOME</a
+        >
+        <div id="auth-buttons" style="display: flex; gap: 4px">
+          <a
+            href="login-signup.html"
+            localization-key="search.nav.login"
+            class="top-btn btn-cta"
+            >SIGN UP / LOG IN</a
+          >
         </div>
+        <div class="language-picker">
+          <i class="fa-solid fa-globe"></i>
+          <select
+            class="search-language-localization language-select"
+            aria-label="Select language"
+          >
+            <!-- populated by localization.js -->
+          </select>
+        </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+          style="margin-left: 10px"
+        >
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
     </nav>
 
     <main class="search-page-main">
-        <div class="search-container">
-            <!-- Sidebar Filters -->
-            <aside class="search-sidebar">
-                <h3><i class="fa-solid fa-filter"></i> <span localization-key="search.filters.title">Filters</span></h3>
-                
-                <div class="filter-group">
-                    <label localization-key="search.filters.keyword.label">Search Keyword</label>
-                    <input type="text" id="filterKeyword" localization-key="search.filters.keyword.placeholder" localization-target="placeholder" placeholder="e.g. Italian, Pizza...">
-                </div>
+      <div class="search-container">
+        <!-- Sidebar Filters -->
+        <aside class="search-sidebar">
+          <h3>
+            <i class="fa-solid fa-filter"></i>
+            <span localization-key="search.filters.title">Filters</span>
+          </h3>
 
-                <div class="filter-group">
-                    <label localization-key="search.filters.location.label">Location</label>
-                    <input type="text" id="filterLocation" list="locationOptions" localization-key="search.filters.location.placeholder" localization-target="placeholder" placeholder="Select or type address...">
-                    <datalist id="locationOptions">
-                        <option value="Kuala Lumpur">
-                        <option value="Petaling Jaya">
-                        <option value="Subang Jaya">
-                        <option value="Penang">
-                        <option value="Johor Bahru">
-                        <option value="Malacca">
-                        <option value="Ipoh">
-                        <option value="Kuching">
-                        <option value="Kota Kinabalu">
-                    </datalist>
-                </div>
+          <div class="filter-group">
+            <label localization-key="search.filters.keyword.label"
+              >Search Keyword</label
+            >
+            <input
+              type="text"
+              id="filterKeyword"
+              localization-key="search.filters.keyword.placeholder"
+              localization-target="placeholder"
+              placeholder="e.g. Italian, Pizza..."
+            />
+          </div>
 
-                <div class="filter-group">
-                    <label localization-key="search.filters.diet.label">Dietary Preferences</label>
-                    <select id="filterHalal">
-                        <option localization-key="search.filters.diet.all" value="">All</option>
-                        <option localization-key="search.filters.diet.halal" value="1">Halal Certified</option>
-                        <option localization-key="search.filters.diet.nonHalal" value="0">Non-Halal</option>
-                    </select>
-                </div>
+          <div class="filter-group">
+            <label localization-key="search.filters.location.label"
+              >Location</label
+            >
+            <input
+              type="text"
+              id="filterLocation"
+              list="locationOptions"
+              localization-key="search.filters.location.placeholder"
+              localization-target="placeholder"
+              placeholder="Select or type address..."
+            />
+            <datalist id="locationOptions">
+              <option value="Kuala Lumpur"></option>
+              <option value="Petaling Jaya"></option>
+              <option value="Subang Jaya"></option>
+              <option value="Penang"></option>
+              <option value="Johor Bahru"></option>
+              <option value="Malacca"></option>
+              <option value="Ipoh"></option>
+              <option value="Kuching"></option>
+              <option value="Kota Kinabalu"></option>
+            </datalist>
+          </div>
 
-                <div class="filter-group">
-                    <label localization-key="search.filters.time.label">Availability (Time)</label>
-                    <input type="time" id="filterTime">
-                </div>
+          <div class="filter-group">
+            <label localization-key="search.filters.diet.label"
+              >Dietary Preferences</label
+            >
+            <select id="filterHalal">
+              <option localization-key="search.filters.diet.all" value="">
+                All
+              </option>
+              <option localization-key="search.filters.diet.halal" value="1">
+                Halal Certified
+              </option>
+              <option localization-key="search.filters.diet.nonHalal" value="0">
+                Non-Halal
+              </option>
+            </select>
+          </div>
 
-                <button id="applyFiltersBtn" localization-key="search.filters.apply" class="search-btn w-100">Apply Filters</button>
-            </aside>
+          <div class="filter-group">
+            <label localization-key="search.filters.time.label"
+              >Availability (Time)</label
+            >
+            <input type="time" id="filterTime" />
+          </div>
 
-            <!-- Results Area -->
-            <section class="search-results-area">
-                <div class="results-header">
-                    <h2 id="resultsCount" localization-key="search.results.searching">Searching...</h2>
-                </div>
-                
-                <div class="restaurants-grid" id="restaurantsGrid">
-                    <!-- Dynamic results will be injected here -->
-                </div>
-            </section>
-        </div>
+          <button
+            id="applyFiltersBtn"
+            localization-key="search.filters.apply"
+            class="search-btn w-100"
+          >
+            Apply Filters
+          </button>
+        </aside>
+
+        <!-- Results Area -->
+        <section class="search-results-area">
+          <div class="results-header">
+            <h2 id="resultsCount" localization-key="search.results.searching">
+              Searching...
+            </h2>
+          </div>
+
+          <div class="restaurants-grid" id="restaurantsGrid">
+            <!-- Dynamic results will be injected here -->
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="footer-bottom" style="border-top:none;">
-            <p localization-key="search.footer.copyright">© 2026 ReserveHub. All rights reserved.</p>
-        </div>
+      <div class="footer-bottom" style="border-top: none">
+        <p localization-key="search.footer.copyright">
+          © 2026 ReserveHub. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="../js/theme.js"></script>
     <script src="../js/localization.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/session.js"></script>
-</body>
+  </body>
 </html>

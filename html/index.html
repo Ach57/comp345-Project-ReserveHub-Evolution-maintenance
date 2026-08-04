@@ -1,295 +1,531 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ReserveHub | All Restaurants, One Booking</title>
-    <meta name="description"
-        localization-key="description"
-        content="ReserveHub makes restaurant reservations effortless. Discover and book the best dining experiences — all in one place.">
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
+    <meta
+      name="description"
+      localization-key="description"
+      content="ReserveHub makes restaurant reservations effortless. Discover and book the best dining experiences — all in one place."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
-        <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
-            <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
-        </a>
+      <a
+        href="index.html"
+        aria-label="ReserveHub Homepage"
+        class="nav-logo-link"
+      >
+        <img
+          src="../pictures/reservehub-full-logo-light-mode.png"
+          alt="ReserveHub Logo"
+          class="top-logo"
+        />
+      </a>
 
-        <div class="top-btn-container" role="navigation" aria-label="Main navigation">
-            <a href="index.html" localization-key="nav.home" class="top-btn active-nav">HOME</a>
-            <a href="#how-it-works" localization-key="nav.how" class="top-btn">HOW IT WORKS</a>
-            <a href="#featured" localization-key="nav.restaurants" class="top-btn">RESTAURANTS</a>
-            <a href="contact.html" localization-key="nav.contact" class="top-btn">CONTACT</a>
-            <div id="auth-buttons" style="display: flex; gap: 4px;">
-                <a href="login-signup.html" localization-key="nav.login" class="top-btn btn-cta" id="signupBtn">SIGN UP / LOG IN</a>
-            </div>
-            <div class="language-picker">
-                <i class="fa-solid fa-globe"></i>
-                <select class="index-language-localization language-select" aria-label="Select language">
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                </select>
-            </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon"></i>
-                <i class="fa-solid fa-sun"></i>
-            </button>
+      <div
+        class="top-btn-container"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <a
+          href="index.html"
+          localization-key="nav.home"
+          class="top-btn active-nav"
+          >HOME</a
+        >
+        <a href="#how-it-works" localization-key="nav.how" class="top-btn"
+          >HOW IT WORKS</a
+        >
+        <a href="#featured" localization-key="nav.restaurants" class="top-btn"
+          >RESTAURANTS</a
+        >
+        <a href="contact.html" localization-key="nav.contact" class="top-btn"
+          >CONTACT</a
+        >
+        <div id="auth-buttons" style="display: flex; gap: 4px">
+          <a
+            href="login-signup.html"
+            localization-key="nav.login"
+            class="top-btn btn-cta"
+            id="signupBtn"
+            >SIGN UP / LOG IN</a
+          >
         </div>
-
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
+        <div class="language-picker">
+          <i class="fa-solid fa-globe"></i>
+          <select
+            class="index-language-localization language-select"
+            aria-label="Select language"
+          >
+            <!-- populated by localization.js -->
+          </select>
+        </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
         </button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <!-- Mobile Nav -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" localization-key="mobile.home" class="mob-link">Home</a>
-        <a href="#how-it-works" localization-key="mobile.how" class="mob-link">How It Works</a>
-        <a href="#featured" localization-key="mobile.restaurants" class="mob-link">Restaurants</a>
-        <a href="contact.html" localization-key="mobile.contact" class="mob-link">Contact</a>
-        <div id="mob-auth-buttons">
-            <a href="login-signup.html" localization-key="mobile.login" class="mob-link mob-cta">Sign Up / Log In</a>
-        </div>
-        <div class="language-picker">
-            <i class="fa-solid fa-globe"></i>
-            <select class="index-language-localization language-select" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-            </select>
-        </div>
-        <a href="javascript:void(0)" localization-key="mobile.theme" class="mob-link" id="mobile-theme-toggle" style="margin-top: 20px;">
-            <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
-        </a>
+      <a href="index.html" localization-key="mobile.home" class="mob-link"
+        >Home</a
+      >
+      <a href="#how-it-works" localization-key="mobile.how" class="mob-link"
+        >How It Works</a
+      >
+      <a href="#featured" localization-key="mobile.restaurants" class="mob-link"
+        >Restaurants</a
+      >
+      <a href="contact.html" localization-key="mobile.contact" class="mob-link"
+        >Contact</a
+      >
+      <div id="mob-auth-buttons">
+        <a
+          href="login-signup.html"
+          localization-key="mobile.login"
+          class="mob-link mob-cta"
+          >Sign Up / Log In</a
+        >
+      </div>
+      <div class="language-picker">
+        <i class="fa-solid fa-globe"></i>
+        <select
+          class="index-language-localization language-select"
+          aria-label="Select language"
+        >
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <a
+        href="javascript:void(0)"
+        localization-key="mobile.theme"
+        class="mob-link"
+        id="mobile-theme-toggle"
+        style="margin-top: 20px"
+      >
+        <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
+      </a>
     </div>
 
     <!-- ===== HERO SECTION ===== -->
     <main>
-        <section class="hero" id="home">
-            <video class="hero-video" autoplay muted loop playsinline preload="metadata"
-                poster="../pictures/video-poster.jpg" disablepictureinpicture disableRemotePlayback
-                oncontextmenu="return false;" aria-hidden="true" tabindex="-1" role="presentation">
-                <source src="../videos/eating-video.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
+      <section class="hero" id="home">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="../pictures/video-poster.jpg"
+          disablepictureinpicture
+          disableRemotePlayback
+          oncontextmenu="return false;"
+          aria-hidden="true"
+          tabindex="-1"
+          role="presentation"
+        >
+          <source src="../videos/eating-video.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
 
-            <div class="hero-content">
-                <span localization-key="index.hero.badge" class="hero-badge" ><i class="fa-solid fa-star"></i> #1 Restaurant Booking Platform</span>
-                <h1 class="hero-title">
-                    <span localization-key="index.hero.title">All Restaurants,</span>
-                    <br>
-                    <span localization-key="index.hero.accent" class="hero-accent">One Booking.</span>
-                </h1>
-                <p localization-key="index.hero.tagline" class="hero-tagline">All Restaurants, One Booking</p>
-                <p localization-key="index.hero.subtitle" class="hero-subtitle">Discover, explore, and reserve tables at the finest restaurants — all in
-                    seconds.</p>
+        <div class="hero-content">
+          <span localization-key="index.hero.badge" class="hero-badge"
+            ><i class="fa-solid fa-star"></i> #1 Restaurant Booking
+            Platform</span
+          >
+          <h1 class="hero-title">
+            <span localization-key="index.hero.title">All Restaurants,</span>
+            <br />
+            <span localization-key="index.hero.accent" class="hero-accent"
+              >One Booking.</span
+            >
+          </h1>
+          <p localization-key="index.hero.tagline" class="hero-tagline">
+            All Restaurants, One Booking
+          </p>
+          <p localization-key="index.hero.subtitle" class="hero-subtitle">
+            Discover, explore, and reserve tables at the finest restaurants —
+            all in seconds.
+          </p>
 
-                <form class="restaurant-search" id="searchForm" action="search.html" method="GET">
-                    <div class="restaurant-search-inner">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" localization-key="index.search.placeholder" localization-target="placeholder" placeholder="Search restaurants, cuisines, or locations…" name="q"
-                            id="searchInput" aria-label="Search restaurants">
-                    </div>
-                    <button type="submit" localization-key="index.hero.searchButton" class="search-btn">Find a Table</button>
-                </form>
-
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-num">500+</span>
-                        <span localization-key="index.stats.restaurants" class="stat-label">Restaurants</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat">
-                        <span class="stat-num">50K+</span>
-                        <span localization-key="index.stats.diners" class="stat-label">Happy Diners</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat">
-                        <span class="stat-num">4.9★</span>
-                        <span localization-key="index.stats.rating" class="stat-label">Average Rating</span>
-                    </div>
-                </div>
+          <form
+            class="restaurant-search"
+            id="searchForm"
+            action="search.html"
+            method="GET"
+          >
+            <div class="restaurant-search-inner">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input
+                type="text"
+                localization-key="index.search.placeholder"
+                localization-target="placeholder"
+                placeholder="Search restaurants, cuisines, or locations…"
+                name="q"
+                id="searchInput"
+                aria-label="Search restaurants"
+              />
             </div>
+            <button
+              type="submit"
+              localization-key="index.hero.searchButton"
+              class="search-btn"
+            >
+              Find a Table
+            </button>
+          </form>
 
-            <a href="#how-it-works" class="scroll-down" aria-label="Scroll down">
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-        </section>
-
-        <!-- ===== HOW IT WORKS ===== -->
-        <section class="section how-section" id="how-it-works">
-            <div class="container">
-                <div class="section-header">
-                    <span localization-key="index.how.tag" class="section-tag">Simple & Fast</span>
-                    <h2 localization-key="index.how.title" class="section-title">How It Works</h2>
-                    <p localization-key="index.how.description" class="section-desc">Reserve your perfect table in three easy steps.</p>
-                </div>
-
-                <div class="steps-grid">
-                    <div class="step-card" data-step="1">
-                        <div class="step-icon">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                        <h3 localization-key="index.steps.search.title">Search</h3>
-                        <p localization-key="index.steps.search.description">Browse hundreds of restaurants by cuisine, location, price range, or occasion.</p>
-                    </div>
-                    <div class="step-connector"><i class="fa-solid fa-arrow-right"></i></div>
-                    <div class="step-card" data-step="2">
-                        <div class="step-icon">
-                            <i class="fa-solid fa-calendar-check"></i>
-                        </div>
-                        <h3 localization-key="index.steps.book.title">Book</h3>
-                        <p localization-key="index.steps.book.description">Pick your date, time, and party size. Reserve instantly — no waiting, no calls.</p>
-                    </div>
-                    <div class="step-connector"><i class="fa-solid fa-arrow-right"></i></div>
-                    <div class="step-card" data-step="3">
-                        <div class="step-icon">
-                            <i class="fa-solid fa-utensils"></i>
-                        </div>
-                        <h3 localization-key="index.steps.dine.title">Dine</h3>
-                        <p localization-key="index.steps.dine.description">Show up and enjoy. Your table will be ready and waiting just for you.</p>
-                    </div>
-                </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">500+</span>
+              <span
+                localization-key="index.stats.restaurants"
+                class="stat-label"
+                >Restaurants</span
+              >
             </div>
-        </section>
-
-        <!-- ===== FEATURED RESTAURANTS ===== -->
-        <section class="section featured-section" id="featured">
-            <div class="container">
-                <div class="section-header">
-                    <span localization-key="index.featured.tag" class="section-tag">Handpicked For You</span>
-                    <h2 localization-key="index.featured.title" class="section-title">Featured Restaurants</h2>
-                    <p localization-key="index.featured.description" class="section-desc">From cozy bistros to fine dining — find your next favourite spot.</p>
-                </div>
-
-                <div class="filter-tabs">
-                    <button localization-key="index.filters.all" class="filter-tab active" data-filter="all">All</button>
-                    <button localization-key="index.filters.italian" class="filter-tab" data-filter="italian">Italian</button>
-                    <button localization-key="index.filters.asian" class="filter-tab" data-filter="asian">Asian</button>
-                    <button localization-key="index.filters.seafood" class="filter-tab" data-filter="seafood">Seafood</button>
-                    <button localization-key="index.filters.steakhouse" class="filter-tab" data-filter="steakhouse">Steakhouse</button>
-                </div>
-
-                <div class="restaurants-grid">
-                    <!-- Dynamic content from featured.js -->
-                    <div style="grid-column: 1/-1; text-align:center; padding: 40px;" localization-key="index.featured.loading">
-                        <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--orange)"></i>
-                        <br><br>
-                        Loading Featured Restaurants...
-                    </div>
-                </div>
-
-                <div class="view-all-wrap">
-                    <button class="view-all-btn" onclick="window.location.href='search.html'" localization-key="index.featured.viewAll">
-                        View All Restaurants <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">50K+</span>
+              <span localization-key="index.stats.diners" class="stat-label"
+                >Happy Diners</span
+              >
             </div>
-        </section>
-
-        <!-- ===== TESTIMONIALS ===== -->
-        <section class="section testimonial-section" id="testimonials-section">
-            <div class="container">
-                <div class="section-header">
-                    <span localization-key="index.testimonials.tag" class="section-tag">What Diners Say</span>
-                    <h2 localization-key="index.testimonials.title" class="section-title">Loved by Food Enthusiasts</h2>
-                </div>
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i></div>
-                        <p localization-key="index.testimonial1.quote">"ReserveHub made our anniversary dinner absolutely seamless. Found a rooftop restaurant in 2
-                            minutes and booked instantly. Incredible!"</p>
-                        <div class="t-author">
-                            <div class="t-avatar" style="background:#e74c3c;">JL</div>
-                            <div>
-                                <strong>Jamie L.</strong>
-                                <span localization-key="index.testimonial1.role">Food Blogger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i></div>
-                        <p localization-key="index.testimonial2.quote">"I used to spend 20 mins calling restaurants. Now I book in seconds. ReserveHub is the app I
-                            never knew I needed until now."</p>
-                        <div class="t-author">
-                            <div class="t-avatar" style="background:#2980b9;">MR</div>
-                            <div>
-                                <strong>Marcus R.</strong>
-                                <span localization-key="index.testimonial2.role">Business Traveller</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i></div>
-                        <p localization-key="index.testimonial3.quote">"The filter by occasion feature is a game-changer. Found the perfect spot for my parents'
-                            birthday with just a few clicks!"</p>
-                        <div class="t-author">
-                            <div class="t-avatar" style="background:#27ae60;">SA</div>
-                            <div>
-                                <strong>Sofia A.</strong>
-                                <span localization-key="index.testimonial3.role">Home Chef</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">4.9★</span>
+              <span localization-key="index.stats.rating" class="stat-label"
+                >Average Rating</span
+              >
             </div>
-        </section>
+          </div>
+        </div>
 
-        <!-- ===== CTA BANNER ===== -->
-        <section class="cta-section" id="cta-section">
-            <div class="cta-inner">
-                <h2 localization-key="index.cta.title">Ready to Reserve Your Next Table?</h2>
-                <p localization-key="index.cta.description">Join over 50,000 happy diners who book with ReserveHub every month.</p>
-                <a localization-key="index.cta.button" href="login-signup.html" class="cta-main-btn">Get Started — It's Free <i
-                        class="fa-solid fa-arrow-right"></i></a>
+        <a href="#how-it-works" class="scroll-down" aria-label="Scroll down">
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+      </section>
+
+      <!-- ===== HOW IT WORKS ===== -->
+      <section class="section how-section" id="how-it-works">
+        <div class="container">
+          <div class="section-header">
+            <span localization-key="index.how.tag" class="section-tag"
+              >Simple & Fast</span
+            >
+            <h2 localization-key="index.how.title" class="section-title">
+              How It Works
+            </h2>
+            <p localization-key="index.how.description" class="section-desc">
+              Reserve your perfect table in three easy steps.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card" data-step="1">
+              <div class="step-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <h3 localization-key="index.steps.search.title">Search</h3>
+              <p localization-key="index.steps.search.description">
+                Browse hundreds of restaurants by cuisine, location, price
+                range, or occasion.
+              </p>
             </div>
-        </section>
+            <div class="step-connector">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="step-card" data-step="2">
+              <div class="step-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <h3 localization-key="index.steps.book.title">Book</h3>
+              <p localization-key="index.steps.book.description">
+                Pick your date, time, and party size. Reserve instantly — no
+                waiting, no calls.
+              </p>
+            </div>
+            <div class="step-connector">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="step-card" data-step="3">
+              <div class="step-icon">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+              <h3 localization-key="index.steps.dine.title">Dine</h3>
+              <p localization-key="index.steps.dine.description">
+                Show up and enjoy. Your table will be ready and waiting just for
+                you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FEATURED RESTAURANTS ===== -->
+      <section class="section featured-section" id="featured">
+        <div class="container">
+          <div class="section-header">
+            <span localization-key="index.featured.tag" class="section-tag"
+              >Handpicked For You</span
+            >
+            <h2 localization-key="index.featured.title" class="section-title">
+              Featured Restaurants
+            </h2>
+            <p
+              localization-key="index.featured.description"
+              class="section-desc"
+            >
+              From cozy bistros to fine dining — find your next favourite spot.
+            </p>
+          </div>
+
+          <div class="filter-tabs">
+            <button
+              localization-key="index.filters.all"
+              class="filter-tab active"
+              data-filter="all"
+            >
+              All
+            </button>
+            <button
+              localization-key="index.filters.italian"
+              class="filter-tab"
+              data-filter="italian"
+            >
+              Italian
+            </button>
+            <button
+              localization-key="index.filters.asian"
+              class="filter-tab"
+              data-filter="asian"
+            >
+              Asian
+            </button>
+            <button
+              localization-key="index.filters.seafood"
+              class="filter-tab"
+              data-filter="seafood"
+            >
+              Seafood
+            </button>
+            <button
+              localization-key="index.filters.steakhouse"
+              class="filter-tab"
+              data-filter="steakhouse"
+            >
+              Steakhouse
+            </button>
+          </div>
+
+          <div class="restaurants-grid">
+            <!-- Dynamic content from featured.js -->
+            <div
+              style="grid-column: 1/-1; text-align: center; padding: 40px"
+              localization-key="index.featured.loading"
+            >
+              <i
+                class="fa-solid fa-spinner fa-spin fa-2x"
+                style="color: var(--orange)"
+              ></i>
+              <br /><br />
+              Loading Featured Restaurants...
+            </div>
+          </div>
+
+          <div class="view-all-wrap">
+            <button
+              class="view-all-btn"
+              onclick="window.location.href = 'search.html'"
+              localization-key="index.featured.viewAll"
+            >
+              View All Restaurants <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TESTIMONIALS ===== -->
+      <section class="section testimonial-section" id="testimonials-section">
+        <div class="container">
+          <div class="section-header">
+            <span localization-key="index.testimonials.tag" class="section-tag"
+              >What Diners Say</span
+            >
+            <h2
+              localization-key="index.testimonials.title"
+              class="section-title"
+            >
+              Loved by Food Enthusiasts
+            </h2>
+          </div>
+          <div class="testimonial-grid">
+            <div class="testimonial-card">
+              <div class="t-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i>
+              </div>
+              <p localization-key="index.testimonial1.quote">
+                "ReserveHub made our anniversary dinner absolutely seamless.
+                Found a rooftop restaurant in 2 minutes and booked instantly.
+                Incredible!"
+              </p>
+              <div class="t-author">
+                <div class="t-avatar" style="background: #e74c3c">JL</div>
+                <div>
+                  <strong>Jamie L.</strong>
+                  <span localization-key="index.testimonial1.role"
+                    >Food Blogger</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="t-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i>
+              </div>
+              <p localization-key="index.testimonial2.quote">
+                "I used to spend 20 mins calling restaurants. Now I book in
+                seconds. ReserveHub is the app I never knew I needed until now."
+              </p>
+              <div class="t-author">
+                <div class="t-avatar" style="background: #2980b9">MR</div>
+                <div>
+                  <strong>Marcus R.</strong>
+                  <span localization-key="index.testimonial2.role"
+                    >Business Traveller</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="t-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i>
+              </div>
+              <p localization-key="index.testimonial3.quote">
+                "The filter by occasion feature is a game-changer. Found the
+                perfect spot for my parents' birthday with just a few clicks!"
+              </p>
+              <div class="t-author">
+                <div class="t-avatar" style="background: #27ae60">SA</div>
+                <div>
+                  <strong>Sofia A.</strong>
+                  <span localization-key="index.testimonial3.role"
+                    >Home Chef</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA BANNER ===== -->
+      <section class="cta-section" id="cta-section">
+        <div class="cta-inner">
+          <h2 localization-key="index.cta.title">
+            Ready to Reserve Your Next Table?
+          </h2>
+          <p localization-key="index.cta.description">
+            Join over 50,000 happy diners who book with ReserveHub every month.
+          </p>
+          <a
+            localization-key="index.cta.button"
+            href="login-signup.html"
+            class="cta-main-btn"
+            >Get Started — It's Free <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </section>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer" id="contact">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="footer-logo">
-                <p localization-key="footer.tagline" class="footer-tagline">"All Restaurants, One Booking"</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4 localization-key="footer.company">Company</h4>
-                    <a localization-key="footer.about" href="about.html">About Us</a>
-                </div>
-                <div class="footer-col">
-                    <h4 localization-key="footer.support">Support</h4>
-                    <a localization-key="footer.help" href="help-center.html">Help Center</a>
-                    <a localization-key="footer.contact" href="contact.html">Contact Us</a>
-                    <a localization-key="footer.privacy" href="privacy-policy.html">Privacy Policy</a>
-                    <a localization-key="footer.terms" href="terms-of-service.html">Terms of Service</a>
-                    <a localization-key="footer.admin" href="admin.html" id="footerAdminLink" style="color:var(--orange);">Admin Dashboard</a>
-                </div>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img
+            src="../pictures/reservehub-full-logo-light-mode.png"
+            alt="ReserveHub Logo"
+            class="footer-logo"
+          />
+          <p localization-key="footer.tagline" class="footer-tagline">
+            "All Restaurants, One Booking"
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p localization-key="footer.copyright">© 2026 ReserveHub. All rights reserved.</p>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4 localization-key="footer.company">Company</h4>
+            <a localization-key="footer.about" href="about.html">About Us</a>
+          </div>
+          <div class="footer-col">
+            <h4 localization-key="footer.support">Support</h4>
+            <a localization-key="footer.help" href="help-center.html"
+              >Help Center</a
+            >
+            <a localization-key="footer.contact" href="contact.html"
+              >Contact Us</a
+            >
+            <a localization-key="footer.privacy" href="privacy-policy.html"
+              >Privacy Policy</a
+            >
+            <a localization-key="footer.terms" href="terms-of-service.html"
+              >Terms of Service</a
+            >
+            <a
+              localization-key="footer.admin"
+              href="admin.html"
+              id="footerAdminLink"
+              style="color: var(--orange)"
+              >Admin Dashboard</a
+            >
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p localization-key="footer.copyright">
+          © 2026 ReserveHub. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="../js/theme.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/session.js"></script>
     <script src="../js/localization.js"></script>
-</body>
-
+  </body>
 </html>
