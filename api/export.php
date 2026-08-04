@@ -19,6 +19,7 @@ if (!isset($_SESSION['user_id'])) {
 // User will only get their own data
 $user_id = (int) $_SESSION['user_id'];
 $is_admin = ($_SESSION['role'] ?? '') === 'admin';
+
 // --- Query reservation data -----------------------------------------------
 // No user input is interpolated into this query, but we use a prepared
 // statement per the security requirement. The JOINs mirror the existing
