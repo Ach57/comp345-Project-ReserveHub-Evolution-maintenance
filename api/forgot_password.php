@@ -6,6 +6,7 @@ header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 require_once __DIR__ . '/../src/Helpers/ProfileHelpers.php';
 require_once __DIR__ . '/../src/Helpers/ForgotPasswordHelpers.php';
+require_once __DIR__ . '/../src/Helpers/EnvironmentHelpers.php';
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {

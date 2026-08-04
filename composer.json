@@ -11,7 +11,9 @@
             "src/Helpers/ForgotPasswordHelpers.php",
             "src/Helpers/ResetPasswordHelpers.php",
             "src/Helpers/SearchHelpers.php",
-            "src/Helpers/SignupHelpers.php"
+            "src/Helpers/SignupHelpers.php",
+            "src/Helpers/ExportHelpers.php",
+            "src/Helpers/EnvironmentHelpers.php"
         ]
     }
 }

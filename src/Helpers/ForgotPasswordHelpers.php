@@ -2,17 +2,6 @@
 // src/Helpers/ForgotPasswordHelpers.php
 
 /**
- * Determine whether the current request is coming from a local/dev
- * environment, based on server name, server address, and host.
- */
-function isLocalEnvironment(string $serverName, string $serverAddr, string $httpHost): bool
-{
-    return in_array($serverName, ['localhost', '127.0.0.1', '::1', ''], true)
-        || $serverAddr === '127.0.0.1'
-        || $httpHost === 'localhost';
-}
-
-/**
  * Determine http vs https based on the raw $_SERVER['HTTPS'] value
  * (which may be null if the key isn't set at all).
  */
