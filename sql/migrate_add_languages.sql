@@ -30,10 +30,16 @@ CREATE TABLE IF NOT EXISTS `translations` (
 -- Seed supported languages
 INSERT IGNORE INTO `languages` (`code`, `name`) VALUES
   ('en', 'English'),
-  ('fr', 'Français');
+  ('fr', 'Français'),
+  ('es', 'Español'),
+  ('zh', '中文'),
+  ('ar', 'العربية'),
+  ('pt', 'Português'),
+  ('de', 'Deutsch'),
+  ('ja', '日本語'),
+  ('ko', '한국어'),
+  ('it', 'Italiano');
   
-  
-
 -- Seed translation pages
 INSERT IGNORE INTO `translation_pages` (`page_key`) VALUES
   ('about'),

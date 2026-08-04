@@ -56,5 +56,8 @@ info "Importing sql/migrate_add_languages.sql into '${DB_NAME}'..."
 info "Importing sql/migrate_add_index_card_keys.sql into '${DB_NAME}'..."
 "$MYSQL_BIN" "${MYSQL_OPTS[@]}" "$DB_NAME" < "$REPO_ROOT/sql/migrate_add_index_card_keys.sql"
 
+info "Importing sql/migrate_add_translations.sql into '${DB_NAME}'..."
+"$MYSQL_BIN" "${MYSQL_OPTS[@]}" "$DB_NAME" < "$REPO_ROOT/sql/migrate_add_translations.sql"
+
 success "Database reset complete. Seed data restored."
 echo ""

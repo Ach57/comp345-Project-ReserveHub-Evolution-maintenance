@@ -39,3 +39,7 @@ __pycache__/
 *.sql
 !sql/*.sql
 .env
+
+# virtual env
+
+tools/.venv
