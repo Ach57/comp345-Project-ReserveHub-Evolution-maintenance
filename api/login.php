@@ -4,6 +4,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+require_once __DIR__ . '/../src/Helpers/LoginHelpers.php';
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -27,10 +28,10 @@ if (!$data) {
     exit;
 }
 
-$identifier = trim($data->identifier ?? '');
-$password = trim($data->password ?? '');
+$identifier = trimCredential($data->identifier ?? null);
+$password = trimCredential($data->password ?? null);
 
-if (empty($identifier) || empty($password)) {
+if (!hasValidCredentials($identifier, $password)) {
     echo json_encode(['success' => false, 'message' => 'Please fill in all fields.']);
     exit;
 }

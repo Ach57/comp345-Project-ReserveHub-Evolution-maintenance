@@ -1,0 +1,12 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "^13.2"
+    },
+    "autoload": {
+        "files": [
+            "src/Helpers/TimeHelpers.php",
+            "src/Helpers/ProfileHelpers.php",
+            "src/Helpers/LoginHelpers.php"
+        ]
+    }
+}

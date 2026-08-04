@@ -5,6 +5,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 require_once 'db.php';
+require_once __DIR__ . '/../src/Helpers/TimeHelpers.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Method not allowed']);
@@ -30,32 +31,6 @@ $special_req    = $data['special_requests'] ?? '';
 if (!$user_id || !$restaurant_id || !$table_id || !$date || !$reservation_time || !$guest_count) {
     echo json_encode(['success' => false, 'message' => 'Missing required fields']);
     exit;
-}
-
-// ── Helper: convert "HH:MM:SS" or "HH:MM" to total minutes ──────────────────
-function timeToMinutes(string $t): int {
-    $parts = explode(':', $t);
-    return (int)$parts[0] * 60 + (int)($parts[1] ?? 0);
-}
-
-// ── Helper: check if a requested time falls within operating hours ────────────
-function isWithinOperatingHours(string $requestedTime, string $openTime, string $closeTime): bool {
-    $req   = timeToMinutes($requestedTime);
-    $open  = timeToMinutes($openTime);
-    $close = timeToMinutes($closeTime);
-
-    // 24-hour restaurant (00:00 – 23:59)
-    if ($open === 0 && $close >= 1439) {
-        return true;
-    }
-
-    if ($close > $open) {
-        // Normal same-day span: e.g. 11:00 – 22:00
-        return $req >= $open && $req < $close;
-    } else {
-        // Overnight span: e.g. 18:00 – 03:00
-        return $req >= $open || $req < $close;
-    }
 }
 
 try {
