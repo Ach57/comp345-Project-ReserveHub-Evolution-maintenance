@@ -24,9 +24,9 @@ if (!$host || !$db || !$user) {
     if ($isLocal) {
         // ── Local XAMPP ──────────────────────────────
         $host    = 'localhost';
-        $db      = 'reserve-hub';   // your local database name
+        $db      = 'reservehub';    // your local database name
         $user    = 'root';
-        $pass    = '';             // default XAMPP has no root password
+        $pass    = '';              // default XAMPP has no root password
     } else {
         // ── Production Default (e.g. InfinityFree / x10Hosting fallback) ──
         $serverName = $_SERVER['SERVER_NAME'] ?? '';
