@@ -54,6 +54,12 @@
           alt="ReserveHub Logo"
           class="top-logo"
         />
+        <button class="reserve-btn" onclick="downloadReservationsCSV()" id="exportCsvBtn">
+  <i class="fa-solid fa-file-pdf"></i>
+  <span localization-key="profile.nav.exportCSV">
+    Export Reservations to CSV
+  </span>
+</button>
       </a>
       <div class="top-btn-container" id="auth-buttons">
         <!-- Will be populated by session.js -->
@@ -793,6 +799,10 @@
             }
           });
       }
+      
+      function downloadReservationsCSV() {
+    window.location.href = '../api/export.php';
+}
     </script>
 
     <!-- Review Modal -->
