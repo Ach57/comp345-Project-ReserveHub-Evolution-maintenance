@@ -8,7 +8,9 @@
             "src/Helpers/ProfileHelpers.php",
             "src/Helpers/LoginHelpers.php",
             "src/Helpers/LanguageHelpers.php",
-            "src/Helpers/ForgotPasswordHelpers.php"
+            "src/Helpers/ForgotPasswordHelpers.php",
+            "src/Helpers/ResetPasswordHelpers.php",
+            "src/Helpers/SearchHelpers.php"
         ]
     }
 }
