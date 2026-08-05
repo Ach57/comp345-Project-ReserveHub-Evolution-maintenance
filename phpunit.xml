@@ -4,10 +4,10 @@
          bootstrap="vendor/autoload.php"
          colors="true">
     <testsuites>
-        <testsuite name="Unit">
+        <testsuite name="unit">
             <directory>tests/Unit</directory>
         </testsuite>
-        <testsuite name="Integration">
+        <testsuite name="integration">
             <directory>tests/Integration</directory>
         </testsuite>
     </testsuites>
@@ -16,8 +16,4 @@
             <directory>src</directory>
         </include>
     </source>
-    <logging>
-        <junit outputFile="tests/logs/results.xml"/>
-        <testdoxHtml outputFile="tests/logs/results.html"/>
-    </logging>
 </phpunit>

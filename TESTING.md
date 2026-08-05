@@ -18,11 +18,14 @@ composer install
 This downloads PHPUnit and any other dependencies into a local `vendor/` folder. `vendor/` is gitignored — everyone generates their own copy locally, based on the exact versions locked in `composer.lock`. You do not need to install PHPUnit separately; Composer handles it.
 
 ### Database Driver (Windows Users)
+
 If running native PHP on Windows (without WSL or XAMPP pre-configured), ensure the SQLite extension is enabled in your `php.ini` file:
+
 1. Open your `php.ini` file (run `php --ini` in terminal to find its location).
 2. Uncomment the line by removing the leading semicolon `;`:
    ```ini
    extension=pdo_sqlite
+   ```
 3. Save the file.
 
 ## Running the tests
@@ -30,17 +33,21 @@ If running native PHP on Windows (without WSL or XAMPP pre-configured), ensure t
 From the project root:
 
 ```
-vendor/bin/phpunit
+composer test              # runs both test suites
+composer test:unit         # runs the unit testing only
+composer test:integration  # runs the integration testing only
 ```
 
-This automatically discovers and runs every `*Test.php` file inside `tests/Unit/` — no manual registration needed. When you add a new test file to that folder, it's picked up on the next run automatically.
+This automatically discovers and runs every `*Test.php` file inside `tests/Unit/` or `tests/Integration/` — no manual registration needed. When you add a new test file to that folder, it's picked up on the next run automatically.
 
 ## Test output / logs
 
 Every run automatically generates two log files under `tests/logs/`:
 
-- `results.xml` — JUnit-format XML (useful for CI tools to parse)
-- `results.html` — human-readable HTML summary
+- `unit-results.xml` — JUnit-format XML (useful for CI tools to parse) for unit tests
+- `unit-results.html` — human-readable HTML summary for unit tests
+- `integration-results.xml` — JUnit-format XML (useful for CI tools to parse) for integration tests
+- `integration-results.html` — human-readable HTML summary for integration tests
 
 `tests/logs/` is gitignored, since these are regenerated output, not source.
 
@@ -52,7 +59,9 @@ project-root/
 ├── src/
 │   └── Helpers/             # Extracted, pure-logic functions (no DB/HTTP side effects)
 ├── tests/
-│   └── Unit/                 # One *Test.php file per Helpers file
+│   └── Unit/              # One *Test.php file per Helpers file
+│   └── Integration/
+│   └── logs/
 ├── composer.json
 ├── composer.lock
 └── phpunit.xml
@@ -66,7 +75,7 @@ Each helper file is named after the API file it was extracted from (e.g. `LoginH
 
 **Not every file needs this.** Some files (e.g. `logout.php`) are pure side effects with no real branching logic — nothing meaningful to unit test in isolation. Those are left as-is for now and are better candidates for future integration/API-level testing rather than unit tests.
 
-### Adding a new helper file — checklist
+### Adding a new helper file for unit tests — checklist
 
 1. Identify the pure-logic pieces in the target API file (no DB calls, no `$_SERVER`/`$_SESSION`/`echo`, deterministic input → output).
 2. Create `src/Helpers/<Name>Helpers.php` with those pieces extracted into standalone functions.
@@ -78,15 +87,38 @@ Each helper file is named after the API file it was extracted from (e.g. `LoginH
 
 ## Current coverage
 
-| API file                     | Helper file                       | Test file                            |
-| ---------------------------- | --------------------------------- | ------------------------------------ |
-| `reserve.php` / `tables.php` | `src/Helpers/TimeHelpers.php`     | `tests/Unit/TimeHelpersTest.php`     |
-| `profile.php`                | `src/Helpers/ProfileHelpers.php`  | `tests/Unit/ProfileHelpersTest.php`  |
-| `login.php`                  | `src/Helpers/LoginHelpers.php`    | `tests/Unit/LoginHelpersTest.php`    |
-| `language.php`               | `src/Helpers/LanguageHelpers.php` | `tests/Unit/LanguageHelpersTest.php` |
-| `logout.php`                 | — (no extractable logic)          | —                                    |
+### Unit Tests
 
-_(Update this table as more files are covered.)_
+| API file                                                            | Helper file                             | Test file                                  |
+| ------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------ |
+| `admin_api.php`                                                     | `src/Helpers/AdminApiHelpers.php`       | `tests/Unit/AdminApiHelpersTest.php`       |
+| `db.php` / `forgot_password.php`                                    | `src/Helpers/EnvironmentHelpers.php`    | `tests/Unit/EnvironmentHelpersTest.php`    |
+| `export.php`                                                        | `src/Helpers/ExportHelpers.php`         | `tests/Unit/ExportHelpersTest.php`         |
+| `forgot_password.php`                                               | `src/Helpers/ForgotPasswordHelpers.php` | `tests/Unit/ForgotPasswordHelpersTest.php` |
+| `admin_api.php` / `reserve.php` / `signup.php`                      | `src/Helpers/IdHelpers.php`             | `tests/Unit/IdHelpersTest.php`             |
+| `language.php`                                                      | `src/Helpers/LanguageHelpers.php`       | `tests/Unit/LanguageHelpersTest.php`       |
+| `admin_api.php` / `login.php` / `reset_password.php` / `signup.php` | `src/Helpers/LoginHelpers.php`          | `tests/Unit/LoginHelpersTest.php`          |
+| `forgot_password.php` / `profile.php`                               | `src/Helpers/ProfileHelpers.php`        | `tests/Unit/ProfileHelpersTest.php`        |
+| `reserve.php`                                                       | `src/Helpers/ReserveHelpers.php`        | `tests/Unit/ReserveHelpersTest.php`        |
+| `reset_password.php`                                                | `src/Helpers/ResetPasswordHelpers.php`  | `tests/Unit/ResetPasswordHelpersTest.php`  |
+| `restaurant.php`                                                    | `src/Helpers/SearchHelpers.php`         | `tests/Unit/SearchHelpersTest.php`         |
+| `admin_api.php` / `signup.php`                                      | `src/Helpers/SignupHelpers.php`         | `tests/Unit/SignupHelpersTest.php`         |
+| `reserve.php` / `tables.php`                                        | `src/Helpers/TimeHelpers.php`           | `tests/Unit/TimeHelpersTest.php`           |
+| `logout.php`                                                        | — (no extractable logic)                | —                                          |
+| `restaurant.php`                                                    | — (no extractable logic)                | —                                          |
+
+### Integration tests
+
+| Test file                                          |
+| -------------------------------------------------- |
+| `tests/Integration/ProfileToDbTest.php`            |
+| `tests/Integration/DbToExportReservationsTest.php` |
+| `tests/Integration/DbToLanguageTest.php`           |
+| `tests/Integration/DbToProfileTest.php`            |
+| `tests/Integration/ExportReservationsToDbTest.php` |
+| `tests/Integration/LanguageToDbTest.php`           |
+
+_(Update these tables as more files are covered.)_
 
 ## Known gaps / things intentionally left as-is
 
