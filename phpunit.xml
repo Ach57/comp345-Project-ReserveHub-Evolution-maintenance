@@ -7,6 +7,9 @@
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
         </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
@@ -14,7 +17,7 @@
         </include>
     </source>
     <logging>
-    <junit outputFile="tests/logs/results.xml"/>
-    <testdoxHtml outputFile="tests/logs/results.html"/>
+        <junit outputFile="tests/logs/results.xml"/>
+        <testdoxHtml outputFile="tests/logs/results.html"/>
     </logging>
 </phpunit>
