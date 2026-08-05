@@ -13,7 +13,10 @@
             "src/Helpers/SearchHelpers.php",
             "src/Helpers/SignupHelpers.php",
             "src/Helpers/ExportHelpers.php",
-            "src/Helpers/EnvironmentHelpers.php"
+            "src/Helpers/EnvironmentHelpers.php",
+            "src/Helpers/AdminApiHelpers.php",
+            "src/Helpers/IdHelpers.php",
+            "src/Helpers/ReserveHelpers.php"
         ]
     }
 }

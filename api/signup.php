@@ -3,6 +3,7 @@
 header('Content-Type: application/json');
 require_once __DIR__ . '/../src/Helpers/SignupHelpers.php';
 require_once __DIR__ . '/../src/Helpers/LoginHelpers.php';
+require_once __DIR__ . '/../src/Helpers/IdHelpers.php';
 require_once 'db.php';
 
 // Get JSON data
@@ -51,7 +52,7 @@ try {
     // Generate new alphanumeric user_id
     $idStmt = $pdo->query("SELECT COALESCE(MAX(CAST(SUBSTRING(user_id, 2) AS UNSIGNED)), 0) + 1 FROM users");
     $next_id = $idStmt->fetchColumn();
-    $new_id = 'c' . str_pad($next_id, 3, '0', STR_PAD_LEFT);
+    $new_id = generateSequentialId('c', (int)$next_id);
     
     $stmt = $pdo->prepare("INSERT INTO users (user_id, username, name, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if ($stmt->execute([$new_id, $username_val, $name, $email, $phone, $hashed_password, $role])) {

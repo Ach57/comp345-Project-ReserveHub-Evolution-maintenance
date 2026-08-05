@@ -1,6 +1,10 @@
 <?php
 // Database connection
 require_once 'db.php';
+require_once '../src/Helpers/LoginHelpers.php';
+require_once '../src/Helpers/SignupHelpers.php';
+require_once '../src/Helpers/AdminApiHelpers.php';
+require_once '../src/Helpers/IdHelpers.php';
 
 // Auto-migration: Ensure image_url column exists
 try {
@@ -78,28 +82,24 @@ try {
                 echo json_encode(['success' => true, 'data' => $users]);
             } elseif ($method === 'POST') {
                 $input = !empty($_POST) ? $_POST : $data;
-                $username_val = trim($input['username'] ?? '');
-                $name = trim($input['name'] ?? '');
-                $email = trim($input['email'] ?? '');
-                $phone = trim($input['phone'] ?? '');
-                $password = trim($input['password'] ?? '');
-                $role = trim($input['role'] ?? 'vendor');
+                $username_val = trimCredential($input['username'] ?? null);
+                $name = trimCredential($input['name'] ?? null);
+                $email = trimCredential($input['email'] ?? null);
+                $phone = trimCredential($input['phone'] ?? null);
+                $password = trimCredential($input['password'] ?? null);
+                $role = normalizeAdminRole(trimCredential($input['role'] ?? 'vendor'));
 
-                if (!in_array($role, ['customer', 'vendor', 'admin'])) {
-                    $role = 'vendor';
-                }
-
-                if (empty($username_val) || empty($name) || empty($email) || empty($password)) {
+                if (!hasRequiredAdminUserFields($username_val, $name, $email, $password)) {
                     echo json_encode(['success' => false, 'message' => 'Username, name, email, and password are required.']);
                     exit;
                 }
 
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                if (!isValidEmailFormat($email)) {
                     echo json_encode(['success' => false, 'message' => 'Invalid email format.']);
                     exit;
                 }
 
-                if (strlen($password) < 6) {
+                if (!isPasswordLongEnough($password)) {
                     echo json_encode(['success' => false, 'message' => 'Password must be at least 6 characters.']);
                     exit;
                 }
@@ -131,17 +131,17 @@ try {
                     exit;
                 }
 
-                $role = trim($input['role'] ?? '');
-                $name = trim($input['name'] ?? '');
-                $email = trim($input['email'] ?? '');
-                $phone = trim($input['phone'] ?? '');
+                $role = trimCredential($input['role'] ?? null);
+                $name = trimCredential($input['name'] ?? null);
+                $email = trimCredential($input['email'] ?? null);
+                $phone = trimCredential($input['phone'] ?? null);
 
-                if (empty($role) || !in_array($role, ['customer', 'vendor', 'admin'])) {
+                if (!hasValidRoleStrict($role)) {
                     echo json_encode(['success' => false, 'message' => 'Invalid or missing role.']);
                     exit;
                 }
 
-                if (empty($name) || empty($email)) {
+                if (!hasRequiredNameAndEmail($name, $email)) {
                     echo json_encode(['success' => false, 'message' => 'Name and email are required.']);
                     exit;
                 }
@@ -229,7 +229,7 @@ try {
 
                     $fileTmpPath = $_FILES['image']['tmp_name'];
                     $fileName   = $_FILES['image']['name'];
-                    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                    $fileExtension = getFileExtension($fileName);
                     $newFileName = uniqid('rest_') . '.' . $fileExtension;
                     $destPath    = $uploadDir . $newFileName;
 
@@ -238,8 +238,8 @@ try {
                     }
                 }
 
-                $vendor_id = !empty($input['vendor_id']) ? $input['vendor_id'] : null;
-                $seed_rating = (isset($input['seed_rating']) && $input['seed_rating'] !== '') ? (float)$input['seed_rating'] : ((isset($input['rating']) && $input['rating'] !== '') ? (float)$input['rating'] : null);
+                $vendor_id = resolveVendorId($input['vendor_id'] ?? null);
+                $seed_rating = resolveSeedRating($input);
 
                 if ($id) {
                     // Update — write to seed_rating (computed rating is derived at query time)
@@ -254,7 +254,7 @@ try {
                 } else {
                     // Create
                     $idStmt = $pdo->query("SELECT COALESCE(MAX(CAST(SUBSTRING(restaurant_id, 2) AS UNSIGNED)), 0) + 1 FROM restaurants");
-                    $new_rest_id = 'r' . str_pad($idStmt->fetchColumn(), 3, '0', STR_PAD_LEFT);
+                    $new_rest_id = generateSequentialId('r', (int)$idStmt->fetchColumn(), 3);
 
                     $stmt = $pdo->prepare("INSERT INTO restaurants (restaurant_id, vendor_id, name, description, cuisine, location, price_range, seed_rating, opening_time, closing_time, image_url, icon, image_gradient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     $stmt->execute([
@@ -312,7 +312,7 @@ try {
             } elseif ($method === 'POST') {
                 // status column has been removed — availability is computed at query time
                 $idStmt = $pdo->query("SELECT COALESCE(MAX(CAST(SUBSTRING(table_id, 2) AS UNSIGNED)), 0) + 1 FROM `tables`");
-                $new_table_id = 't' . str_pad($idStmt->fetchColumn(), 3, '0', STR_PAD_LEFT);
+                $new_table_id = generateSequentialId('t', (int)$idStmt->fetchColumn(), 3);
 
                 $stmt = $pdo->prepare("INSERT INTO `tables` (table_id, restaurant_id, table_number, capacity, shape, canvas_x_coordinate, canvas_y_coordinate) VALUES (?, ?, ?, ?, ?, ?, ?)");
                 $stmt->execute([
@@ -348,7 +348,7 @@ try {
                 $id = $data['id'] ?? $_POST['id'] ?? null;
                 $status = $data['status'] ?? $_POST['status'] ?? null;
 
-                if (!$id || !in_array($status, ['approved', 'rejected'])) {
+                if (!isValidApprovalDecision($id, $status)) {
                     echo json_encode(['success' => false, 'message' => 'Invalid parameters.']);
                     exit;
                 }
@@ -370,14 +370,14 @@ try {
                 $subject = trim($input['subject'] ?? '');
                 $message = trim($input['message'] ?? '');
 
-                if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+                if (!hasRequiredMessageFields($name, $email, $subject, $message)) {
                     echo json_encode(['success' => false, 'message' => 'All fields are required.']);
                     exit;
                 }
 
                 // Generate new alphanumeric message_id (m001, m002, …)
                 $idStmt = $pdo->query("SELECT COALESCE(MAX(CAST(SUBSTRING(message_id, 2) AS UNSIGNED)), 0) + 1 FROM contact_messages");
-                $new_msg_id = 'm' . str_pad($idStmt->fetchColumn(), 3, '0', STR_PAD_LEFT);
+                $new_msg_id = generateSequentialId('m', (int)$idStmt->fetchColumn(), 3);
                 $stmt = $pdo->prepare("INSERT INTO contact_messages (message_id, name, email, subject, message) VALUES (?, ?, ?, ?, ?)");
                 $stmt->execute([$new_msg_id, $name, $email, $subject, $message]);
                 echo json_encode(['success' => true, 'message' => 'Thank you for reaching out! We will get back to you shortly.']);
