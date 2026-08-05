@@ -17,6 +17,14 @@ composer install
 
 This downloads PHPUnit and any other dependencies into a local `vendor/` folder. `vendor/` is gitignored — everyone generates their own copy locally, based on the exact versions locked in `composer.lock`. You do not need to install PHPUnit separately; Composer handles it.
 
+### Database Driver (Windows Users)
+If running native PHP on Windows (without WSL or XAMPP pre-configured), ensure the SQLite extension is enabled in your `php.ini` file:
+1. Open your `php.ini` file (run `php --ini` in terminal to find its location).
+2. Uncomment the line by removing the leading semicolon `;`:
+   ```ini
+   extension=pdo_sqlite
+3. Save the file.
+
 ## Running the tests
 
 From the project root:
