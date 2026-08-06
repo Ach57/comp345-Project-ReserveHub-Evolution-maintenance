@@ -2,7 +2,7 @@
 // api/export.php
 // streams all reservation records as a downloadable CSV.
 // Usage: GET /api/export.php  (while logged in)
-
+require_once __DIR__ . '/../src/Helpers/ExportHelpers.php';
 require_once 'db.php';
 
 // --- Authorization: administrators only -----------------------------------
@@ -94,7 +94,7 @@ try {
 
 // --- Send CSV download headers --------------------------------------------
 // A timestamped filename keeps repeated exports from overwriting each other.
-$filename = 'reservations_export_' . date('Y-m-d_His') . '.csv';
+$filename = generateExportFilename(time());
 
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename="' . $filename . '"');
@@ -120,15 +120,7 @@ fputcsv($output, [
 
 // Data rows.
 foreach ($rows as $row) {
-    fputcsv($output, [
-        $row['reservation_id'],
-        $row['user_name'],
-        $row['restaurant_name'],
-        $row['reservation_date'],
-        $row['reservation_time'],
-        $row['guests'],
-        $row['status'],
-    ]);
+    fputcsv($output, mapReservationRowToCsvRow($row));
 }
 
 fclose($output);

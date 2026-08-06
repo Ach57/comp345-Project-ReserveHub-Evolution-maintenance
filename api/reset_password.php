@@ -4,6 +4,8 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+require_once __DIR__ . '/../src/Helpers/ResetPasswordHelpers.php';
+require_once __DIR__ . '/../src/Helpers/LoginHelpers.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -20,13 +22,13 @@ if (!$data && !empty($_POST)) {
     $data = (object) $_POST;
 }
 
-if (!$data || empty($data->token) || empty($data->newPassword)) {
+if (!hasValidResetRequest($data)) {
     echo json_encode(['success' => false, 'message' => 'Missing token or password.']);
     exit;
 }
 
-$token = trim($data->token);
-$newPassword = trim($data->newPassword);
+$token = trimCredential($data->token);
+$newPassword = trimCredential($data->newPassword);
 
 try {
     // Check if token exists and is valid (not expired)

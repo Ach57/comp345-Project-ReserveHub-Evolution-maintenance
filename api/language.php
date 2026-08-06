@@ -2,6 +2,7 @@
 // api/language.php
 header('Content-Type: application/json');
 require_once 'db.php';
+require_once '../src/Helpers/LanguageHelpers.php';
 
 $action = $_GET['action'] ?? null;
 
@@ -21,14 +22,15 @@ if ($action === 'languages') {
 $lang = $_GET['lang'] ?? 'en';
 $page = $_GET['page'] ?? null;
 
+
 if (!$page) {
     echo json_encode((object)[]);
     exit;
 }
 
 // Sanitize: only allow alpha + hyphen, max 50 chars
-$lang = preg_replace('/[^a-zA-Z\-]/', '', substr($lang, 0, 10));
-$page = preg_replace('/[^a-zA-Z0-9\-]/', '', substr($page, 0, 50));
+$lang = sanitizeLangCode($lang);
+$page = sanitizePageKey($page);
 
 try {
     $stmt = $pdo->prepare("
@@ -48,11 +50,7 @@ try {
         $rows = $stmt->fetchAll();
     }
 
-    $translations = [];
-    foreach ($rows as $row) {
-        $translations[$row['translation_key']] = $row['translation_value'];
-    }
-
+    $translations = buildTranslationMap($rows);
     echo json_encode($translations);
 } catch (PDOException $e) {
     http_response_code(500);
