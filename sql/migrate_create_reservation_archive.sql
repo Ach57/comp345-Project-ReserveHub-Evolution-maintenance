@@ -59,7 +59,7 @@ SELECT
     'completed'
 FROM reservations r
 LEFT JOIN restaurants rest
-    ON rest.id = r.restaurant_id
+    ON rest.restaurant_id = r.restaurant_id
 LEFT JOIN tables t
     ON t.table_id = r.table_id
 WHERE r.status = 'completed';
