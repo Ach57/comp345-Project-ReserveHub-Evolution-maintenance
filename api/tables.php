@@ -3,6 +3,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 require_once 'db.php';
+require_once __DIR__ . '/../src/Helpers/TimeHelpers.php';
 
 $restaurant_id = $_GET['restaurant_id'] ?? null;
 $date          = $_GET['date']          ?? null;
@@ -12,33 +13,6 @@ $guest_count   = $_GET['guests']        ?? null;
 if (!$restaurant_id) {
     echo json_encode(['success' => false, 'message' => 'Invalid restaurant ID']);
     exit;
-}
-
-// ── Helper: convert "HH:MM:SS" or "HH:MM" to total minutes ──────────────────
-function timeToMinutes(string $t): int {
-    $parts = explode(':', $t);
-    return (int)$parts[0] * 60 + (int)($parts[1] ?? 0);
-}
-
-// ── Helper: check if a requested time falls within operating hours ────────────
-// Handles overnight spans (e.g. opening=22:00, closing=03:00).
-function isWithinOperatingHours(string $requestedTime, string $openTime, string $closeTime): bool {
-    $req   = timeToMinutes($requestedTime);
-    $open  = timeToMinutes($openTime);
-    $close = timeToMinutes($closeTime);
-
-    // 24-hour restaurant (00:00 – 23:59)
-    if ($open === 0 && $close >= 1439) {
-        return true;
-    }
-
-    if ($close > $open) {
-        // Normal same-day span: e.g. 11:00 – 22:00
-        return $req >= $open && $req < $close;
-    } else {
-        // Overnight span: e.g. 18:00 – 03:00
-        return $req >= $open || $req < $close;
-    }
 }
 
 try {

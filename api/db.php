@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once __DIR__ . '/../src/Helpers/EnvironmentHelpers.php';
+
 // api/db.php
 // Auto-detects environment: uses local XAMPP credentials when running on localhost,
 // and configures for live environment (InfinityFree / x10Hosting / custom) otherwise.
@@ -10,9 +12,11 @@ if (file_exists($loadEnvPath)) {
     require_once $loadEnvPath;
 }
 
-$isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1', '::1', ''])
-        || ($_SERVER['SERVER_ADDR'] ?? '') === '127.0.0.1'
-        || ($_SERVER['HTTP_HOST'] ?? '') === 'localhost';
+$isLocal = isLocalEnvironment(
+    $_SERVER['SERVER_NAME'] ?? '', 
+    $_SERVER['SERVER_ADDR'] ?? '', 
+    $_SERVER['HTTP_HOST'] ?? ''
+);
 
 // Use environment variables if set, otherwise fallback to defaults
 $host = $_ENV['DB_HOST'] ?? null;

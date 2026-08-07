@@ -1,7 +1,9 @@
 <?php
 // api/signup.php
 header('Content-Type: application/json');
-
+require_once __DIR__ . '/../src/Helpers/SignupHelpers.php';
+require_once __DIR__ . '/../src/Helpers/LoginHelpers.php';
+require_once __DIR__ . '/../src/Helpers/IdHelpers.php';
 require_once 'db.php';
 
 // Get JSON data
@@ -12,29 +14,25 @@ if (!$data) {
     exit;
 }
 
-$username_val = trim($data->username ?? '');
-$name = trim($data->name ?? '');
-$email = trim($data->email ?? '');
-$phone = trim($data->phone ?? '');
-$password = trim($data->password ?? '');
-$role = trim($data->role ?? 'customer');
-
-if (!in_array($role, ['customer', 'vendor'])) {
-    $role = 'customer';
-}
+$username_val = trimCredential($data->username ?? null);
+$name = trimCredential($data->name ?? null);
+$email = trimCredential($data->email ?? null);
+$phone = trimCredential($data->phone ?? null);
+$password = trimCredential($data->password ?? null);
+$role = normalizeRole(trimCredential($data->role ?? 'customer'));
 
 // Basic validation
-if (empty($username_val) || empty($name) || empty($email) || empty($password) || empty($phone)) {
+if (!hasRequiredSignupFields($username_val, $name, $email, $password, $phone)) {
     echo json_encode(['success' => false, 'message' => 'Please fill in all fields.']);
     exit;
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if (!isValidEmailFormat($email)) {
     echo json_encode(['success' => false, 'message' => 'Invalid email format.']);
     exit;
 }
 
-if (strlen($password) < 6) {
+if (!isPasswordLongEnough($password)) {
     echo json_encode(['success' => false, 'message' => 'Password must be at least 6 characters.']);
     exit;
 }
@@ -54,7 +52,7 @@ try {
     // Generate new alphanumeric user_id
     $idStmt = $pdo->query("SELECT COALESCE(MAX(CAST(SUBSTRING(user_id, 2) AS UNSIGNED)), 0) + 1 FROM users");
     $next_id = $idStmt->fetchColumn();
-    $new_id = 'c' . str_pad($next_id, 3, '0', STR_PAD_LEFT);
+    $new_id = generateSequentialId('c', (int)$next_id);
     
     $stmt = $pdo->prepare("INSERT INTO users (user_id, username, name, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if ($stmt->execute([$new_id, $username_val, $name, $email, $phone, $hashed_password, $role])) {
