@@ -27,6 +27,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .phpunit.result.cache
+tests/logs/
+vendor/
 
 # Python cache
 __pycache__/
@@ -39,3 +41,7 @@ __pycache__/
 *.sql
 !sql/*.sql
 .env
+
+# virtual env
+
+tools/.venv

@@ -4,6 +4,9 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+require_once __DIR__ . '/../src/Helpers/ProfileHelpers.php';
+require_once __DIR__ . '/../src/Helpers/ForgotPasswordHelpers.php';
+require_once __DIR__ . '/../src/Helpers/EnvironmentHelpers.php';
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -23,7 +26,7 @@ if (!$data && !empty($_POST)) {
     $data = (object) $_POST;
 }
 
-if (!$data || empty($data->email)) {
+if (!hasValidEmail($data)) {
     echo json_encode(['success' => false, 'message' => 'Email is required.']);
     exit;
 }
@@ -41,21 +44,18 @@ try {
         $token = bin2hex(random_bytes(32));
         
         // Set expiry time to 1 hour from now
-        $expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+        $expiry = calculateResetExpiry(time());
 
         // Save token to database
         $updateStmt = $pdo->prepare("UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE user_id = ?");
         $updateStmt->execute([$token, $expiry, $user['id']]);
 
         // Create the reset link
-        $isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1', '::1', ''])
-            || ($_SERVER['SERVER_ADDR'] ?? '') === '127.0.0.1'
-            || ($_SERVER['HTTP_HOST'] ?? '') === 'localhost';
+        $isLocal = isLocalEnvironment($_SERVER['SERVER_NAME'], $_SERVER['SERVER_ADDR'], $_SERVER['HTTP_HOST']);
             
-        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $protocol = determineProtocol($_SERVER['HTTPS'] ?? null);
         $host = $_SERVER['HTTP_HOST'];
-        $baseDir = $isLocal ? '/reservehub' : '';
-        $resetLink = $protocol . '://' . $host . $baseDir . '/html/reset-password.html?token=' . $token;
+        $resetLink = buildResetLink($protocol, $host, $isLocal, $token);
 
         // Send email using PHPMailer
         require_once 'PHPMailer/Exception.php';
@@ -90,12 +90,7 @@ try {
             // Content
             $mail->isHTML(false);
             $mail->Subject = "Password Reset Request - ReserveHub";
-            $message = "Hi " . $user['name'] . ",\n\n";
-            $message .= "We received a request to reset your ReserveHub password.\n";
-            $message .= "Click the link below to set a new password:\n\n";
-            $message .= $resetLink . "\n\n";
-            $message .= "If you didn't request this, you can safely ignore this email.\nThis link will expire in 1 hour.\n\n";
-            $message .= "Best regards,\nThe ReserveHub Team";
+            $message = buildResetEmailBody($user['name'], $resetLink);
             $mail->Body = $message;
 
             $mail->send();

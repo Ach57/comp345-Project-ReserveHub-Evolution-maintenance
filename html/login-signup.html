@@ -1,311 +1,535 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title localization-key="auth.meta.title">
+      Login & Signup - ReserveHub
+    </title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alexandria"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/auth-styles.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title localization-key="auth.meta.title">Login & Signup - ReserveHub</title>
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
-    <link rel="stylesheet" href="../css/auth-styles.css">
-</head>
-
-<body>
+  <body>
     <div class="bg-animations">
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
     </div>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fa-solid fa-moon"></i>
-        <i class="fa-solid fa-sun"></i>
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Toggle dark mode"
+    >
+      <i class="fa-solid fa-moon"></i>
+      <i class="fa-solid fa-sun"></i>
     </button>
-    <div style="position: fixed; top: 18px; right: 72px; z-index: 20;">
-        <select class="auth-language-localization" aria-label="Select language" style="padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(0,0,0,0.25); color: #fff; font-size: 13px; font-weight: 600; backdrop-filter: blur(6px);">
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-        </select>
+    <div style="position: fixed; top: 18px; right: 72px; z-index: 20">
+      <select
+        class="auth-language-localization"
+        aria-label="Select language"
+        style="
+          padding: 8px 12px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          background: rgba(0, 0, 0, 0.25);
+          color: #fff;
+          font-size: 13px;
+          font-weight: 600;
+          backdrop-filter: blur(6px);
+        "
+      >
+        <!-- populated by localization.js -->
+      </select>
     </div>
     <div class="auth-container">
-        <!-- Left Section - Branding -->
-        <div class="auth-brand">
-            <div class="brand-content">
-                <img src="../pictures/reservehub-full-logo-dark-mode.png" alt="ReserveHub Logo" class="auth-brand-logo">
-                <p localization-key="auth.brand.tagline" class="brand-tagline">All Restaurants, One Booking</p>
-                <div class="brand-features">
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span localization-key="auth.brand.feature.easy">Easy Reservations</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span localization-key="auth.brand.feature.best">Best Restaurants</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span localization-key="auth.brand.feature.instant">Instant Booking</span>
-                    </div>
-                </div>
+      <!-- Left Section - Branding -->
+      <div class="auth-brand">
+        <div class="brand-content">
+          <img
+            src="../pictures/reservehub-full-logo-dark-mode.png"
+            alt="ReserveHub Logo"
+            class="auth-brand-logo"
+          />
+          <p localization-key="auth.brand.tagline" class="brand-tagline">
+            All Restaurants, One Booking
+          </p>
+          <div class="brand-features">
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <span localization-key="auth.brand.feature.easy"
+                >Easy Reservations</span
+              >
             </div>
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <span localization-key="auth.brand.feature.best"
+                >Best Restaurants</span
+              >
+            </div>
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <span localization-key="auth.brand.feature.instant"
+                >Instant Booking</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section - Forms -->
+      <div class="auth-forms">
+        <!-- Login Form -->
+        <div class="form-wrapper active" id="loginForm">
+          <div class="form-content">
+            <div class="form-header">
+              <h2 localization-key="auth.login.title">Welcome Back</h2>
+              <p localization-key="auth.login.subtitle">
+                Sign in to your ReserveHub account
+              </p>
+            </div>
+
+            <form id="loginFormElement" class="auth-form">
+              <div class="form-group">
+                <label
+                  localization-key="auth.login.identifier.label"
+                  for="loginIdentifier"
+                  >Email or Username</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    id="loginIdentifier"
+                    localization-key="auth.login.identifier.placeholder"
+                    localization-target="placeholder"
+                    placeholder="Enter email or username"
+                    required
+                  />
+                </div>
+                <span class="error-message" id="loginIdentifierError"></span>
+              </div>
+
+              <div class="form-group">
+                <label
+                  localization-key="auth.login.password.label"
+                  for="loginPassword"
+                  >Password</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    id="loginPassword"
+                    localization-key="auth.login.password.placeholder"
+                    localization-target="placeholder"
+                    placeholder="Enter your password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    onclick="togglePassword('loginPassword', this)"
+                    aria-label="Toggle password visibility"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <span class="error-message" id="loginPasswordError"></span>
+              </div>
+
+              <div class="form-options">
+                <label class="checkbox-wrapper">
+                  <input type="checkbox" id="rememberMe" />
+                  <span class="checkmark"></span>
+                  <span localization-key="auth.login.remember"
+                    >Remember me</span
+                  >
+                </label>
+                <a
+                  href="#"
+                  localization-key="auth.login.forgot"
+                  class="forgot-password"
+                  onclick="
+                    switchForm('forgotPassword');
+                    event.preventDefault();
+                  "
+                  >Forgot password?</a
+                >
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span localization-key="auth.login.submit">Sign In</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+
+            <div class="form-divider">
+              <span localization-key="auth.common.or">or continue with</span>
+            </div>
+
+            <div class="social-login">
+              <button
+                type="button"
+                class="social-btn google"
+                onclick="socialLogin('google')"
+              >
+                <i class="fab fa-google"></i>
+              </button>
+              <button
+                type="button"
+                class="social-btn facebook"
+                onclick="socialLogin('facebook')"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </button>
+            </div>
+
+            <div class="form-footer">
+              <p>
+                <span localization-key="auth.login.noAccount"
+                  >Don't have an account?</span
+                >
+                <button
+                  type="button"
+                  localization-key="auth.login.switchSignup"
+                  class="switch-form"
+                  onclick="switchForm('signup')"
+                >
+                  Sign up
+                </button>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <!-- Right Section - Forms -->
-        <div class="auth-forms">
-            <!-- Login Form -->
-            <div class="form-wrapper active" id="loginForm">
-                <div class="form-content">
-                    <div class="form-header">
-                        <h2 localization-key="auth.login.title">Welcome Back</h2>
-                        <p localization-key="auth.login.subtitle">Sign in to your ReserveHub account</p>
-                    </div>
-
-                    <form id="loginFormElement" class="auth-form">
-                        <div class="form-group">
-                            <label localization-key="auth.login.identifier.label" for="loginIdentifier">Email or Username</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="loginIdentifier" localization-key="auth.login.identifier.placeholder" localization-target="placeholder" placeholder="Enter email or username" required>
-                            </div>
-                            <span class="error-message" id="loginIdentifierError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label localization-key="auth.login.password.label" for="loginPassword">Password</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="loginPassword" localization-key="auth.login.password.placeholder" localization-target="placeholder" placeholder="Enter your password" required>
-                                <button type="button" class="toggle-password"
-                                    onclick="togglePassword('loginPassword', this)"
-                                    aria-label="Toggle password visibility">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <span class="error-message" id="loginPasswordError"></span>
-                        </div>
-
-                        <div class="form-options">
-                            <label class="checkbox-wrapper">
-                                <input type="checkbox" id="rememberMe">
-                                <span class="checkmark"></span>
-                                <span localization-key="auth.login.remember">Remember me</span>
-                            </label>
-                            <a href="#" localization-key="auth.login.forgot" class="forgot-password"
-                                onclick="switchForm('forgotPassword'); event.preventDefault();">Forgot password?</a>
-                        </div>
-
-                        <button type="submit" class="submit-btn">
-                            <span localization-key="auth.login.submit">Sign In</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </form>
-
-                    <div class="form-divider">
-                        <span localization-key="auth.common.or">or continue with</span>
-                    </div>
-
-                    <div class="social-login">
-                        <button type="button" class="social-btn google" onclick="socialLogin('google')">
-                            <i class="fab fa-google"></i>
-                        </button>
-                        <button type="button" class="social-btn facebook" onclick="socialLogin('facebook')">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-                    </div>
-
-                    <div class="form-footer">
-                        <p><span localization-key="auth.login.noAccount">Don't have an account?</span>
-                            <button type="button" localization-key="auth.login.switchSignup" class="switch-form" onclick="switchForm('signup')">
-                                Sign up
-                            </button>
-                        </p>
-                    </div>
-                </div>
+        <!-- Signup Form -->
+        <div class="form-wrapper" id="signupForm">
+          <div class="form-content">
+            <div class="form-header">
+              <h2 localization-key="auth.signup.title">Create Account</h2>
+              <p localization-key="auth.signup.subtitle">
+                Join ReserveHub today
+              </p>
             </div>
 
-            <!-- Signup Form -->
-            <div class="form-wrapper" id="signupForm">
-                <div class="form-content">
-                    <div class="form-header">
-                        <h2 localization-key="auth.signup.title">Create Account</h2>
-                        <p localization-key="auth.signup.subtitle">Join ReserveHub today</p>
-                    </div>
-
-                    <form id="signupFormElement" class="auth-form">
-                        <div class="form-group">
-                            <label localization-key="auth.signup.username.label" for="signupUsername">Username</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-at"></i>
-                                <input type="text" id="signupUsername" localization-key="auth.signup.username.placeholder" localization-target="placeholder" placeholder="johndoe" required>
-                            </div>
-                            <span class="error-message" id="signupUsernameError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label localization-key="auth.signup.name.label" for="signupName">Full Name</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="signupName" localization-key="auth.signup.name.placeholder" localization-target="placeholder" placeholder="John Doe" required>
-                            </div>
-                            <span class="error-message" id="signupNameError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label localization-key="auth.signup.email.label" for="signupEmail">Email Address</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="signupEmail" localization-key="auth.signup.email.placeholder" localization-target="placeholder" placeholder="you@example.com" required>
-                            </div>
-                            <span class="error-message" id="signupEmailError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label localization-key="auth.signup.phone.label" for="signupPhone">Phone Number</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-phone"></i>
-                                <input type="tel" id="signupPhone" localization-key="auth.signup.phone.placeholder" localization-target="placeholder" placeholder="+1 234 567 8900" required>
-                            </div>
-                            <span class="error-message" id="signupPhoneError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label localization-key="auth.signup.password.label" for="signupPassword">Password</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="signupPassword" localization-key="auth.signup.password.placeholder" localization-target="placeholder" placeholder="Create a strong password"
-                                    required oninput="checkPasswordStrength(this.value)">
-                                <button type="button" class="toggle-password"
-                                    onclick="togglePassword('signupPassword', this)"
-                                    aria-label="Toggle password visibility">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <span class="error-message" id="signupPasswordError"></span>
-                            <div class="password-strength" id="passwordStrength"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label localization-key="auth.signup.confirm.label" for="confirmPassword">Confirm Password</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="confirmPassword" localization-key="auth.signup.confirm.placeholder" localization-target="placeholder" placeholder="Re-enter your password"
-                                    required>
-                                <button type="button" class="toggle-password"
-                                    onclick="togglePassword('confirmPassword', this)"
-                                    aria-label="Toggle password visibility">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <span class="error-message" id="confirmPasswordError"></span>
-                        </div>
-
-                        <div class="form-options" style="flex-direction: column; align-items: flex-start; gap: 10px;">
-                            <label class="checkbox-wrapper">
-                                <input type="checkbox" id="registerAsVendor">
-                                <span class="checkmark"></span>
-                                <span localization-key="auth.signup.vendor">Register as Restaurant Owner (Vendor)</span>
-                            </label>
-                            <label class="checkbox-wrapper">
-                                <input type="checkbox" id="agreeTerms" required>
-                                <span class="checkmark"></span>
-                                <span localization-key="auth.signup.terms" localization-target="html">I agree to the <a href="terms-of-service.html">Terms of Service</a> and
-                                    <a href="privacy-policy.html">Privacy Policy</a></span>
-                            </label>
-                            <span class="error-message" id="agreeTermsError"></span>
-                        </div>
-
-                        <button type="submit" class="submit-btn">
-                            <span localization-key="auth.signup.submit">Create Account</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </form>
-
-                    <div class="form-divider">
-                        <span localization-key="auth.common.or">or continue with</span>
-                    </div>
-
-                    <div class="social-login">
-                        <button type="button" class="social-btn google" onclick="socialLogin('google')">
-                            <i class="fab fa-google"></i>
-                        </button>
-                        <button type="button" class="social-btn facebook" onclick="socialLogin('facebook')">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-                    </div>
-
-                    <div class="form-footer">
-                        <p><span localization-key="auth.signup.haveAccount">Already have an account?</span>
-                            <button type="button" localization-key="auth.signup.switchLogin" class="switch-form" onclick="switchForm('login')">
-                                Sign in
-                            </button>
-                        </p>
-                    </div>
+            <form id="signupFormElement" class="auth-form">
+              <div class="form-group">
+                <label
+                  localization-key="auth.signup.username.label"
+                  for="signupUsername"
+                  >Username</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-at"></i>
+                  <input
+                    type="text"
+                    id="signupUsername"
+                    localization-key="auth.signup.username.placeholder"
+                    localization-target="placeholder"
+                    placeholder="johndoe"
+                    required
+                  />
                 </div>
+                <span class="error-message" id="signupUsernameError"></span>
+              </div>
+
+              <div class="form-group">
+                <label
+                  localization-key="auth.signup.name.label"
+                  for="signupName"
+                  >Full Name</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    id="signupName"
+                    localization-key="auth.signup.name.placeholder"
+                    localization-target="placeholder"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <span class="error-message" id="signupNameError"></span>
+              </div>
+
+              <div class="form-group">
+                <label
+                  localization-key="auth.signup.email.label"
+                  for="signupEmail"
+                  >Email Address</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="email"
+                    id="signupEmail"
+                    localization-key="auth.signup.email.placeholder"
+                    localization-target="placeholder"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+                <span class="error-message" id="signupEmailError"></span>
+              </div>
+
+              <div class="form-group">
+                <label
+                  localization-key="auth.signup.phone.label"
+                  for="signupPhone"
+                  >Phone Number</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-phone"></i>
+                  <input
+                    type="tel"
+                    id="signupPhone"
+                    localization-key="auth.signup.phone.placeholder"
+                    localization-target="placeholder"
+                    placeholder="+1 234 567 8900"
+                    required
+                  />
+                </div>
+                <span class="error-message" id="signupPhoneError"></span>
+              </div>
+
+              <div class="form-group">
+                <label
+                  localization-key="auth.signup.password.label"
+                  for="signupPassword"
+                  >Password</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    id="signupPassword"
+                    localization-key="auth.signup.password.placeholder"
+                    localization-target="placeholder"
+                    placeholder="Create a strong password"
+                    required
+                    oninput="checkPasswordStrength(this.value)"
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    onclick="togglePassword('signupPassword', this)"
+                    aria-label="Toggle password visibility"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <span class="error-message" id="signupPasswordError"></span>
+                <div class="password-strength" id="passwordStrength"></div>
+              </div>
+
+              <div class="form-group">
+                <label
+                  localization-key="auth.signup.confirm.label"
+                  for="confirmPassword"
+                  >Confirm Password</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    localization-key="auth.signup.confirm.placeholder"
+                    localization-target="placeholder"
+                    placeholder="Re-enter your password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    onclick="togglePassword('confirmPassword', this)"
+                    aria-label="Toggle password visibility"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <span class="error-message" id="confirmPasswordError"></span>
+              </div>
+
+              <div
+                class="form-options"
+                style="
+                  flex-direction: column;
+                  align-items: flex-start;
+                  gap: 10px;
+                "
+              >
+                <label class="checkbox-wrapper">
+                  <input type="checkbox" id="registerAsVendor" />
+                  <span class="checkmark"></span>
+                  <span localization-key="auth.signup.vendor"
+                    >Register as Restaurant Owner (Vendor)</span
+                  >
+                </label>
+                <label class="checkbox-wrapper">
+                  <input type="checkbox" id="agreeTerms" required />
+                  <span class="checkmark"></span>
+                  <span
+                    localization-key="auth.signup.terms"
+                    localization-target="html"
+                    >I agree to the
+                    <a href="terms-of-service.html">Terms of Service</a> and
+                    <a href="privacy-policy.html">Privacy Policy</a></span
+                  >
+                </label>
+                <span class="error-message" id="agreeTermsError"></span>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span localization-key="auth.signup.submit"
+                  >Create Account</span
+                >
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+
+            <div class="form-divider">
+              <span localization-key="auth.common.or">or continue with</span>
             </div>
 
-            <!-- Forgot Password Form -->
-            <div class="form-wrapper" id="forgotPasswordForm">
-                <div class="form-content">
-                    <div class="form-header">
-                        <h2 localization-key="auth.reset.title">Reset Password</h2>
-                        <p localization-key="auth.reset.subtitle">Enter your email to receive a reset link</p>
-                    </div>
-
-                    <form id="forgotPasswordFormElement" class="auth-form">
-                        <div class="form-group">
-                            <label localization-key="auth.reset.email.label" for="resetEmail">Email Address</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="resetEmail" localization-key="auth.reset.email.placeholder" localization-target="placeholder" placeholder="you@example.com" required>
-                            </div>
-                            <span class="error-message" id="resetEmailError"></span>
-                        </div>
-
-                        <button type="submit" class="submit-btn">
-                            <span localization-key="auth.reset.submit">Send Reset Link</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </form>
-
-                    <div class="form-footer" style="margin-top: 2rem;">
-                        <p><span localization-key="auth.reset.remember">Remember your password?</span>
-                            <button type="button" localization-key="auth.reset.switchLogin" class="switch-form" onclick="switchForm('login')">
-                                Sign in
-                            </button>
-                        </p>
-                    </div>
-                </div>
+            <div class="social-login">
+              <button
+                type="button"
+                class="social-btn google"
+                onclick="socialLogin('google')"
+              >
+                <i class="fab fa-google"></i>
+              </button>
+              <button
+                type="button"
+                class="social-btn facebook"
+                onclick="socialLogin('facebook')"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </button>
             </div>
+
+            <div class="form-footer">
+              <p>
+                <span localization-key="auth.signup.haveAccount"
+                  >Already have an account?</span
+                >
+                <button
+                  type="button"
+                  localization-key="auth.signup.switchLogin"
+                  class="switch-form"
+                  onclick="switchForm('login')"
+                >
+                  Sign in
+                </button>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <!-- Success Message -->
-        <div class="success-modal" id="successModal">
-            <div class="success-content">
-                <i class="fas fa-check-circle"></i>
-                <h3 id="successTitle"></h3>
-                <p id="successText"></p>
+        <!-- Forgot Password Form -->
+        <div class="form-wrapper" id="forgotPasswordForm">
+          <div class="form-content">
+            <div class="form-header">
+              <h2 localization-key="auth.reset.title">Reset Password</h2>
+              <p localization-key="auth.reset.subtitle">
+                Enter your email to receive a reset link
+              </p>
             </div>
+
+            <form id="forgotPasswordFormElement" class="auth-form">
+              <div class="form-group">
+                <label
+                  localization-key="auth.reset.email.label"
+                  for="resetEmail"
+                  >Email Address</label
+                >
+                <div class="input-wrapper">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="email"
+                    id="resetEmail"
+                    localization-key="auth.reset.email.placeholder"
+                    localization-target="placeholder"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+                <span class="error-message" id="resetEmailError"></span>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span localization-key="auth.reset.submit"
+                  >Send Reset Link</span
+                >
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+
+            <div class="form-footer" style="margin-top: 2rem">
+              <p>
+                <span localization-key="auth.reset.remember"
+                  >Remember your password?</span
+                >
+                <button
+                  type="button"
+                  localization-key="auth.reset.switchLogin"
+                  class="switch-form"
+                  onclick="switchForm('login')"
+                >
+                  Sign in
+                </button>
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Success Message -->
+      <div class="success-modal" id="successModal">
+        <div class="success-content">
+          <i class="fas fa-check-circle"></i>
+          <h3 id="successTitle"></h3>
+          <p id="successText"></p>
+        </div>
+      </div>
     </div>
 
     <!-- Social Login SDKs -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '1506137161111455',
-                cookie: true,
-                xfbml: true,
-                version: 'v18.0'
-            });
-        };
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: '1506137161111455',
+          cookie: true,
+          xfbml: true,
+          version: 'v18.0',
+        });
+      };
     </script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js"
+    ></script>
 
     <script src="../js/theme.js"></script>
     <script src="../js/localization.js"></script>
     <script src="../js/auth-script.js?v=3"></script>
-</body>
-
+  </body>
 </html>

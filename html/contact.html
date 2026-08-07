@@ -1,414 +1,698 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Contact Us | ReserveHub</title>
-    <meta name="description" content="Get in touch with the ReserveHub team. We are here to assist you with support, operations, and technical inquiries.">
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/contact.css">
-</head>
+    <meta
+      name="description"
+      content="Get in touch with the ReserveHub team. We are here to assist you with support, operations, and technical inquiries."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/contact.css" />
+  </head>
 
-<body>
+  <body>
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar scrolled" id="navbar">
-        <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
-            <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
-        </a>
+      <a
+        href="index.html"
+        aria-label="ReserveHub Homepage"
+        class="nav-logo-link"
+      >
+        <img
+          src="../pictures/reservehub-full-logo-light-mode.png"
+          alt="ReserveHub Logo"
+          class="top-logo"
+        />
+      </a>
 
-        <div class="top-btn-container" role="navigation" aria-label="Main navigation">
-            <a href="index.html" localization-key="nav.home" class="top-btn active-nav">HOME</a>
-            <a href="index.html#how-it-works" localization-key="nav.how" class="top-btn">HOW IT WORKS</a>
-            <a href="index.html#featured" localization-key="nav.restaurants" class="top-btn">RESTAURANTS</a>
-            <a href="contact.html" localization-key="nav.contact" class="top-btn">CONTACT</a>
-            <div id="auth-buttons" style="display: flex; gap: 4px;">
-                <a href="login-signup.html" localization-key="nav.login" class="top-btn btn-cta" id="signupBtn">SIGN UP / LOG IN</a>
-            </div>
-            <div class="language-picker">
-                <i class="fa-solid fa-globe"></i>
-                <select class="contact-language-localization language-select" aria-label="Select language">
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                </select>
-            </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon"></i>
-                <i class="fa-solid fa-sun"></i>
-            </button>
+      <div
+        class="top-btn-container"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <a
+          href="index.html"
+          localization-key="nav.home"
+          class="top-btn active-nav"
+          >HOME</a
+        >
+        <a
+          href="index.html#how-it-works"
+          localization-key="nav.how"
+          class="top-btn"
+          >HOW IT WORKS</a
+        >
+        <a
+          href="index.html#featured"
+          localization-key="nav.restaurants"
+          class="top-btn"
+          >RESTAURANTS</a
+        >
+        <a href="contact.html" localization-key="nav.contact" class="top-btn"
+          >CONTACT</a
+        >
+        <div id="auth-buttons" style="display: flex; gap: 4px">
+          <a
+            href="login-signup.html"
+            localization-key="nav.login"
+            class="top-btn btn-cta"
+            id="signupBtn"
+            >SIGN UP / LOG IN</a
+          >
         </div>
-
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
+        <div class="language-picker">
+          <i class="fa-solid fa-globe"></i>
+          <select
+            class="contact-language-localization language-select"
+            aria-label="Select language"
+          >
+            <!-- populated by localization.js -->
+          </select>
+        </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
         </button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <!-- Mobile Nav -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" localization-key="mobile.home" class="mob-link">Home</a>
-        <a href="index.html#how-it-works" localization-key="mobile.how" class="mob-link">How It Works</a>
-        <a href="index.html#featured" localization-key="mobile.restaurants" class="mob-link">Restaurants</a>
-        <a href="contact.html" localization-key="mobile.contact" class="mob-link">Contact</a>
-        <div id="mob-auth-buttons">
-            <a href="login-signup.html" localization-key="mobile.login" class="mob-link mob-cta">Sign Up / Log In</a>
-        </div>
-        <div class="language-picker">
-            <i class="fa-solid fa-globe"></i>
-            <select class="contact-language-localization language-select" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-            </select>
-        </div>
-        <a href="javascript:void(0)" localization-key="mobile.theme" class="mob-link" id="mobile-theme-toggle" style="margin-top: 20px;">
-            <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
-        </a>
+      <a href="index.html" localization-key="mobile.home" class="mob-link"
+        >Home</a
+      >
+      <a
+        href="index.html#how-it-works"
+        localization-key="mobile.how"
+        class="mob-link"
+        >How It Works</a
+      >
+      <a
+        href="index.html#featured"
+        localization-key="mobile.restaurants"
+        class="mob-link"
+        >Restaurants</a
+      >
+      <a href="contact.html" localization-key="mobile.contact" class="mob-link"
+        >Contact</a
+      >
+      <div id="mob-auth-buttons">
+        <a
+          href="login-signup.html"
+          localization-key="mobile.login"
+          class="mob-link mob-cta"
+          >Sign Up / Log In</a
+        >
+      </div>
+      <div class="language-picker">
+        <i class="fa-solid fa-globe"></i>
+        <select
+          class="contact-language-localization language-select"
+          aria-label="Select language"
+        >
+          <!-- populated by localization.js -->
+        </select>
+      </div>
+      <a
+        href="javascript:void(0)"
+        localization-key="mobile.theme"
+        class="mob-link"
+        id="mobile-theme-toggle"
+        style="margin-top: 20px"
+      >
+        <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
+      </a>
     </div>
 
     <!-- ===== MAIN CONTENT ===== -->
     <main class="contact-main">
-        <!-- Hero Section -->
-        <section class="contact-hero">
-            <div class="contact-hero-inner">
-                <span localization-key="contact.hero.tag" class="section-tag">Get In Touch</span>
-                <h1 class="contact-hero-title">
-                    <span localization-key="contact.hero.title">Meet Our Team &</span>
-                    <br>
-                    <span localization-key="contact.hero.accent" class="accent">Contact Us</span>
-                </h1>
-                <p localization-key="contact.hero.description" class="contact-hero-desc">Have a question or need assistance? Our core operations and support team is ready to help you ensure a seamless dining reservation experience.</p>
-            </div>
-        </section>
+      <!-- Hero Section -->
+      <section class="contact-hero">
+        <div class="contact-hero-inner">
+          <span localization-key="contact.hero.tag" class="section-tag"
+            >Get In Touch</span
+          >
+          <h1 class="contact-hero-title">
+            <span localization-key="contact.hero.title">Meet Our Team &</span>
+            <br />
+            <span localization-key="contact.hero.accent" class="accent"
+              >Contact Us</span
+            >
+          </h1>
+          <p
+            localization-key="contact.hero.description"
+            class="contact-hero-desc"
+          >
+            Have a question or need assistance? Our core operations and support
+            team is ready to help you ensure a seamless dining reservation
+            experience.
+          </p>
+        </div>
+      </section>
 
-        <!-- Status Dashboard -->
-        <section class="status-section">
-            <div class="container">
-                <div class="status-card">
-                    <div class="status-info">
-                        <div class="status-badge-container">
-                            <div id="status-indicator" class="status-indicator closed">
-                                <span class="status-dot"></span> <p localization-key="contact.status.checking">Checking Status...</p>
-                            </div>
-                        </div>
-                        <h2 localization-key="contact.status.title" class="status-title">Operational Status</h2>
-                        <p localization-key="contact.status.description" id="status-text" class="status-desc">We are checking our support availability. Standard operational hours are shown on the right.</p>
-                    </div>
-                    <div>
-                        <div class="hours-table">
-                            <div class="hours-row">
-                                <span localization-key="contact.hours.days" class="hours-day">Monday – Friday</span>
-                                <span class="hours-time">9:00 AM – 6:00 PM (GMT+8)</span>
-                            </div>
-                            <div class="hours-row">
-                                <span localization-key="contact.hours.saturday" class="hours-day">Saturday</span>
-                                <span class="hours-time">9:00 AM – 1:00 PM (GMT+8)</span>
-                            </div>
-                            <div class="hours-row">
-                                <span localization-key="contact.hours.sunday" class="hours-day">Sunday</span>
-                                <span localization-key="contact.hours.closed" class="hours-time">Closed</span>
-                            </div>
-                        </div>
-                    </div>
+      <!-- Status Dashboard -->
+      <section class="status-section">
+        <div class="container">
+          <div class="status-card">
+            <div class="status-info">
+              <div class="status-badge-container">
+                <div id="status-indicator" class="status-indicator closed">
+                  <span class="status-dot"></span>
+                  <p localization-key="contact.status.checking">
+                    Checking Status...
+                  </p>
                 </div>
+              </div>
+              <h2 localization-key="contact.status.title" class="status-title">
+                Operational Status
+              </h2>
+              <p
+                localization-key="contact.status.description"
+                id="status-text"
+                class="status-desc"
+              >
+                We are checking our support availability. Standard operational
+                hours are shown on the right.
+              </p>
             </div>
-        </section>
-
-        <!-- Team Profiles Grid -->
-        <section class="team-section">
-            <div class="container">
-                <div class="section-header">
-                    <span localization-key="contact.team.tag" class="section-tag">ReserveHub Team</span>
-                    <h2 localization-key="contact.team.title" class="section-title">Connect with Us Directly</h2>
-                    <p localization-key="contact.team.description" class="section-desc">Get in touch with our experts based on your specific requirements.</p>
+            <div>
+              <div class="hours-table">
+                <div class="hours-row">
+                  <span localization-key="contact.hours.days" class="hours-day"
+                    >Monday – Friday</span
+                  >
+                  <span class="hours-time">9:00 AM – 6:00 PM (GMT+8)</span>
                 </div>
-
-                <div class="team-grid">
-                    <!-- Iman Card -->
-                    <div class="team-card">
-                        <div class="avatar-container">
-                            <img src="../pictures/avatar-iman.png" alt="Muhammad Iman Darwisy" class="team-avatar">
-                            <div class="role-emoji-badge">💻</div>
-                        </div>
-                        <h3 class="team-name">Iman</h3>
-                        <p localization-key="contact.team.iman.role" class="team-role">Lead Developer</p>
-                        <div class="team-contact-actions">
-                            <a href="tel:+60198327769" class="action-btn phone-btn">
-                                <i class="fa-solid fa-phone"></i> +60 19-832 7769
-                            </a>
-                            <a href="mailto:iman.reservehub@gmail.com" class="action-btn email-btn">
-                                <i class="fa-solid fa-envelope"></i> <span localization-key="contact.team.support">Email Support</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Mawi Card -->
-                    <div class="team-card">
-                        <div class="avatar-container">
-                            <img src="../pictures/avatar-mawi.png" alt="Mawi" class="team-avatar">
-                            <div class="role-emoji-badge">⚙️</div>
-                        </div>
-                        <h3 class="team-name">Mawi</h3>
-                        <p localization-key="contact.team.mawi.role" class="team-role">Operations Lead</p>
-                        <div class="team-contact-actions">
-                            <a href="tel:+60185797780" class="action-btn phone-btn">
-                                <i class="fa-solid fa-phone"></i> +60 18-579 7780
-                            </a>
-                            <a href="mailto:mawi.reservehub@gmail.com" class="action-btn email-btn">
-                                <i class="fa-solid fa-envelope"></i> <span localization-key="contact.team.support">Email Support</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Haris Card -->
-                    <div class="team-card">
-                        <div class="avatar-container">
-                            <img src="../pictures/avatar-haris.png" alt="Haris" class="team-avatar">
-                            <div class="role-emoji-badge">📞</div>
-                        </div>
-                        <h3 class="team-name">Haris</h3>
-                        <p localization-key="contact.team.haris.role" class="team-role">Customer Relations</p>
-                        <div class="team-contact-actions">
-                            <a href="tel:+60136736020" class="action-btn phone-btn">
-                                <i class="fa-solid fa-phone"></i> +60 13-673 6020
-                            </a>
-                            <a href="mailto:haris.reservehub@gmail.com" class="action-btn email-btn">
-                                <i class="fa-solid fa-envelope"></i> <span localization-key="contact.team.support">Email Support</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Zabir Card -->
-                    <div class="team-card">
-                        <div class="avatar-container">
-                            <img src="../pictures/avatar-zabir.png" alt="Zabir" class="team-avatar">
-                            <div class="role-emoji-badge">🛡️</div>
-                        </div>
-                        <h3 class="team-name">Zabir</h3>
-                        <p localization-key="contact.team.zabir.role" class="team-role">System Administrator</p>
-                        <div class="team-contact-actions">
-                            <a href="tel:+601163301405" class="action-btn phone-btn">
-                                <i class="fa-solid fa-phone"></i> +60 11-6330 1405
-                            </a>
-                            <a href="mailto:zabir.reservehub@gmail.com" class="action-btn email-btn">
-                                <i class="fa-solid fa-envelope"></i> <span localization-key="contact.team.support">Email Support</span>
-                            </a>
-                        </div>
-                    </div>
+                <div class="hours-row">
+                  <span
+                    localization-key="contact.hours.saturday"
+                    class="hours-day"
+                    >Saturday</span
+                  >
+                  <span class="hours-time">9:00 AM – 1:00 PM (GMT+8)</span>
                 </div>
+                <div class="hours-row">
+                  <span
+                    localization-key="contact.hours.sunday"
+                    class="hours-day"
+                    >Sunday</span
+                  >
+                  <span
+                    localization-key="contact.hours.closed"
+                    class="hours-time"
+                    >Closed</span
+                  >
+                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Contact Form & Info Boxes -->
-        <section class="form-section">
-            <div class="container">
-                <div class="contact-layout">
-                    <div class="contact-details">
-                        <div class="section-header" style="text-align: left; margin-bottom: 24px;">
-                            <span localization-key="contact.support.tag" class="section-tag">Quick Support</span>
-                            <h2 localization-key="contact.support.title" class="section-title" style="font-size: 2rem;">Additional Help</h2>
-                            <p localization-key="contact.support.description" class="section-desc" style="margin: 0; max-width: 100%;">You can also reach out to our general services or visit the help center for immediate assistance.</p>
-                        </div>
+      <!-- Team Profiles Grid -->
+      <section class="team-section">
+        <div class="container">
+          <div class="section-header">
+            <span localization-key="contact.team.tag" class="section-tag"
+              >ReserveHub Team</span
+            >
+            <h2 localization-key="contact.team.title" class="section-title">
+              Connect with Us Directly
+            </h2>
+            <p localization-key="contact.team.description" class="section-desc">
+              Get in touch with our experts based on your specific requirements.
+            </p>
+          </div>
 
-                        <div class="info-item-box">
-                            <div class="info-icon-wrapper">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4 localization-key="contact.helpCenter.title">Help Center</h4>
-                                <p localization-key="contact.helpCenter.description">Find instant answers to common questions about reservations, tables, and accounts.</p> <a localization-key="contact.helpCenter.link" href="help-center.html"><span>Visit Help Center</span></a>
-                            </div>
-                        </div>
-
-                        <div class="info-item-box">
-                            <div class="info-icon-wrapper">
-                                <i class="fa-solid fa-building-shield"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4 localization-key="contact.hq.title">Corporate HQ</h4>
-                                <p localization-key="contact.hq.address">ReserveHub Technologies Sdn Bhd<br>Level 15, Menara Shell, Kuala Lumpur, Malaysia</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-form-wrapper">
-                        <h3 localization-key="contact.form.title" class="contact-form-title">Send a Message</h3>
-                        <p localization-key="contact.form.description" class="contact-form-desc">Fill out the form below and our operations desk will route your message to the correct team member.</p>
-                        <form id="contactForm">
-                            <div class="form-group-row">
-                                <div class="form-group">
-                                    <label localization-key="contact.form.name" for="name">Name</label>
-                                    <input type="text" id="name" class="form-input" localization-key="contact.form.name.placeholder" localization-target="placeholder" placeholder="Your name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label localization-key="contact.form.email" for="email">Email</label>
-                                    <input type="email" id="email" class="form-input" localization-key="contact.form.email.placeholder" localization-target="placeholder" placeholder="Your email address" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label localization-key="contact.form.subject" for="subject">Subject</label>
-                                <input type="text" id="subject" class="form-input" localization-key="contact.form.subject.placeholder" localization-target="placeholder" placeholder="What is this regarding?" required>
-                            </div>
-                            <div class="form-group">
-                                <label localization-key="contact.form.message" for="message">Message</label>
-                                <textarea id="message" class="form-input" localization-key="contact.form.message.placeholder" localization-target="placeholder" placeholder="Write your message here..." required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">
-                                <span localization-key="contact.form.submit">Send Message</span><i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+          <div class="team-grid">
+            <!-- Iman Card -->
+            <div class="team-card">
+              <div class="avatar-container">
+                <img
+                  src="../pictures/avatar-iman.png"
+                  alt="Muhammad Iman Darwisy"
+                  class="team-avatar"
+                />
+                <div class="role-emoji-badge">💻</div>
+              </div>
+              <h3 class="team-name">Iman</h3>
+              <p localization-key="contact.team.iman.role" class="team-role">
+                Lead Developer
+              </p>
+              <div class="team-contact-actions">
+                <a href="tel:+60198327769" class="action-btn phone-btn">
+                  <i class="fa-solid fa-phone"></i> +60 19-832 7769
+                </a>
+                <a
+                  href="mailto:iman.reservehub@gmail.com"
+                  class="action-btn email-btn"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                  <span localization-key="contact.team.support"
+                    >Email Support</span
+                  >
+                </a>
+              </div>
             </div>
-        </section>
+
+            <!-- Mawi Card -->
+            <div class="team-card">
+              <div class="avatar-container">
+                <img
+                  src="../pictures/avatar-mawi.png"
+                  alt="Mawi"
+                  class="team-avatar"
+                />
+                <div class="role-emoji-badge">⚙️</div>
+              </div>
+              <h3 class="team-name">Mawi</h3>
+              <p localization-key="contact.team.mawi.role" class="team-role">
+                Operations Lead
+              </p>
+              <div class="team-contact-actions">
+                <a href="tel:+60185797780" class="action-btn phone-btn">
+                  <i class="fa-solid fa-phone"></i> +60 18-579 7780
+                </a>
+                <a
+                  href="mailto:mawi.reservehub@gmail.com"
+                  class="action-btn email-btn"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                  <span localization-key="contact.team.support"
+                    >Email Support</span
+                  >
+                </a>
+              </div>
+            </div>
+
+            <!-- Haris Card -->
+            <div class="team-card">
+              <div class="avatar-container">
+                <img
+                  src="../pictures/avatar-haris.png"
+                  alt="Haris"
+                  class="team-avatar"
+                />
+                <div class="role-emoji-badge">📞</div>
+              </div>
+              <h3 class="team-name">Haris</h3>
+              <p localization-key="contact.team.haris.role" class="team-role">
+                Customer Relations
+              </p>
+              <div class="team-contact-actions">
+                <a href="tel:+60136736020" class="action-btn phone-btn">
+                  <i class="fa-solid fa-phone"></i> +60 13-673 6020
+                </a>
+                <a
+                  href="mailto:haris.reservehub@gmail.com"
+                  class="action-btn email-btn"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                  <span localization-key="contact.team.support"
+                    >Email Support</span
+                  >
+                </a>
+              </div>
+            </div>
+
+            <!-- Zabir Card -->
+            <div class="team-card">
+              <div class="avatar-container">
+                <img
+                  src="../pictures/avatar-zabir.png"
+                  alt="Zabir"
+                  class="team-avatar"
+                />
+                <div class="role-emoji-badge">🛡️</div>
+              </div>
+              <h3 class="team-name">Zabir</h3>
+              <p localization-key="contact.team.zabir.role" class="team-role">
+                System Administrator
+              </p>
+              <div class="team-contact-actions">
+                <a href="tel:+601163301405" class="action-btn phone-btn">
+                  <i class="fa-solid fa-phone"></i> +60 11-6330 1405
+                </a>
+                <a
+                  href="mailto:zabir.reservehub@gmail.com"
+                  class="action-btn email-btn"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                  <span localization-key="contact.team.support"
+                    >Email Support</span
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form & Info Boxes -->
+      <section class="form-section">
+        <div class="container">
+          <div class="contact-layout">
+            <div class="contact-details">
+              <div
+                class="section-header"
+                style="text-align: left; margin-bottom: 24px"
+              >
+                <span localization-key="contact.support.tag" class="section-tag"
+                  >Quick Support</span
+                >
+                <h2
+                  localization-key="contact.support.title"
+                  class="section-title"
+                  style="font-size: 2rem"
+                >
+                  Additional Help
+                </h2>
+                <p
+                  localization-key="contact.support.description"
+                  class="section-desc"
+                  style="margin: 0; max-width: 100%"
+                >
+                  You can also reach out to our general services or visit the
+                  help center for immediate assistance.
+                </p>
+              </div>
+
+              <div class="info-item-box">
+                <div class="info-icon-wrapper">
+                  <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div class="info-content">
+                  <h4 localization-key="contact.helpCenter.title">
+                    Help Center
+                  </h4>
+                  <p localization-key="contact.helpCenter.description">
+                    Find instant answers to common questions about reservations,
+                    tables, and accounts.
+                  </p>
+                  <a
+                    localization-key="contact.helpCenter.link"
+                    href="help-center.html"
+                    ><span>Visit Help Center</span></a
+                  >
+                </div>
+              </div>
+
+              <div class="info-item-box">
+                <div class="info-icon-wrapper">
+                  <i class="fa-solid fa-building-shield"></i>
+                </div>
+                <div class="info-content">
+                  <h4 localization-key="contact.hq.title">Corporate HQ</h4>
+                  <p localization-key="contact.hq.address">
+                    ReserveHub Technologies Sdn Bhd<br />Level 15, Menara Shell,
+                    Kuala Lumpur, Malaysia
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+              <h3
+                localization-key="contact.form.title"
+                class="contact-form-title"
+              >
+                Send a Message
+              </h3>
+              <p
+                localization-key="contact.form.description"
+                class="contact-form-desc"
+              >
+                Fill out the form below and our operations desk will route your
+                message to the correct team member.
+              </p>
+              <form id="contactForm">
+                <div class="form-group-row">
+                  <div class="form-group">
+                    <label localization-key="contact.form.name" for="name"
+                      >Name</label
+                    >
+                    <input
+                      type="text"
+                      id="name"
+                      class="form-input"
+                      localization-key="contact.form.name.placeholder"
+                      localization-target="placeholder"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label localization-key="contact.form.email" for="email"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      class="form-input"
+                      localization-key="contact.form.email.placeholder"
+                      localization-target="placeholder"
+                      placeholder="Your email address"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label localization-key="contact.form.subject" for="subject"
+                    >Subject</label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    class="form-input"
+                    localization-key="contact.form.subject.placeholder"
+                    localization-target="placeholder"
+                    placeholder="What is this regarding?"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label localization-key="contact.form.message" for="message"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    class="form-input"
+                    localization-key="contact.form.message.placeholder"
+                    localization-target="placeholder"
+                    placeholder="Write your message here..."
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                  <span localization-key="contact.form.submit"
+                    >Send Message</span
+                  ><i class="fa-solid fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="footer-logo">
-                <p localization-key="footer.tagline" class="footer-tagline">"All Restaurants, One Booking"</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4 localization-key="footer.company">Company</h4>
-                    <a localization-key="footer.about" href="about.html">About Us</a>
-                </div>
-                <div class="footer-col">
-                    <h4 localization-key="footer.support">Support</h4>
-                    <a localization-key="footer.help" href="help-center.html">Help Center</a>
-                    <a localization-key="footer.privacy" href="privacy-policy.html">Privacy Policy</a>
-                    <a localization-key="footer.terms" href="terms-of-service.html">Terms of Service</a>
-                    <a localization-key="footer.admin" href="admin.html" id="footerAdminLink" style="color:var(--orange);">Admin Dashboard</a>
-                </div>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img
+            src="../pictures/reservehub-full-logo-light-mode.png"
+            alt="ReserveHub Logo"
+            class="footer-logo"
+          />
+          <p localization-key="footer.tagline" class="footer-tagline">
+            "All Restaurants, One Booking"
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p localization-key="footer.copyright">© 2026 ReserveHub. All rights reserved.</p>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4 localization-key="footer.company">Company</h4>
+            <a localization-key="footer.about" href="about.html">About Us</a>
+          </div>
+          <div class="footer-col">
+            <h4 localization-key="footer.support">Support</h4>
+            <a localization-key="footer.help" href="help-center.html"
+              >Help Center</a
+            >
+            <a localization-key="footer.privacy" href="privacy-policy.html"
+              >Privacy Policy</a
+            >
+            <a localization-key="footer.terms" href="terms-of-service.html"
+              >Terms of Service</a
+            >
+            <a
+              localization-key="footer.admin"
+              href="admin.html"
+              id="footerAdminLink"
+              style="color: var(--orange)"
+              >Admin Dashboard</a
+            >
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p localization-key="footer.copyright">
+          © 2026 ReserveHub. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="../js/theme.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/session.js"></script>
     <script src="../js/localization.js"></script>
-    
+
     <script>
+      function updateSupportStatus() {
+        const language = window.getCurrentLanguage();
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusText = document.getElementById('status-text');
+        const now = new Date();
 
-        function updateSupportStatus() {
-            const language = window.getCurrentLanguage();
-            const statusIndicator = document.getElementById('status-indicator');
-            const statusText = document.getElementById('status-text');
-            const now = new Date();
-            
-            // Convert to Malaysia Time (UTC+8)
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const myTime = new Date(utc + (3600000 * 8));
-            
-            const day = myTime.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-            const hour = myTime.getHours();
-            const minutes = myTime.getMinutes();
-            const timeDecimal = hour + (minutes / 60);
-            
-            let isOpen = false;
-            if (day >= 1 && day <= 5) { // Mon - Fri
-                if (timeDecimal >= 9 && timeDecimal < 18) {
-                    isOpen = true;
-                }
-            } else if (day === 6) { // Sat
-                if (timeDecimal >= 9 && timeDecimal < 13) {
-                    isOpen = true;
-                }
-            }
-            
-            // Update table highlighting
-            const rows = document.querySelectorAll('.hours-row');
-            rows.forEach(row => row.classList.remove('today'));
-            
-            if (day >= 1 && day <= 5) {
-                rows[0].classList.add('today');
-            } else if (day === 6) {
-                rows[1].classList.add('today');
-            } else {
-                rows[2].classList.add('today');
-            }
-            console.log(language);
-            // Update text in French or English
-            if (isOpen && language === 'en') {
-                statusIndicator.className = 'status-indicator open';
-                statusIndicator.innerHTML = '<span class="status-dot"></span> Open Now';
-                statusText.textContent = 'Our operations and support desk is currently active. Feel free to call or email us directly.';
-            } else if (isOpen && language === 'fr') {
-                statusIndicator.className = 'status-indicator open';
-                statusIndicator.innerHTML = '<span class="status-dot"></span> Ouvert';
-                statusText.textContent = 'Notre équipe des opérations et du soutien est actuellement disponible. N\'hésitez pas à nous appeler ou à nous envoyer un courriel.';
-            } else if (!isOpen && language === 'en') {
-                statusIndicator.className = 'status-indicator closed';
-                statusIndicator.innerHTML = '<span class="status-dot"></span> Closed Now';
-                statusText.textContent = 'We are currently offline. Please send an email or submit the form below, and we will get back to you first thing on our next working shift.';
-            } else if (!isOpen && language === 'fr') {
-                statusIndicator.className = 'status-indicator closed';
-                statusIndicator.innerHTML = '<span class="status-dot"></span> Fermé';
-                statusText.textContent = 'Nous sommes actuellement fermés. Veuillez nous envoyer un courriel ou remplir le formulaire ci-dessous. Nous vous répondrons dès le début de notre prochaine période de travail.';
-            } 
+        // Convert to Malaysia Time (UTC+8)
+        const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+        const myTime = new Date(utc + 3600000 * 8);
+
+        const day = myTime.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+        const hour = myTime.getHours();
+        const minutes = myTime.getMinutes();
+        const timeDecimal = hour + minutes / 60;
+
+        let isOpen = false;
+        if (day >= 1 && day <= 5) {
+          // Mon - Fri
+          if (timeDecimal >= 9 && timeDecimal < 18) {
+            isOpen = true;
+          }
+        } else if (day === 6) {
+          // Sat
+          if (timeDecimal >= 9 && timeDecimal < 13) {
+            isOpen = true;
+          }
         }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            updateSupportStatus();
-            setInterval(() => {
-                updateSupportStatus();
-            }, 60000);
 
-            // Handle contact form submission
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    const submitBtn = contactForm.querySelector('.submit-btn');
-                    const originalBtnHTML = submitBtn.innerHTML;
-                    
-                    // Loading state
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
-                    
-                    const payload = {
-                        name: document.getElementById('name').value,
-                        email: document.getElementById('email').value,
-                        subject: document.getElementById('subject').value,
-                        message: document.getElementById('message').value
-                    };
-                    
-                    try {
-                        const response = await fetch('../api/admin_api.php?endpoint=messages', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(payload)
-                        });
-                        
-                        const result = await response.json();
-                        
-                        if (result.success) {
-                            showToast(result.message, 'success');
-                            contactForm.reset();
-                        } else {
-                            showToast(result.message || 'Failed to send message.', 'error');
-                        }
-                    } catch (error) {
-                        console.error('Error submitting contact form:', error);
-                        showToast('A network error occurred. Please try again.', 'error');
-                    } finally {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalBtnHTML;
-                    }
-                });
+        // Update table highlighting
+        const rows = document.querySelectorAll('.hours-row');
+        rows.forEach((row) => row.classList.remove('today'));
+
+        if (day >= 1 && day <= 5) {
+          rows[0].classList.add('today');
+        } else if (day === 6) {
+          rows[1].classList.add('today');
+        } else {
+          rows[2].classList.add('today');
+        }
+        console.log(language);
+        // Update text in French or English
+        if (isOpen && language === 'en') {
+          statusIndicator.className = 'status-indicator open';
+          statusIndicator.innerHTML =
+            '<span class="status-dot"></span> Open Now';
+          statusText.textContent =
+            'Our operations and support desk is currently active. Feel free to call or email us directly.';
+        } else if (isOpen && language === 'fr') {
+          statusIndicator.className = 'status-indicator open';
+          statusIndicator.innerHTML = '<span class="status-dot"></span> Ouvert';
+          statusText.textContent =
+            "Notre équipe des opérations et du soutien est actuellement disponible. N'hésitez pas à nous appeler ou à nous envoyer un courriel.";
+        } else if (!isOpen && language === 'en') {
+          statusIndicator.className = 'status-indicator closed';
+          statusIndicator.innerHTML =
+            '<span class="status-dot"></span> Closed Now';
+          statusText.textContent =
+            'We are currently offline. Please send an email or submit the form below, and we will get back to you first thing on our next working shift.';
+        } else if (!isOpen && language === 'fr') {
+          statusIndicator.className = 'status-indicator closed';
+          statusIndicator.innerHTML = '<span class="status-dot"></span> Fermé';
+          statusText.textContent =
+            'Nous sommes actuellement fermés. Veuillez nous envoyer un courriel ou remplir le formulaire ci-dessous. Nous vous répondrons dès le début de notre prochaine période de travail.';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        updateSupportStatus();
+        setInterval(() => {
+          updateSupportStatus();
+        }, 60000);
+
+        // Handle contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+          contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalBtnHTML = submitBtn.innerHTML;
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML =
+              'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+
+            const payload = {
+              name: document.getElementById('name').value,
+              email: document.getElementById('email').value,
+              subject: document.getElementById('subject').value,
+              message: document.getElementById('message').value,
+            };
+
+            try {
+              const response = await fetch(
+                '../api/admin_api.php?endpoint=messages',
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(payload),
+                },
+              );
+
+              const result = await response.json();
+
+              if (result.success) {
+                showToast(result.message, 'success');
+                contactForm.reset();
+              } else {
+                showToast(result.message || 'Failed to send message.', 'error');
+              }
+            } catch (error) {
+              console.error('Error submitting contact form:', error);
+              showToast('A network error occurred. Please try again.', 'error');
+            } finally {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalBtnHTML;
             }
-        });
+          });
+        }
+      });
     </script>
-</body>
-
+  </body>
 </html>

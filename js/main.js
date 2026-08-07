@@ -1,25 +1,17 @@
 
-let lang = 'en';
-
-// Translation dictionary for text used in this file
-const translations = {
-    en: {
-        loading: "Loading Restaurants...",
-        noRestaurants: "No restaurants found in this category.",
-        serverError: "Could not connect to the server.",
-        noImage: "No Image Available",
-        reserve: "Reserve a Table",
-        openNow: "Open now",
-    },
-    fr: {
-        loading: "Chargement des Restaurants...",
-        noRestaurants: "Aucun restaurant trouvé dans cette catégorie.",
-        serverError: "Impossible de se connecter au serveur.",
-        noImage: "Aucune Image Disponible",
-        reserve: "Réserver une Table",
-        openNow: "Ouvert maintenant",
-    }
+// English fallback used only on first render before localization.js resolves
+const MAIN_FALLBACK = {
+    'index.featured.loading':        "Loading Restaurants...",
+    'index.featured.noRestaurants':  "No restaurants found in this category.",
+    'index.featured.serverError':    "Could not connect to the server.",
+    'index.featured.noImage':        "No Image Available",
+    'index.featured.reserve':        "Reserve a Table",
+    'index.featured.openNow':        "Open now",
 };
+
+function t(key) {
+    return window.reservehubTranslations?.[key] ?? MAIN_FALLBACK[key] ?? key;
+}
 
 // ===== NAVBAR SCROLL =====
 const navbar = document.getElementById('navbar');
@@ -63,7 +55,7 @@ const fetchFeatured = (category = 'all') => {
     if (!featuredGrid) return;
     
     // Show loading state
-    featuredGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px;"><i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--orange)"></i><br><br>${translations[lang].loading}</div>`;
+    featuredGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px;"><i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--orange)"></i><br><br>${t('index.featured.loading')}</div>`;
 
     let url = '../api/search.php';
     if (category !== 'all') {
@@ -80,14 +72,14 @@ const fetchFeatured = (category = 'all') => {
             }
         })
         .catch(err => {
-            featuredGrid.innerHTML =   `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:var(--text-muted)">${translations[lang].serverError}</div>`;
+            featuredGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:var(--text-muted)">${t('index.featured.serverError')}</div>`;
         });
 };
 
 const renderRestaurants = (data) => {
     featuredGrid.innerHTML = '';
     if (data.length === 0) {
-        featuredGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:var(--text-muted)">${translations[lang].noRestaurants}</div>`;
+        featuredGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:var(--text-muted)">${t('index.featured.noRestaurants')}</div>`;
         return;
     }
 
@@ -97,7 +89,7 @@ const renderRestaurants = (data) => {
         card.innerHTML = `
             <div class="card-image">
                 <img src="${item.image_url}" alt="${item.name}" onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('no-image');" style="width:100%; height:100%; object-fit:cover;">
-                <div class="no-image-overlay"><i class="fa-solid fa-utensils"></i><span>${translations[lang].noImage}</span></div>
+                <div class="no-image-overlay"><i class="fa-solid fa-utensils"></i><span>${t('index.featured.noImage')}</span></div>
                 <div class="card-img-overlay">
                     <span class="halal-tag" style="background: ${item.is_halal == 1 ? '#27ae60' : '#e74c3c'}; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; position: absolute; top: 10px; left: 10px;">${item.is_halal == 1 ? 'HALAL' : 'NON-HALAL'}</span>
                     <button class="wishlist-btn" data-id="${item.id}" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>
@@ -111,10 +103,10 @@ const renderRestaurants = (data) => {
                 <div class="card-meta">
                     <span><i class="fa-solid fa-star"></i> ${item.rating}</span>
                     <span><i class="fa-solid fa-location-dot"></i> ${item.location}</span>
-                    <span><i class="fa-regular fa-clock"></i> ${translations[lang].openNow}</span>
+                    <span><i class="fa-regular fa-clock"></i> ${t('index.featured.openNow')}</span>
                 </div>
                 <p class="card-desc">${item.description}</p>
-                <button class="reserve-btn" onclick="window.location.href='restaurant.html?id=${item.id}'">${translations[lang].reserve}</button>
+                <button class="reserve-btn" onclick="window.location.href='restaurant.html?id=${item.id}'">${t('index.featured.reserve')}</button>
             </div>
         `;
         featuredGrid.appendChild(card);
@@ -127,7 +119,7 @@ if (featuredGrid) {
     fetchFeatured();
     filterTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            filterTabs.forEach(t => t.classList.remove('active'));
+            filterTabs.forEach(el => el.classList.remove('active'));
             tab.classList.add('active');
             fetchFeatured(tab.dataset.filter);
         });
@@ -193,9 +185,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Listen for language changes
-window.addEventListener("reservehub:languageChanged", event => {
-    lang = event.detail.language;
-    // Reload cards so they use the new language
+// Re-render cards when localization.js updates window.reservehubTranslations
+window.addEventListener("reservehub:languageChanged", () => {
     fetchFeatured();
 });

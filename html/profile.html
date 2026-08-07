@@ -1,279 +1,504 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title localization-key="profile.meta.title">My Profile | ReserveHub</title>
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/profile.css">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
     <style>
-        .profile-avatar:hover .avatar-overlay {
-            opacity: 1 !important;
-        }
-        .admin-badge {
-            background: linear-gradient(135deg, #f1c40f, #f39c12);
-            color: #000;
-            font-size: 0.65rem;
-            font-weight: 900;
-            padding: 2px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            box-shadow: 0 4px 10px rgba(241, 196, 15, 0.3);
-            vertical-align: middle;
-            margin-left: 10px;
-        }
+      .profile-avatar:hover .avatar-overlay {
+        opacity: 1 !important;
+      }
+      .admin-badge {
+        background: linear-gradient(135deg, #f1c40f, #f39c12);
+        color: #000;
+        font-size: 0.65rem;
+        font-weight: 900;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        box-shadow: 0 4px 10px rgba(241, 196, 15, 0.3);
+        vertical-align: middle;
+        margin-left: 10px;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar scrolled" id="navbar">
-        <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
-            <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
+      <a
+        href="index.html"
+        aria-label="ReserveHub Homepage"
+        class="nav-logo-link"
+      >
+        <img
+          src="../pictures/reservehub-full-logo-light-mode.png"
+          alt="ReserveHub Logo"
+          class="top-logo"
+        />
         </a>
-        <div class="top-btn-container" id="auth-buttons">
-            <!-- Will be populated by session.js -->
-        </div>
-        <div class="language-picker" style="margin-left: 10px;">
-            <i class="fa-solid fa-globe"></i>
-            <select class="profile-language-localization language-select" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-            </select>
-        </div>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" style="margin-left: 10px;">
-            <i class="fa-solid fa-moon"></i>
-            <i class="fa-solid fa-sun"></i>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="reserve-btn" onclick="downloadReservationsCSV()" id="exportCsvBtn">
+  <i class="fa-solid fa-file-pdf"></i>
+  <span localization-key="profile.nav.exportCSV">
+    Export Reservations to CSV
+  </span>
+</button>
+      <div class="top-btn-container" id="auth-buttons">
+        <!-- Will be populated by session.js -->
+      </div>
+      <div class="language-picker" style="margin-left: 10px">
+        <i class="fa-solid fa-globe"></i>
+        <select
+          class="profile-language-localization language-select"
+          aria-label="Select language"
+        >
+          <!-- populated by localization.js -->
+        </select>
+      </div>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+        style="margin-left: 10px"
+      >
+        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-sun"></i>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="mob-link" localization-key="profile.nav.home">Home</a>
-        <!-- Will be populated by session.js -->
+      <a href="index.html" class="mob-link" localization-key="profile.nav.home"
+        >Home</a
+      >
+      <!-- Will be populated by session.js -->
     </div>
 
     <!-- ===== PROFILE SECTION ===== -->
     <main class="profile-main">
-        <div class="profile-container">
-            <div class="profile-header">
-                <div class="profile-avatar" id="profileAvatar" onclick="document.getElementById('avatarInput').click()" style="position: relative; cursor: pointer; overflow: hidden;">
-                    <i class="fa-solid fa-user"></i>
-                    <div class="avatar-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s;">
-                        <i class="fa-solid fa-camera" style="font-size: 24px; color: white;"></i>
-                    </div>
-                </div>
-                <input type="file" id="avatarInput" style="display: none;" accept="image/*" onchange="uploadAvatar(this)">
-                <div class="profile-info">
-                    <h1 id="profileName">Loading...</h1>
-                    <p id="profileUsername" style="color: var(--orange); font-size: 1.1rem; margin-top: -5px; margin-bottom: 10px; font-weight: 600;"></p>
-                    <p id="profileEmail">Fetching your details...</p>
-                    <p id="profilePhone" style="color: var(--orange); font-weight: 600; margin-top: 5px;"></p>
-                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
-                        <span class="member-since" id="profileDate" style="display:block;"></span>
-                        <button onclick="openEditModal()" class="edit-profile-btn" style="background: var(--glass); border: 1px solid var(--border); color: var(--text); padding: 5px 15px; border-radius: 50px; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; transition: var(--transition);">
-                            <i class="fa-solid fa-pen-to-square"></i> <span localization-key="profile.header.editProfile">Edit Profile</span>
-                        </button>
-                    </div>
-                </div>
+      <div class="profile-container">
+        <div class="profile-header">
+          <div
+            class="profile-avatar"
+            id="profileAvatar"
+            onclick="document.getElementById('avatarInput').click()"
+            style="position: relative; cursor: pointer; overflow: hidden"
+          >
+            <i class="fa-solid fa-user"></i>
+            <div
+              class="avatar-overlay"
+              style="
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: 0.3s;
+              "
+            >
+              <i
+                class="fa-solid fa-camera"
+                style="font-size: 24px; color: white"
+              ></i>
             </div>
-
-            <div class="profile-content">
-                <div class="dashboard-card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <h2 style="margin: 0;"><i class="fa-regular fa-calendar-check"></i> <span localization-key="profile.reservations.title">My Reservations</span></h2>
-                        <input type="text" id="searchMyReservations" localization-key="profile.reservations.searchPlaceholder" localization-target="placeholder" placeholder="Search reservations..." style="width:200px; background: #2a2a2a; color: white; border: 1px solid #333; padding: 8px 12px; border-radius: 8px; font-family: 'Alexandria', sans-serif; font-size: 0.9rem;" onkeyup="filterMyReservations()">
-                    </div>
-                    <div class="card-body">
-                        <div id="reservationsList">
-                            <div class="empty-state">
-                                <i class="fa-solid fa-utensils"></i>
-                                <p localization-key="profile.reservations.empty">You don't have any upcoming reservations yet.</p>
-                                <a href="search.html" localization-key="profile.reservations.findRestaurant" class="reserve-btn">Find a Restaurant</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <h2 style="margin: 0;"><i class="fa-regular fa-heart"></i> <span localization-key="profile.saved.title">Saved Restaurants</span></h2>
-                        <input type="text" id="searchSavedRestaurants" localization-key="profile.saved.searchPlaceholder" localization-target="placeholder" placeholder="Search restaurants..." style="width:200px; background: #2a2a2a; color: white; border: 1px solid #333; padding: 8px 12px; border-radius: 8px; font-family: 'Alexandria', sans-serif; font-size: 0.9rem;" onkeyup="filterSavedRestaurants()">
-                    </div>
-                    <div class="card-body">
-                        <div id="savedRestaurantsList" class="restaurants-grid" style="display: grid; grid-template-columns: 1fr; gap: 15px;">
-                            <div class="empty-state">
-                                <i class="fa-regular fa-bookmark"></i>
-                                <p localization-key="profile.saved.empty">Restaurants you save will appear here.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <input
+            type="file"
+            id="avatarInput"
+            style="display: none"
+            accept="image/*"
+            onchange="uploadAvatar(this)"
+          />
+          <div class="profile-info">
+            <h1 id="profileName">Loading...</h1>
+            <p
+              id="profileUsername"
+              style="
+                color: var(--orange);
+                font-size: 1.1rem;
+                margin-top: -5px;
+                margin-bottom: 10px;
+                font-weight: 600;
+              "
+            ></p>
+            <p id="profileEmail">Fetching your details...</p>
+            <p
+              id="profilePhone"
+              style="color: var(--orange); font-weight: 600; margin-top: 5px"
+            ></p>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-top: 10px;
+              "
+            >
+              <span
+                class="member-since"
+                id="profileDate"
+                style="display: block"
+              ></span>
+              <button
+                onclick="openEditModal()"
+                class="edit-profile-btn"
+                style="
+                  background: var(--glass);
+                  border: 1px solid var(--border);
+                  color: var(--text);
+                  padding: 5px 15px;
+                  border-radius: 50px;
+                  cursor: pointer;
+                  font-size: 0.8rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                  transition: var(--transition);
+                "
+              >
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span localization-key="profile.header.editProfile"
+                  >Edit Profile</span
+                >
+              </button>
             </div>
+          </div>
         </div>
+
+        <div class="profile-content">
+          <div class="dashboard-card">
+            <div
+              class="card-header"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+              "
+            >
+              <h2 style="margin: 0">
+                <i class="fa-regular fa-calendar-check"></i>
+                <span localization-key="profile.reservations.title"
+                  >My Reservations</span
+                >
+              </h2>
+              <input
+                type="text"
+                id="searchMyReservations"
+                localization-key="profile.reservations.searchPlaceholder"
+                localization-target="placeholder"
+                placeholder="Search reservations..."
+                style="
+                  width: 200px;
+                  background: #2a2a2a;
+                  color: white;
+                  border: 1px solid #333;
+                  padding: 8px 12px;
+                  border-radius: 8px;
+                  font-family: 'Alexandria', sans-serif;
+                  font-size: 0.9rem;
+                "
+                onkeyup="filterMyReservations()"
+              />
+            </div>
+            <div class="card-body">
+              <div id="reservationsList">
+                <div class="empty-state">
+                  <i class="fa-solid fa-utensils"></i>
+                  <p localization-key="profile.reservations.empty">
+                    You don't have any upcoming reservations yet.
+                  </p>
+                  <a
+                    href="search.html"
+                    localization-key="profile.reservations.findRestaurant"
+                    class="reserve-btn"
+                    >Find a Restaurant</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <div
+              class="card-header"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+              "
+            >
+              <h2 style="margin: 0">
+                <i class="fa-regular fa-heart"></i>
+                <span localization-key="profile.saved.title"
+                  >Saved Restaurants</span
+                >
+              </h2>
+              <input
+                type="text"
+                id="searchSavedRestaurants"
+                localization-key="profile.saved.searchPlaceholder"
+                localization-target="placeholder"
+                placeholder="Search restaurants..."
+                style="
+                  width: 200px;
+                  background: #2a2a2a;
+                  color: white;
+                  border: 1px solid #333;
+                  padding: 8px 12px;
+                  border-radius: 8px;
+                  font-family: 'Alexandria', sans-serif;
+                  font-size: 0.9rem;
+                "
+                onkeyup="filterSavedRestaurants()"
+              />
+            </div>
+            <div class="card-body">
+              <div
+                id="savedRestaurantsList"
+                class="restaurants-grid"
+                style="display: grid; grid-template-columns: 1fr; gap: 15px"
+              >
+                <div class="empty-state">
+                  <i class="fa-regular fa-bookmark"></i>
+                  <p localization-key="profile.saved.empty">
+                    Restaurants you save will appear here.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="footer-logo">
-                <p class="footer-tagline" localization-key="profile.footer.tagline">"All Restaurants, One Booking"</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4 localization-key="profile.footer.company">Company</h4>
-                    <a href="about.html" localization-key="profile.footer.about">About Us</a>
-                </div>
-                <div class="footer-col">
-                    <h4 localization-key="profile.footer.support">Support</h4>
-                    <a href="help-center.html" localization-key="profile.footer.help">Help Center</a>
-                    <a href="contact.html" localization-key="profile.footer.contact">Contact Us</a>
-                    <a href="privacy-policy.html" localization-key="profile.footer.privacy">Privacy Policy</a>
-                    <a href="terms-of-service.html" localization-key="profile.footer.terms">Terms of Service</a>
-                </div>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img
+            src="../pictures/reservehub-full-logo-light-mode.png"
+            alt="ReserveHub Logo"
+            class="footer-logo"
+          />
+          <p class="footer-tagline" localization-key="profile.footer.tagline">
+            "All Restaurants, One Booking"
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p localization-key="profile.footer.copyright">© 2026 ReserveHub. All rights reserved.</p>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4 localization-key="profile.footer.company">Company</h4>
+            <a href="about.html" localization-key="profile.footer.about"
+              >About Us</a
+            >
+          </div>
+          <div class="footer-col">
+            <h4 localization-key="profile.footer.support">Support</h4>
+            <a href="help-center.html" localization-key="profile.footer.help"
+              >Help Center</a
+            >
+            <a href="contact.html" localization-key="profile.footer.contact"
+              >Contact Us</a
+            >
+            <a
+              href="privacy-policy.html"
+              localization-key="profile.footer.privacy"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              localization-key="profile.footer.terms"
+              >Terms of Service</a
+            >
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p localization-key="profile.footer.copyright">
+          © 2026 ReserveHub. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="../js/theme.js"></script>
     <script src="../js/localization.js"></script>
     <script src="../js/session.js"></script>
     <script>
-        let profileTranslations = {};
-        function pt(key, fallback) {
-            return profileTranslations[key] || fallback;
+      let profileTranslations = {};
+      function pt(key, fallback) {
+        return profileTranslations[key] || fallback;
+      }
+
+      function formatProfileDate(rawDate) {
+        const locale = (document.documentElement.lang || 'en').startsWith('fr')
+          ? 'fr-FR'
+          : 'en-US';
+        const date = new Date(rawDate);
+        return `${pt('profile.dynamic.memberSince', 'Member since')} ${date.toLocaleDateString(locale, { year: 'numeric', month: 'long' })}`;
+      }
+
+      function refreshProfileDynamicText() {
+        const userStr =
+          localStorage.getItem('reservehub_user') ||
+          sessionStorage.getItem('reservehub_user');
+        if (!userStr) return;
+        const user = JSON.parse(userStr);
+
+        if (!document.getElementById('profilePhone').textContent.trim()) {
+          document.getElementById('profilePhone').innerHTML = pt(
+            'profile.dynamic.noPhone',
+            'No phone number provided',
+          );
         }
 
-        function formatProfileDate(rawDate) {
-            const locale = (document.documentElement.lang || 'en').startsWith('fr') ? 'fr-FR' : 'en-US';
-            const date = new Date(rawDate);
-            return `${pt('profile.dynamic.memberSince', 'Member since')} ${date.toLocaleDateString(locale, { year: 'numeric', month: 'long' })}`;
+        if (user.created_at) {
+          document.getElementById('profileDate').textContent =
+            formatProfileDate(user.created_at);
+        }
+      }
+
+      window.addEventListener('reservehub:languageChanged', (event) => {
+        profileTranslations = event.detail?.translations || {};
+        refreshProfileDynamicText();
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const userStr =
+          localStorage.getItem('reservehub_user') ||
+          sessionStorage.getItem('reservehub_user');
+
+        if (!userStr) {
+          window.location.href = 'login-signup.html';
+          return;
         }
 
-        function refreshProfileDynamicText() {
-            const userStr = localStorage.getItem('reservehub_user') || sessionStorage.getItem('reservehub_user');
-            if (!userStr) return;
-            const user = JSON.parse(userStr);
+        const sessionData = JSON.parse(userStr);
 
-            if (!document.getElementById('profilePhone').textContent.trim()) {
-                document.getElementById('profilePhone').innerHTML = pt('profile.dynamic.noPhone', 'No phone number provided');
-            }
+        // Fetch latest data from database
+        fetch('../api/profile.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: sessionData.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              const user = data.user;
+              document.getElementById('profileName').innerHTML =
+                user.name +
+                (user.role === 'admin'
+                  ? '<span class="admin-badge"><i class="fa-solid fa-shield-halved"></i> Admin</span>'
+                  : '');
+              document.getElementById('profileUsername').textContent =
+                user.username ? '@' + user.username : '';
+              document.getElementById('profileEmail').textContent = user.email;
+              document.getElementById('profilePhone').textContent = user.phone
+                ? `<i class="fa-solid fa-phone"></i> ${user.phone}`
+                : '';
+              document.getElementById('profilePhone').innerHTML = user.phone
+                ? `<i class="fa-solid fa-phone" style="font-size: 12px; margin-right: 5px;"></i> ${user.phone}`
+                : pt('profile.dynamic.noPhone', 'No phone number provided');
 
-            if (user.created_at) {
-                document.getElementById('profileDate').textContent = formatProfileDate(user.created_at);
-            }
-        }
+              document.getElementById('profileDate').textContent =
+                formatProfileDate(user.created_at);
 
-        window.addEventListener('reservehub:languageChanged', (event) => {
-            profileTranslations = event.detail?.translations || {};
-            refreshProfileDynamicText();
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const userStr = localStorage.getItem('reservehub_user') || sessionStorage.getItem('reservehub_user');
-            
-            if (!userStr) {
-                window.location.href = 'login-signup.html';
-                return;
-            }
-
-            const sessionData = JSON.parse(userStr);
-
-            // Fetch latest data from database
-            fetch('../api/profile.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: sessionData.email })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    const user = data.user;
-                    document.getElementById('profileName').innerHTML = user.name + (user.role === 'admin' ? '<span class="admin-badge"><i class="fa-solid fa-shield-halved"></i> Admin</span>' : '');
-                    document.getElementById('profileUsername').textContent = user.username ? '@' + user.username : '';
-                    document.getElementById('profileEmail').textContent = user.email;
-                    document.getElementById('profilePhone').textContent = user.phone ? `<i class="fa-solid fa-phone"></i> ${user.phone}` : '';
-                    document.getElementById('profilePhone').innerHTML = user.phone ? `<i class="fa-solid fa-phone" style="font-size: 12px; margin-right: 5px;"></i> ${user.phone}` : pt('profile.dynamic.noPhone', 'No phone number provided');
-                    
-                    document.getElementById('profileDate').textContent = formatProfileDate(user.created_at);
-                    
-                    // Display Profile Picture or Initial
-                    const avatarDiv = document.getElementById('profileAvatar');
-                    if (user.profile_picture) {
-                        avatarDiv.innerHTML = `<img src="../uploads/profile_pics/${user.profile_picture}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              // Display Profile Picture or Initial
+              const avatarDiv = document.getElementById('profileAvatar');
+              if (user.profile_picture) {
+                avatarDiv.innerHTML = `<img src="../uploads/profile_pics/${user.profile_picture}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                                                <div class="avatar-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s;"><i class="fa-solid fa-camera" style="font-size: 24px; color: white;"></i></div>`;
-                    } else {
-                        avatarDiv.innerHTML = `${user.name.charAt(0).toUpperCase()}
+              } else {
+                avatarDiv.innerHTML = `${user.name.charAt(0).toUpperCase()}
                                                <div class="avatar-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s;"><i class="fa-solid fa-camera" style="font-size: 24px; color: white;"></i></div>`;
-                    }
+              }
 
-                    // Fetch Reservations
-                    fetchReservations(user.id);
-                    // Fetch Saved Restaurants
-                    fetchSavedRestaurants(user.id);
-                } else {
-                    document.getElementById('profileName').textContent = pt('profile.dynamic.errorLoadingProfile', 'Error loading profile');
-                    document.getElementById('profileEmail').textContent = data.message;
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                document.getElementById('profileName').textContent = sessionData.name; // Fallback to session
-                document.getElementById('profileEmail').textContent = sessionData.email;
+              // Fetch Reservations
+              fetchReservations(user.id);
+              // Fetch Saved Restaurants
+              fetchSavedRestaurants(user.id);
+            } else {
+              document.getElementById('profileName').textContent = pt(
+                'profile.dynamic.errorLoadingProfile',
+                'Error loading profile',
+              );
+              document.getElementById('profileEmail').textContent =
+                data.message;
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            document.getElementById('profileName').textContent =
+              sessionData.name; // Fallback to session
+            document.getElementById('profileEmail').textContent =
+              sessionData.email;
+          });
+
+        function fetchReservations(userId) {
+          fetch('../api/profile_reservations.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id: userId }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success && data.data.length > 0) {
+                window.myReservations = data.data;
+                renderMyReservations(window.myReservations);
+              }
             });
+        }
 
-            function fetchReservations(userId) {
-                fetch('../api/profile_reservations.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ user_id: userId })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if(data.success && data.data.length > 0) {
-                        window.myReservations = data.data;
-                        renderMyReservations(window.myReservations);
-                    }
-                });
-            }
-
-            window.renderMyReservations = function(data) {
-                const list = document.getElementById('reservationsList');
-                list.innerHTML = '';
-                if(data.length === 0) {
-                    list.innerHTML = `
+        window.renderMyReservations = function (data) {
+          const list = document.getElementById('reservationsList');
+          list.innerHTML = '';
+          if (data.length === 0) {
+            list.innerHTML = `
                         <div class="empty-state">
                             <p style="color: #888;">${pt('profile.dynamic.noMatchingReservations', 'No matching reservations found.')}</p>
                         </div>
                     `;
-                    return;
-                }
-                data.forEach(res => {
-                    const resCard = document.createElement('div');
-                    resCard.className = 'reservation-item';
-                    resCard.style = 'display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: center;';
-                    
-                    const isPast = new Date(res.date + ' ' + res.reservation_time) < new Date();
-                    
-                    resCard.innerHTML = `
+            return;
+          }
+          data.forEach((res) => {
+            const resCard = document.createElement('div');
+            resCard.className = 'reservation-item';
+            resCard.style =
+              'display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: center;';
+
+            const isPast =
+              new Date(res.date + ' ' + res.reservation_time) < new Date();
+
+            resCard.innerHTML = `
                         <img src="${res.image_url}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px;">
                         <div style="flex: 1;">
                             <h4 style="margin: 0; font-size: 1rem;">${res.restaurant_name}</h4>
                             <p style="margin: 4px 0; font-size: 0.85rem; color: #888;">
-                                <i class="fa-regular fa-calendar"></i> ${res.date} | <i class="fa-regular fa-clock"></i> ${res.reservation_time.slice(0,5)}
+                                <i class="fa-regular fa-calendar"></i> ${res.date} | <i class="fa-regular fa-clock"></i> ${res.reservation_time.slice(0, 5)}
                             </p>
                             <p style="margin: 0; font-size: 0.8rem; color: var(--orange);">${pt('profile.dynamic.tableLabel', 'Table')} ${res.table_number} | ${res.guest_count} ${pt('profile.dynamic.guestsLabel', 'Guests')}</p>
                         </div>
@@ -281,48 +506,53 @@
                             ${isPast ? `<button class="review-btn" onclick="openReviewModal(${res.id}, ${res.restaurant_id})" style="background: transparent; border: 1px solid var(--orange); color: var(--orange); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">${pt('profile.dynamic.review', 'Review')}</button>` : `<span style="color: #27ae60; font-size: 0.8rem;">${pt('profile.dynamic.upcoming', 'Upcoming')}</span>`}
                         </div>
                     `;
-                    list.appendChild(resCard);
-                });
-            }
+            list.appendChild(resCard);
+          });
+        };
 
-            window.filterMyReservations = function() {
-                const q = document.getElementById('searchMyReservations').value.toLowerCase();
-                if (!window.myReservations) return;
-                const filtered = window.myReservations.filter(res => 
-                    (res.restaurant_name && res.restaurant_name.toLowerCase().includes(q)) ||
-                    (res.date && res.date.toLowerCase().includes(q)) ||
-                    (res.table_number && res.table_number.toString().includes(q))
-                );
-                renderMyReservations(filtered);
-            }
+        window.filterMyReservations = function () {
+          const q = document
+            .getElementById('searchMyReservations')
+            .value.toLowerCase();
+          if (!window.myReservations) return;
+          const filtered = window.myReservations.filter(
+            (res) =>
+              (res.restaurant_name &&
+                res.restaurant_name.toLowerCase().includes(q)) ||
+              (res.date && res.date.toLowerCase().includes(q)) ||
+              (res.table_number && res.table_number.toString().includes(q)),
+          );
+          renderMyReservations(filtered);
+        };
 
-            function fetchSavedRestaurants(userId) {
-                fetch(`../api/get_saved.php?user_id=${userId}`)
-                .then(res => res.json())
-                .then(data => {
-                    if(data.success && data.data.length > 0) {
-                        window.mySavedRestaurants = data.data;
-                        renderSavedRestaurants(window.mySavedRestaurants);
-                    }
-                });
-            }
+        function fetchSavedRestaurants(userId) {
+          fetch(`../api/get_saved.php?user_id=${userId}`)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success && data.data.length > 0) {
+                window.mySavedRestaurants = data.data;
+                renderSavedRestaurants(window.mySavedRestaurants);
+              }
+            });
+        }
 
-            window.renderSavedRestaurants = function(data) {
-                const list = document.getElementById('savedRestaurantsList');
-                list.innerHTML = '';
-                if(data.length === 0) {
-                    list.innerHTML = `
+        window.renderSavedRestaurants = function (data) {
+          const list = document.getElementById('savedRestaurantsList');
+          list.innerHTML = '';
+          if (data.length === 0) {
+            list.innerHTML = `
                         <div class="empty-state">
                             <p style="color: #888;">${pt('profile.dynamic.noMatchingRestaurants', 'No matching restaurants found.')}</p>
                         </div>
                     `;
-                    return;
-                }
-                data.forEach(rest => {
-                    const card = document.createElement('div');
-                    card.className = 'saved-item';
-                    card.style = 'display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: center;';
-                    card.innerHTML = `
+            return;
+          }
+          data.forEach((rest) => {
+            const card = document.createElement('div');
+            card.className = 'saved-item';
+            card.style =
+              'display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: center;';
+            card.innerHTML = `
                         <img src="${rest.image_url}" style="width: 70px; height: 50px; object-fit: cover; border-radius: 6px;">
                         <div style="flex: 1;">
                             <h4 style="margin: 0; font-size: 0.95rem;">${rest.name}</h4>
@@ -330,241 +560,585 @@
                         </div>
                         <button onclick="window.location.href='restaurant.html?id=${rest.id}'" style="background: var(--orange); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer;">${pt('profile.dynamic.book', 'Book')}</button>
                     `;
-                    list.appendChild(card);
-                });
-            }
+            list.appendChild(card);
+          });
+        };
 
-            window.filterSavedRestaurants = function() {
-                const q = document.getElementById('searchSavedRestaurants').value.toLowerCase();
-                if (!window.mySavedRestaurants) return;
-                const filtered = window.mySavedRestaurants.filter(rest => 
-                    (rest.name && rest.name.toLowerCase().includes(q)) ||
-                    (rest.cuisine && rest.cuisine.toLowerCase().includes(q)) ||
-                    (rest.location && rest.location.toLowerCase().includes(q))
+        window.filterSavedRestaurants = function () {
+          const q = document
+            .getElementById('searchSavedRestaurants')
+            .value.toLowerCase();
+          if (!window.mySavedRestaurants) return;
+          const filtered = window.mySavedRestaurants.filter(
+            (rest) =>
+              (rest.name && rest.name.toLowerCase().includes(q)) ||
+              (rest.cuisine && rest.cuisine.toLowerCase().includes(q)) ||
+              (rest.location && rest.location.toLowerCase().includes(q)),
+          );
+          renderSavedRestaurants(filtered);
+        };
+      });
+
+      function openEditModal() {
+        const userStr =
+          localStorage.getItem('reservehub_user') ||
+          sessionStorage.getItem('reservehub_user');
+        const user = JSON.parse(userStr);
+
+        document.getElementById('editName').value = user.name || '';
+        document.getElementById('editUsername').value = user.username || '';
+        document.getElementById('editPhone').value = user.phone || '';
+        document.getElementById('editProfileModal').style.display = 'flex';
+      }
+
+      function closeEditModal() {
+        document.getElementById('editProfileModal').style.display = 'none';
+      }
+
+      function submitProfileUpdate(e) {
+        e.preventDefault();
+        const userStr =
+          localStorage.getItem('reservehub_user') ||
+          sessionStorage.getItem('reservehub_user');
+        const user = JSON.parse(userStr);
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+
+        submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ${pt('profile.dynamic.saving', 'Saving...')}`;
+        submitBtn.disabled = true;
+
+        const payload = {
+          user_id: user.id,
+          name: document.getElementById('editName').value,
+          username: document.getElementById('editUsername').value,
+          phone: document.getElementById('editPhone').value,
+        };
+
+        fetch('../api/update_profile.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              // Update Local Storage
+              const updatedUser = {
+                ...user,
+                name: data.user.name,
+                username: data.user.username,
+                phone: data.user.phone,
+              };
+              if (localStorage.getItem('reservehub_user')) {
+                localStorage.setItem(
+                  'reservehub_user',
+                  JSON.stringify(updatedUser),
                 );
-                renderSavedRestaurants(filtered);
+              } else {
+                sessionStorage.setItem(
+                  'reservehub_user',
+                  JSON.stringify(updatedUser),
+                );
+              }
+
+              // Update UI
+              document.getElementById('profileName').textContent =
+                data.user.name;
+              document.getElementById('profileUsername').textContent = data.user
+                .username
+                ? '@' + data.user.username
+                : '';
+              document.getElementById('profilePhone').innerHTML = data.user
+                .phone
+                ? `<i class="fa-solid fa-phone" style="font-size: 12px; margin-right: 5px;"></i> ${data.user.phone}`
+                : pt('profile.dynamic.noPhone', 'No phone number provided');
+              document.getElementById('profileAvatar').innerHTML =
+                data.user.name.charAt(0).toUpperCase();
+
+              showToast(
+                pt(
+                  'profile.dynamic.toast.profileUpdated',
+                  'Profile updated successfully!',
+                ),
+                'success',
+              );
+              closeEditModal();
+            } else {
+              showToast(data.message, 'error');
             }
-        });
+          })
+          .catch((err) => {
+            console.error(err);
+            showToast(
+              pt(
+                'profile.dynamic.toast.genericError',
+                'An error occurred. Please try again.',
+              ),
+              'error',
+            );
+          })
+          .finally(() => {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+          });
+      }
 
-        function openEditModal() {
-            const userStr = localStorage.getItem('reservehub_user') || sessionStorage.getItem('reservehub_user');
-            const user = JSON.parse(userStr);
-            
-            document.getElementById('editName').value = user.name || '';
-            document.getElementById('editUsername').value = user.username || '';
-            document.getElementById('editPhone').value = user.phone || '';
-            document.getElementById('editProfileModal').style.display = 'flex';
-        }
+      function uploadAvatar(input) {
+        if (!input.files || !input.files[0]) return;
 
-        function closeEditModal() {
-            document.getElementById('editProfileModal').style.display = 'none';
-        }
+        const userStr =
+          localStorage.getItem('reservehub_user') ||
+          sessionStorage.getItem('reservehub_user');
+        const user = JSON.parse(userStr);
+        const formData = new FormData();
+        formData.append('avatar', input.files[0]);
+        formData.append('user_id', user.id);
 
-        function submitProfileUpdate(e) {
-            e.preventDefault();
-            const userStr = localStorage.getItem('reservehub_user') || sessionStorage.getItem('reservehub_user');
-            const user = JSON.parse(userStr);
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
+        const avatarDiv = document.getElementById('profileAvatar');
+        const originalContent = avatarDiv.innerHTML;
+        avatarDiv.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin" style="font-size: 30px;"></i>';
 
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ${pt('profile.dynamic.saving', 'Saving...')}`;
-            submitBtn.disabled = true;
-
-            const payload = {
-                user_id: user.id,
-                name: document.getElementById('editName').value,
-                username: document.getElementById('editUsername').value,
-                phone: document.getElementById('editPhone').value
-            };
-
-            fetch('../api/update_profile.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    // Update Local Storage
-                    const updatedUser = { ...user, name: data.user.name, username: data.user.username, phone: data.user.phone };
-                    if(localStorage.getItem('reservehub_user')) {
-                        localStorage.setItem('reservehub_user', JSON.stringify(updatedUser));
-                    } else {
-                        sessionStorage.setItem('reservehub_user', JSON.stringify(updatedUser));
-                    }
-
-                    // Update UI
-                    document.getElementById('profileName').textContent = data.user.name;
-                    document.getElementById('profileUsername').textContent = data.user.username ? '@' + data.user.username : '';
-                    document.getElementById('profilePhone').innerHTML = data.user.phone ? `<i class="fa-solid fa-phone" style="font-size: 12px; margin-right: 5px;"></i> ${data.user.phone}` : pt('profile.dynamic.noPhone', 'No phone number provided');
-                    document.getElementById('profileAvatar').innerHTML = data.user.name.charAt(0).toUpperCase();
-                    
-                    showToast(pt('profile.dynamic.toast.profileUpdated', 'Profile updated successfully!'), 'success');
-                    closeEditModal();
-                } else {
-                    showToast(data.message, 'error');
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                showToast(pt('profile.dynamic.toast.genericError', 'An error occurred. Please try again.'), 'error');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-            });
-        }
-
-        function uploadAvatar(input) {
-            if (!input.files || !input.files[0]) return;
-
-            const userStr = localStorage.getItem('reservehub_user') || sessionStorage.getItem('reservehub_user');
-            const user = JSON.parse(userStr);
-            const formData = new FormData();
-            formData.append('avatar', input.files[0]);
-            formData.append('user_id', user.id);
-
-            const avatarDiv = document.getElementById('profileAvatar');
-            const originalContent = avatarDiv.innerHTML;
-            avatarDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size: 30px;"></i>';
-
-            fetch('../api/upload_avatar.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    // Update UI
-                    avatarDiv.innerHTML = `<img src="../uploads/profile_pics/${data.profile_picture}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        fetch('../api/upload_avatar.php', {
+          method: 'POST',
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              // Update UI
+              avatarDiv.innerHTML = `<img src="../uploads/profile_pics/${data.profile_picture}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                                            <div class="avatar-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s;"><i class="fa-solid fa-camera" style="font-size: 24px; color: white;"></i></div>`;
-                    
-                    // Update Local Storage
-                    const updatedUser = { ...user, profile_picture: data.profile_picture };
-                    if(localStorage.getItem('reservehub_user')) {
-                        localStorage.setItem('reservehub_user', JSON.stringify(updatedUser));
-                    } else {
-                        sessionStorage.setItem('reservehub_user', JSON.stringify(updatedUser));
-                    }
-                    
-                    showToast(pt('profile.dynamic.toast.avatarUpdated', 'Profile picture updated!'), 'success');
-                } else {
-                    avatarDiv.innerHTML = originalContent;
-                    showToast(data.message, 'error');
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                avatarDiv.innerHTML = originalContent;
-                showToast(pt('profile.dynamic.toast.uploadFailed', 'Upload failed. Please try again.'), 'error');
-            });
-        }
 
-        function openReviewModal(resId, restId) {
-            const modal = document.getElementById('reviewModal');
-            document.getElementById('reviewResId').value = resId;
-            document.getElementById('reviewRestId').value = restId;
-            modal.style.display = 'flex';
-        }
+              // Update Local Storage
+              const updatedUser = {
+                ...user,
+                profile_picture: data.profile_picture,
+              };
+              if (localStorage.getItem('reservehub_user')) {
+                localStorage.setItem(
+                  'reservehub_user',
+                  JSON.stringify(updatedUser),
+                );
+              } else {
+                sessionStorage.setItem(
+                  'reservehub_user',
+                  JSON.stringify(updatedUser),
+                );
+              }
 
-        function closeReviewModal() {
-            document.getElementById('reviewModal').style.display = 'none';
-        }
+              showToast(
+                pt(
+                  'profile.dynamic.toast.avatarUpdated',
+                  'Profile picture updated!',
+                ),
+                'success',
+              );
+            } else {
+              avatarDiv.innerHTML = originalContent;
+              showToast(data.message, 'error');
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            avatarDiv.innerHTML = originalContent;
+            showToast(
+              pt(
+                'profile.dynamic.toast.uploadFailed',
+                'Upload failed. Please try again.',
+              ),
+              'error',
+            );
+          });
+      }
 
-        function submitReview(e) {
-            e.preventDefault();
-            const userStr = localStorage.getItem('reservehub_user') || sessionStorage.getItem('reservehub_user');
-            const user = JSON.parse(userStr);
+      function openReviewModal(resId, restId) {
+        const modal = document.getElementById('reviewModal');
+        document.getElementById('reviewResId').value = resId;
+        document.getElementById('reviewRestId').value = restId;
+        modal.style.display = 'flex';
+      }
 
-            const payload = {
-                user_id: user.id,
-                restaurant_id: document.getElementById('reviewRestId').value,
-                reservation_id: document.getElementById('reviewResId').value,
-                rating: document.getElementById('reviewRating').value,
-                comment: document.getElementById('reviewComment').value
-            };
+      function closeReviewModal() {
+        document.getElementById('reviewModal').style.display = 'none';
+      }
 
-            fetch('../api/add_review.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    showToast(pt('profile.dynamic.toast.reviewSubmitted', 'Review submitted successfully!'), 'success');
-                    closeReviewModal();
-                } else {
-                    showToast(data.message, 'error');
-                }
-            });
-        }
+      function submitReview(e) {
+        e.preventDefault();
+        const userStr =
+          localStorage.getItem('reservehub_user') ||
+          sessionStorage.getItem('reservehub_user');
+        const user = JSON.parse(userStr);
+
+        const payload = {
+          user_id: user.id,
+          restaurant_id: document.getElementById('reviewRestId').value,
+          reservation_id: document.getElementById('reviewResId').value,
+          rating: document.getElementById('reviewRating').value,
+          comment: document.getElementById('reviewComment').value,
+        };
+
+        fetch('../api/add_review.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              showToast(
+                pt(
+                  'profile.dynamic.toast.reviewSubmitted',
+                  'Review submitted successfully!',
+                ),
+                'success',
+              );
+              closeReviewModal();
+            } else {
+              showToast(data.message, 'error');
+            }
+          });
+      }
+      
+      function downloadReservationsCSV() {
+    window.location.href = '../api/export.php';
+}
     </script>
 
     <!-- Review Modal -->
-    <div id="reviewModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
-        <div style="background: #1a1a1a; padding: 30px; border-radius: 16px; width: 90%; max-width: 400px; border: 1px solid rgba(255,255,255,0.1);">
-            <h3 style="margin-top: 0;" localization-key="profile.review.title">Rate your experience</h3>
-            <form onsubmit="submitReview(event)">
-                <input type="hidden" id="reviewResId">
-                <input type="hidden" id="reviewRestId">
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-size: 0.9rem;" localization-key="profile.review.rating">Rating</label>
-                    <select id="reviewRating" style="width: 100%; background: #2a2a2a; color: white; border: 1px solid #333; padding: 8px; border-radius: 8px;" required>
-                        <option localization-key="profile.review.rating.5" value="5">5 - Excellent</option>
-                        <option localization-key="profile.review.rating.4" value="4">4 - Very Good</option>
-                        <option localization-key="profile.review.rating.3" value="3">3 - Good</option>
-                        <option localization-key="profile.review.rating.2" value="2">2 - Fair</option>
-                        <option localization-key="profile.review.rating.1" value="1">1 - Poor</option>
-                    </select>
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 5px; font-size: 0.9rem;" localization-key="profile.review.comment">Comment</label>
-                    <textarea id="reviewComment" style="width: 100%; background: #2a2a2a; color: white; border: 1px solid #333; padding: 8px; border-radius: 8px; min-height: 80px;" localization-key="profile.review.comment.placeholder" localization-target="placeholder" placeholder="What did you think of the food and service?"></textarea>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <button type="button" onclick="closeReviewModal()" localization-key="profile.review.cancel" style="flex: 1; background: #333; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer;">Cancel</button>
-                    <button type="submit" localization-key="profile.review.submit" style="flex: 1; background: var(--orange); color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer;">Submit</button>
-                </div>
-            </form>
-        </div>
+    <div
+      id="reviewModal"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: #1a1a1a;
+          padding: 30px;
+          border-radius: 16px;
+          width: 90%;
+          max-width: 400px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        "
+      >
+        <h3 style="margin-top: 0" localization-key="profile.review.title">
+          Rate your experience
+        </h3>
+        <form onsubmit="submitReview(event)">
+          <input type="hidden" id="reviewResId" />
+          <input type="hidden" id="reviewRestId" />
+          <div style="margin-bottom: 15px">
+            <label
+              style="display: block; margin-bottom: 5px; font-size: 0.9rem"
+              localization-key="profile.review.rating"
+              >Rating</label
+            >
+            <select
+              id="reviewRating"
+              style="
+                width: 100%;
+                background: #2a2a2a;
+                color: white;
+                border: 1px solid #333;
+                padding: 8px;
+                border-radius: 8px;
+              "
+              required
+            >
+              <option localization-key="profile.review.rating.5" value="5">
+                5 - Excellent
+              </option>
+              <option localization-key="profile.review.rating.4" value="4">
+                4 - Very Good
+              </option>
+              <option localization-key="profile.review.rating.3" value="3">
+                3 - Good
+              </option>
+              <option localization-key="profile.review.rating.2" value="2">
+                2 - Fair
+              </option>
+              <option localization-key="profile.review.rating.1" value="1">
+                1 - Poor
+              </option>
+            </select>
+          </div>
+          <div style="margin-bottom: 20px">
+            <label
+              style="display: block; margin-bottom: 5px; font-size: 0.9rem"
+              localization-key="profile.review.comment"
+              >Comment</label
+            >
+            <textarea
+              id="reviewComment"
+              style="
+                width: 100%;
+                background: #2a2a2a;
+                color: white;
+                border: 1px solid #333;
+                padding: 8px;
+                border-radius: 8px;
+                min-height: 80px;
+              "
+              localization-key="profile.review.comment.placeholder"
+              localization-target="placeholder"
+              placeholder="What did you think of the food and service?"
+            ></textarea>
+          </div>
+          <div style="display: flex; gap: 10px">
+            <button
+              type="button"
+              onclick="closeReviewModal()"
+              localization-key="profile.review.cancel"
+              style="
+                flex: 1;
+                background: #333;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 8px;
+                cursor: pointer;
+              "
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              localization-key="profile.review.submit"
+              style="
+                flex: 1;
+                background: var(--orange);
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 8px;
+                cursor: pointer;
+              "
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Edit Profile Modal -->
-    <div id="editProfileModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
-        <div style="background: #1a1a1a; padding: 35px; border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                <h3 style="margin: 0; font-size: 1.5rem; color: var(--text);" localization-key="profile.edit.title">Edit Profile</h3>
-                <button onclick="closeEditModal()" style="background: transparent; border: none; color: #888; font-size: 1.2rem; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form onsubmit="submitProfileUpdate(event)">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);" localization-key="profile.edit.fullName">Full Name</label>
-                    <div style="position: relative;">
-                        <i class="fa-solid fa-user" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--orange); font-size: 0.9rem;"></i>
-                        <input type="text" id="editName" style="width: 100%; background: #2a2a2a; color: white; border: 1px solid #333; padding: 12px 12px 12px 38px; border-radius: 10px; font-family: 'Alexandria', sans-serif;" required>
-                    </div>
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);" localization-key="profile.edit.username">Username</label>
-                    <div style="position: relative;">
-                        <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--orange); font-weight: 700;">@</span>
-                        <input type="text" id="editUsername" style="width: 100%; background: #2a2a2a; color: white; border: 1px solid #333; padding: 12px 12px 12px 30px; border-radius: 10px; font-family: 'Alexandria', sans-serif;" required>
-                    </div>
-                </div>
-                <div style="margin-bottom: 25px;">
-                    <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);" localization-key="profile.edit.phone">Phone Number</label>
-                    <div style="position: relative;">
-                        <i class="fa-solid fa-phone" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--orange); font-size: 0.9rem;"></i>
-                        <input type="tel" id="editPhone" style="width: 100%; background: #2a2a2a; color: white; border: 1px solid #333; padding: 12px 12px 12px 38px; border-radius: 10px; font-family: 'Alexandria', sans-serif;" localization-key="profile.edit.phone.placeholder" localization-target="placeholder" placeholder="e.g. +1 234 567 890">
-                    </div>
-                </div>
-                <div style="display: flex; gap: 12px;">
-                    <button type="button" onclick="closeEditModal()" localization-key="profile.edit.cancel" style="flex: 1; background: #333; color: white; border: none; padding: 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-family: 'Alexandria', sans-serif;">Cancel</button>
-                    <button type="submit" localization-key="profile.edit.save" style="flex: 1; background: var(--orange); color: white; border: none; padding: 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-family: 'Alexandria', sans-serif;">Save Changes</button>
-                </div>
-            </form>
+    <div
+      id="editProfileModal"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+      "
+    >
+      <div
+        style="
+          background: #1a1a1a;
+          padding: 35px;
+          border-radius: 20px;
+          width: 90%;
+          max-width: 450px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+          "
+        >
+          <h3
+            style="margin: 0; font-size: 1.5rem; color: var(--text)"
+            localization-key="profile.edit.title"
+          >
+            Edit Profile
+          </h3>
+          <button
+            onclick="closeEditModal()"
+            style="
+              background: transparent;
+              border: none;
+              color: #888;
+              font-size: 1.2rem;
+              cursor: pointer;
+            "
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
+        <form onsubmit="submitProfileUpdate(event)">
+          <div style="margin-bottom: 20px">
+            <label
+              style="
+                display: block;
+                margin-bottom: 8px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+              "
+              localization-key="profile.edit.fullName"
+              >Full Name</label
+            >
+            <div style="position: relative">
+              <i
+                class="fa-solid fa-user"
+                style="
+                  position: absolute;
+                  left: 12px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  color: var(--orange);
+                  font-size: 0.9rem;
+                "
+              ></i>
+              <input
+                type="text"
+                id="editName"
+                style="
+                  width: 100%;
+                  background: #2a2a2a;
+                  color: white;
+                  border: 1px solid #333;
+                  padding: 12px 12px 12px 38px;
+                  border-radius: 10px;
+                  font-family: 'Alexandria', sans-serif;
+                "
+                required
+              />
+            </div>
+          </div>
+          <div style="margin-bottom: 20px">
+            <label
+              style="
+                display: block;
+                margin-bottom: 8px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+              "
+              localization-key="profile.edit.username"
+              >Username</label
+            >
+            <div style="position: relative">
+              <span
+                style="
+                  position: absolute;
+                  left: 12px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  color: var(--orange);
+                  font-weight: 700;
+                "
+                >@</span
+              >
+              <input
+                type="text"
+                id="editUsername"
+                style="
+                  width: 100%;
+                  background: #2a2a2a;
+                  color: white;
+                  border: 1px solid #333;
+                  padding: 12px 12px 12px 30px;
+                  border-radius: 10px;
+                  font-family: 'Alexandria', sans-serif;
+                "
+                required
+              />
+            </div>
+          </div>
+          <div style="margin-bottom: 25px">
+            <label
+              style="
+                display: block;
+                margin-bottom: 8px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+              "
+              localization-key="profile.edit.phone"
+              >Phone Number</label
+            >
+            <div style="position: relative">
+              <i
+                class="fa-solid fa-phone"
+                style="
+                  position: absolute;
+                  left: 12px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  color: var(--orange);
+                  font-size: 0.9rem;
+                "
+              ></i>
+              <input
+                type="tel"
+                id="editPhone"
+                style="
+                  width: 100%;
+                  background: #2a2a2a;
+                  color: white;
+                  border: 1px solid #333;
+                  padding: 12px 12px 12px 38px;
+                  border-radius: 10px;
+                  font-family: 'Alexandria', sans-serif;
+                "
+                localization-key="profile.edit.phone.placeholder"
+                localization-target="placeholder"
+                placeholder="e.g. +1 234 567 890"
+              />
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <button
+              type="button"
+              onclick="closeEditModal()"
+              localization-key="profile.edit.cancel"
+              style="
+                flex: 1;
+                background: #333;
+                color: white;
+                border: none;
+                padding: 14px;
+                border-radius: 10px;
+                cursor: pointer;
+                font-weight: 600;
+                font-family: 'Alexandria', sans-serif;
+              "
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              localization-key="profile.edit.save"
+              style="
+                flex: 1;
+                background: var(--orange);
+                color: white;
+                border: none;
+                padding: 14px;
+                border-radius: 10px;
+                cursor: pointer;
+                font-weight: 600;
+                font-family: 'Alexandria', sans-serif;
+              "
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-</body>
+  </body>
 </html>

@@ -1,0 +1,104 @@
+# =============================================================================
+# issues.yml
+# Data source for create-issues.sh.
+# Edit this file to change repo, project, labels, or issue content.
+# =============================================================================
+
+config:
+  repo: "Ach57/comp345-Project-ReserveHub-Evolution-maintenance"
+  project: "comp345-Project-ReserveHub-Evolution-maintenance"
+
+# Labels that must exist before issues are created.
+labels:
+  - name: Epic
+    description: "Large Strategic business initiative"
+    color: "D4AF37"
+  - name: Feature
+    description: "Piece of functionality"
+    color: "810bdb"
+  - name: Backlog-Item
+    description: "A piece of work"
+    color: "0b5bdb"
+  - name: Test-Case
+    description: "Work item specialized for defining a test scenario"
+    color: "92db0b"
+  - name: Task
+    description: "Technical step-by-step implementation"
+    color: "dbbf0b"
+
+# Issues to create, in order. Each entry needs: title, label, body.
+issues:
+  - title: "Epic: ReserveHub Maintenance - Language & Export Enhancements"
+    label: Epic
+    body: |
+      Introduce a dedicated Business Layer to support two new maintenance features on ReserveHub: changing platform language and exporting reservation history. Adds language_handler.js, export_handler.js, language.php, and export_reservations.php, all routed through db.php per the proposed architecture (Diagram 4).
+
+  - title: "Feature: Change Language"
+    label: Feature
+    body: |
+      Allow users to change the platform's display language. Covers the full vertical slice: language_handler.js (frontend) -> language.php (API) -> db.php -> Languages table (MySQL). See Diagram 5 (use case) and Diagram 6 (sequence).
+
+  - title: "Create Languages table in MySQL (schema, seed default translations)"
+    label: Backlog-Item
+    body: |
+      Design and create the Languages table in the MySQL data layer. Include columns for language code, label, and translation key/value pairs. Seed with default translations (e.g. English, French) needed for the platform UI.
+
+  - title: "Extend db.php with query methods to retrieve translations"
+    label: Backlog-Item
+    body: |
+      Add methods to db.php to query the Languages table and return translation sets for a given language code, matching the "Retrieve translations" call shown in the sequence diagram.
+
+  - title: "Build language.php API endpoint (accepts language selection, calls db.php, returns translations)"
+    label: Backlog-Item
+    body: |
+      Implement language.php in the API layer. Accepts the selected language from language_handler.js, calls db.php to retrieve translations, and returns them to the frontend. Include input validation and error handling for unsupported language codes.
+
+  - title: "Build language_handler.js (sends Select language request, receives translations)"
+    label: Backlog-Item
+    body: |
+      Implement language_handler.js in the presentation layer. Sends the user's language selection to language.php and receives the translation payload in response, per the "Select language" flow in Diagram 6.
+
+  - title: "Wire UI: update interface dynamically on response (Updated interface)"
+    label: Backlog-Item
+    body: |
+      Apply the returned translations to the UI without a full page reload, updating visible text across the current view once language_handler.js resolves the response.
+
+  - title: "Add Change Language use case/entry point to User navigation"
+    label: Backlog-Item
+    body: |
+      Add a "Change Language" option to the User's available actions in the UI (per Diagram 5), giving users a clear entry point into the new language-switching flow.
+
+  - title: "Feature: Export Reservation History"
+    label: Feature
+    body: |
+      Allow users to export their reservation history as a downloadable file. Covers the full vertical slice: export_handler.js (frontend) -> export_reservations.php (API) -> db.php -> Reservations/ReservationArchive tables (MySQL). See Diagram 5 (use case) and Diagram 6 (sequence).
+
+  - title: "Confirm/extend ReservationArchive table structure in MySQL"
+    label: Backlog-Item
+    body: |
+      Review the existing ReservationArchive table against export requirements. Extend the schema if any fields needed for the CSV/Excel export (e.g. dates, status, reservation details) are missing.
+
+  - title: "Extend db.php with query methods to retrieve reservation history"
+    label: Backlog-Item
+    body: |
+      Add methods to db.php to query Reservations/ReservationArchive and return a user's full reservation history, matching the "Retrieve reservation history" call shown in the sequence diagram.
+
+  - title: "Build export_reservations.php API endpoint (fetch history, generate CSV/Excel)"
+    label: Backlog-Item
+    body: |
+      Implement export_reservations.php in the API layer. Calls db.php to fetch the user's reservation history and generates a CSV/Excel file to return to export_handler.js.
+
+  - title: "Build export_handler.js (sends Click Export request, receives file)"
+    label: Backlog-Item
+    body: |
+      Implement export_handler.js in the presentation layer. Triggers the export request to export_reservations.php on "Click Export" and receives the generated CSV/Excel file in response, per Diagram 6.
+
+  - title: "Wire UI: trigger file download on response"
+    label: Backlog-Item
+    body: |
+      Once export_handler.js receives the CSV/Excel file, trigger a browser download so the user can save the file locally.
+
+  - title: "Add Export Reservation History use case/entry point to User navigation"
+    label: Backlog-Item
+    body: |
+      Add an "Export Reservation History" option to the User's available actions in the UI (per Diagram 5), giving users a clear entry point into the new export flow.

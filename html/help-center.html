@@ -1,572 +1,870 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title localization-key="help.meta.title">Help Center | ReserveHub</title>
-    <meta name="description" localization-key="help.meta.description" localization-target="content" content="Find answers to your questions about ReserveHub. We're here to help you with your restaurant reservations.">
-    <link rel="icon" type="image/x-icon" href="../pictures/reservehub-favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <meta
+      name="description"
+      localization-key="help.meta.description"
+      localization-target="content"
+      content="Find answers to your questions about ReserveHub. We're here to help you with your restaurant reservations."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../pictures/reservehub-favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
     <style>
-        .help-hero {
-            padding: 160px 0 80px;
-            text-align: center;
-            background: var(--bg-gradient);
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .help-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            margin-bottom: 24px;
-        }
-        .help-title .accent {
-            color: var(--orange);
-        }
-        .help-search-container {
-            max-width: 600px;
-            margin: 40px auto 0;
-        }
-        .help-search-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .help-search-input {
-            width: 100%;
-            padding: 18px 24px 18px 54px;
-            border-radius: 50px;
-            border: 1px solid var(--glass-border);
-            background: var(--card);
-            color: var(--text);
-            font-family: inherit;
-            font-size: 1rem;
-            box-shadow: var(--shadow-premium);
-            outline: none;
-            transition: var(--transition);
-        }
-        .help-search-input:focus {
-            border-color: var(--orange);
-            box-shadow: 0 0 20px var(--orange-glow);
-        }
-        .help-search-icon {
-            position: absolute;
-            left: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--orange);
-            font-size: 1.2rem;
-        }
+      .help-hero {
+        padding: 160px 0 80px;
+        text-align: center;
+        background: var(--bg-gradient);
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .help-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 24px;
+      }
+      .help-title .accent {
+        color: var(--orange);
+      }
+      .help-search-container {
+        max-width: 600px;
+        margin: 40px auto 0;
+      }
+      .help-search-wrapper {
+        position: relative;
+        width: 100%;
+      }
+      .help-search-input {
+        width: 100%;
+        padding: 18px 24px 18px 54px;
+        border-radius: 50px;
+        border: 1px solid var(--glass-border);
+        background: var(--card);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+        box-shadow: var(--shadow-premium);
+        outline: none;
+        transition: var(--transition);
+      }
+      .help-search-input:focus {
+        border-color: var(--orange);
+        box-shadow: 0 0 20px var(--orange-glow);
+      }
+      .help-search-icon {
+        position: absolute;
+        left: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--orange);
+        font-size: 1.2rem;
+      }
 
-        .faq-section {
-            padding: 80px 0;
-        }
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-        .faq-category {
-            background: var(--surface);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            padding: 32px;
-            transition: var(--transition);
-        }
-        .faq-category-icon {
-            font-size: 2rem;
-            color: var(--orange);
-            margin-bottom: 20px;
-        }
-        .faq-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
-        .faq-list {
-            list-style: none;
-            padding: 0;
-        }
-        .faq-item {
-            margin-bottom: 12px;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 12px;
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        .faq-question {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 8px 0;
-            transition: var(--transition);
-        }
-        .faq-question:hover {
-            color: var(--orange);
-        }
-        .faq-question i {
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-        .faq-item.active .faq-question {
-            color: var(--orange);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, margin-top 0.3s ease;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            margin-top: 12px;
-        }
+      .faq-section {
+        padding: 80px 0;
+      }
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+      }
+      .faq-category {
+        background: var(--surface);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-md);
+        padding: 32px;
+        transition: var(--transition);
+      }
+      .faq-category-icon {
+        font-size: 2rem;
+        color: var(--orange);
+        margin-bottom: 20px;
+      }
+      .faq-category h3 {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+        font-weight: 700;
+      }
+      .faq-list {
+        list-style: none;
+        padding: 0;
+      }
+      .faq-item {
+        margin-bottom: 12px;
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 12px;
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .faq-question {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: var(--text);
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 8px 0;
+        transition: var(--transition);
+      }
+      .faq-question:hover {
+        color: var(--orange);
+      }
+      .faq-question i {
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+      }
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+      .faq-item.active .faq-question {
+        color: var(--orange);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          margin-top 0.3s ease;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .faq-item.active .faq-answer {
+        max-height: 200px;
+        margin-top: 12px;
+      }
 
-        /* Search Highlighting */
-        mark.highlight {
-            background: var(--orange-glow);
-            color: var(--orange);
-            padding: 0 2px;
-            border-radius: 2px;
-            font-weight: 700;
-        }
+      /* Search Highlighting */
+      mark.highlight {
+        background: var(--orange-glow);
+        color: var(--orange);
+        padding: 0 2px;
+        border-radius: 2px;
+        font-weight: 700;
+      }
 
-        .search-suggestions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .suggestion-tag {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-muted);
-        }
-        .suggestion-tag:hover {
-            border-color: var(--orange);
-            color: var(--orange);
-            background: var(--surface);
-        }
+      .search-suggestions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .suggestion-tag {
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--text-muted);
+      }
+      .suggestion-tag:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        background: var(--surface);
+      }
 
-        .contact-section {
-            padding: 100px 0;
-            background: var(--surface);
-            text-align: center;
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
-        }
-        .contact-method {
-            background: var(--card);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: var(--radius-md);
-            transition: var(--transition);
-        }
-        .contact-method:hover {
-            border-color: var(--orange);
-            box-shadow: var(--shadow-premium);
-        }
-        .contact-method i {
-            font-size: 2.5rem;
-            color: var(--orange);
-            margin-bottom: 20px;
-        }
-        .contact-method h4 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-        }
-        .contact-method p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-        .btn-contact {
-            display: inline-block;
-            padding: 12px 24px;
-            background: var(--orange);
-            color: #fff;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        .btn-contact:hover {
-            background: var(--orange-dark);
-            transform: translateY(-2px);
-        }
+      .contact-section {
+        padding: 100px 0;
+        background: var(--surface);
+        text-align: center;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .contact-method {
+        background: var(--card);
+        border: 1px solid var(--glass-border);
+        padding: 40px;
+        border-radius: var(--radius-md);
+        transition: var(--transition);
+      }
+      .contact-method:hover {
+        border-color: var(--orange);
+        box-shadow: var(--shadow-premium);
+      }
+      .contact-method i {
+        font-size: 2.5rem;
+        color: var(--orange);
+        margin-bottom: 20px;
+      }
+      .contact-method h4 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+      }
+      .contact-method p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+      .btn-contact {
+        display: inline-block;
+        padding: 12px 24px;
+        background: var(--orange);
+        color: #fff;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+      .btn-contact:hover {
+        background: var(--orange-dark);
+        transform: translateY(-2px);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar scrolled" id="navbar">
-        <a href="index.html" aria-label="ReserveHub Homepage" class="nav-logo-link">
-            <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="top-logo">
-        </a>
+      <a
+        href="index.html"
+        aria-label="ReserveHub Homepage"
+        class="nav-logo-link"
+      >
+        <img
+          src="../pictures/reservehub-full-logo-light-mode.png"
+          alt="ReserveHub Logo"
+          class="top-logo"
+        />
+      </a>
 
-        <div class="top-btn-container" role="navigation" aria-label="Main navigation">
-            <a href="index.html" localization-key="nav.home" class="top-btn">HOME</a>
-            <a href="index.html#how-it-works" localization-key="nav.how" class="top-btn">HOW IT WORKS</a>
-            <a href="index.html#featured" localization-key="nav.restaurants" class="top-btn">RESTAURANTS</a>
-            <a href="contact.html" localization-key="nav.contact" class="top-btn">CONTACT</a>
-            <div id="auth-buttons" style="display: flex; gap: 4px;">
-                <a href="login-signup.html" localization-key="nav.login" class="top-btn btn-cta" id="signupBtn">SIGN UP / LOG IN</a>
-            </div>
-            <div class="language-picker">
-                <i class="fa-solid fa-globe"></i>
-                <select class="help-language-localization language-select" aria-label="Select language">
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                </select>
-            </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon"></i>
-                <i class="fa-solid fa-sun"></i>
-            </button>
+      <div
+        class="top-btn-container"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <a href="index.html" localization-key="nav.home" class="top-btn"
+          >HOME</a
+        >
+        <a
+          href="index.html#how-it-works"
+          localization-key="nav.how"
+          class="top-btn"
+          >HOW IT WORKS</a
+        >
+        <a
+          href="index.html#featured"
+          localization-key="nav.restaurants"
+          class="top-btn"
+          >RESTAURANTS</a
+        >
+        <a href="contact.html" localization-key="nav.contact" class="top-btn"
+          >CONTACT</a
+        >
+        <div id="auth-buttons" style="display: flex; gap: 4px">
+          <a
+            href="login-signup.html"
+            localization-key="nav.login"
+            class="top-btn btn-cta"
+            id="signupBtn"
+            >SIGN UP / LOG IN</a
+          >
         </div>
-
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
+        <div class="language-picker">
+          <i class="fa-solid fa-globe"></i>
+          <select
+            class="help-language-localization language-select"
+            aria-label="Select language"
+          >
+            <!-- populated by localization.js -->
+          </select>
+        </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
         </button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <!-- Mobile Nav -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" localization-key="mobile.home" class="mob-link">Home</a>
-        <a href="index.html#how-it-works" localization-key="mobile.how" class="mob-link">How It Works</a>
-        <a href="index.html#featured" localization-key="mobile.restaurants" class="mob-link">Restaurants</a>
-        <a href="contact.html" localization-key="mobile.contact" class="mob-link">Contact</a>
-        <div id="mob-auth-buttons">
-            <a href="login-signup.html" localization-key="mobile.login" class="mob-link mob-cta">Sign Up / Log In</a>
-        </div>
-        <div class="language-picker">
-            <i class="fa-solid fa-globe"></i>
-            <select class="help-language-localization language-select" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-            </select>
-        </div>
-        <a href="javascript:void(0)" localization-key="mobile.theme" class="mob-link" id="mobile-theme-toggle" style="margin-top: 20px;">
-            <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
-        </a>
+      <a href="index.html" localization-key="mobile.home" class="mob-link"
+        >Home</a
+      >
+      <a
+        href="index.html#how-it-works"
+        localization-key="mobile.how"
+        class="mob-link"
+        >How It Works</a
+      >
+      <a
+        href="index.html#featured"
+        localization-key="mobile.restaurants"
+        class="mob-link"
+        >Restaurants</a
+      >
+      <a href="contact.html" localization-key="mobile.contact" class="mob-link"
+        >Contact</a
+      >
+      <div id="mob-auth-buttons">
+        <a
+          href="login-signup.html"
+          localization-key="mobile.login"
+          class="mob-link mob-cta"
+          >Sign Up / Log In</a
+        >
+      </div>
+      <div class="language-picker">
+        <i class="fa-solid fa-globe"></i>
+        <select
+          class="help-language-localization language-select"
+          aria-label="Select language"
+        >
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <a
+        href="javascript:void(0)"
+        localization-key="mobile.theme"
+        class="mob-link"
+        id="mobile-theme-toggle"
+        style="margin-top: 20px"
+      >
+        <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
+      </a>
     </div>
 
     <!-- ===== MAIN CONTENT ===== -->
     <main>
-        <section class="help-hero">
-            <div class="container">
-                <span localization-key="help.hero.tag" class="section-tag">Support Center</span>
-                <h1 class="help-title"><span localization-key="help.hero.title">How can we</span> <span class="accent" localization-key="help.hero.accent">help you</span> <span localization-key="help.hero.suffix">today?</span></h1>
-                <div class="help-search-container">
-                    <div class="help-search-wrapper">
-                        <i class="fa-solid fa-magnifying-glass help-search-icon"></i>
-                        <input type="text" class="help-search-input" id="helpSearch" localization-key="help.search.placeholder" localization-target="placeholder" placeholder="Search for answers (e.g. 'how to cancel')">
-                    </div>
-                    <div class="search-suggestions">
-                        <span localization-key="help.suggestions.booking" class="suggestion-tag">Booking</span>
-                        <span localization-key="help.suggestions.cancellation" class="suggestion-tag">Cancellation</span>
-                        <span localization-key="help.suggestions.password" class="suggestion-tag">Password Reset</span>
-                        <span localization-key="help.suggestions.refunds" class="suggestion-tag">Refunds</span>
-                        <span localization-key="help.suggestions.profile" class="suggestion-tag">Profile Edit</span>
-                    </div>
-                </div>
+      <section class="help-hero">
+        <div class="container">
+          <span localization-key="help.hero.tag" class="section-tag"
+            >Support Center</span
+          >
+          <h1 class="help-title">
+            <span localization-key="help.hero.title">How can we</span>
+            <span class="accent" localization-key="help.hero.accent"
+              >help you</span
+            >
+            <span localization-key="help.hero.suffix">today?</span>
+          </h1>
+          <div class="help-search-container">
+            <div class="help-search-wrapper">
+              <i class="fa-solid fa-magnifying-glass help-search-icon"></i>
+              <input
+                type="text"
+                class="help-search-input"
+                id="helpSearch"
+                localization-key="help.search.placeholder"
+                localization-target="placeholder"
+                placeholder="Search for answers (e.g. 'how to cancel')"
+              />
             </div>
-        </section>
-
-        <section class="faq-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 localization-key="help.faq.title" class="section-title">Frequently Asked Questions</h2>
-                    <p localization-key="help.faq.description" class="section-desc">Quickly find the information you need by selecting a category below.</p>
-                </div>
-
-                <div class="faq-grid" id="faqGrid">
-                    <!-- Reservations -->
-                    <div class="faq-category">
-                        <i class="fa-solid fa-calendar-check faq-category-icon"></i>
-                        <h3 localization-key="help.category.reservations">Reservations</h3>
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.reservations.q1.question">How to book a table</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.reservations.q1.answer" class="faq-answer">
-                                    Simply use the search bar on the homepage to find a restaurant. Select your preferred date, time, and party size, then click "Book Now". You'll receive an instant confirmation via email.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.reservations.q2.question">Modifying a booking</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.reservations.q2.answer" class="faq-answer">
-                                    You can modify your reservation by visiting your "My Profile" page. Locate the booking under "My Reservations" and click the edit icon to change the date or party size.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.reservations.q3.question">Cancellation policy</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.reservations.q3.answer" class="faq-answer">
-                                    Most restaurants allow free cancellations up to 24 hours before the booking. Specific policies for each restaurant are displayed during the booking process.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.reservations.q4.question">Large group bookings</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.reservations.q4.answer" class="faq-answer">
-                                    For parties larger than 10, some restaurants require direct contact. This will be indicated on the restaurant's page. Alternatively, you can email our group booking desk.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Account -->
-                    <div class="faq-category">
-                        <i class="fa-solid fa-user-gear faq-category-icon"></i>
-                        <h3 localization-key="help.category.account">Account</h3>
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.account.q1.question">Setting up your profile</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.account.q1.answer" class="faq-answer">
-                                    Click the user icon in the top right corner to access your profile. Here you can update your name, email, and notification preferences.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.account.q2.question">Resetting your password</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.account.q2.answer" class="faq-answer">
-                                    If you've forgotten your password, click "Forgot Password" on the login page. We'll send a reset link to your registered email address.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.account.q3.question">Deleting your account</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.account.q3.answer" class="faq-answer">
-                                    To delete your account, please contact our support team at support@reservehub.com. We will process your request within 48 hours.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Payments & Refunds -->
-                    <div class="faq-category">
-                        <i class="fa-solid fa-credit-card faq-category-icon"></i>
-                        <h3 localization-key="help.category.payments">Payments & Refunds</h3>
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.payments.q1.question">Is there a booking fee?</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.payments.q1.answer" class="faq-answer">
-                                    ReserveHub is completely free for diners! We do not charge any booking fees. Some restaurants may require a deposit for special events or large groups.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.payments.q2.question">How to request a refund</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.payments.q2.answer" class="faq-answer">
-                                    If you paid a deposit through ReserveHub and cancelled within the allowed window, the refund is processed automatically. It usually takes 5-10 business days.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.payments.q3.question">Accepted payment methods</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.payments.q3.answer" class="faq-answer">
-                                    We accept all major credit/debit cards (Visa, Mastercard, AMEX) and digital wallets like Apple Pay and Google Pay for any required deposits.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Restaurant Partners -->
-                    <div class="faq-category">
-                        <i class="fa-solid fa-store faq-category-icon"></i>
-                        <h3 localization-key="help.category.restaurants">For Restaurants</h3>
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.restaurants.q1.question">List your restaurant</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.restaurants.q1.answer" class="faq-answer">
-                                    Interested in joining our network? Visit our 'Partners' page and fill out the application form. Our team will contact you within 48 hours.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.restaurants.q2.question">Managing your availability</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.restaurants.q2.answer" class="faq-answer">
-                                    Partners get access to the ReserveHub Merchant Dashboard to manage floor plans, block times, and view real-time booking data.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Technical Support -->
-                    <div class="faq-category">
-                        <i class="fa-solid fa-microchip faq-category-icon"></i>
-                        <h3 localization-key="help.category.technical">Technical Support</h3>
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.technical.q1.question">Browser compatibility</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.technical.q1.answer" class="faq-answer">
-                                    ReserveHub works best on the latest versions of Chrome, Safari, Firefox, and Edge. Please ensure your browser is updated for the best experience.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.technical.q2.question">Reporting a bug</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.technical.q2.answer" class="faq-answer">
-                                    Found something wrong? Please email tech-support@reservehub.com with a screenshot and a brief description of the issue.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Privacy -->
-                    <div class="faq-category">
-                        <i class="fa-solid fa-shield-halved faq-category-icon"></i>
-                        <h3 localization-key="help.category.privacy">Privacy & Security</h3>
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.privacy.q1.question">How we use your data</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.privacy.q1.answer" class="faq-answer">
-                                    We use your data only to facilitate reservations and improve your experience. We never sell your personal information to third parties.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.privacy.q2.question">Social login safety</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.privacy.q2.answer" class="faq-answer">
-                                    Using Google or Facebook to log in is completely secure. We only access your basic profile information (name and email) to create your account.
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span localization-key="help.privacy.q3.question">Managing cookies</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div localization-key="help.privacy.q3.answer" class="faq-answer">
-                                    You can manage your cookie preferences through your browser settings. Essential cookies are required for the platform to function correctly.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="search-suggestions">
+              <span
+                localization-key="help.suggestions.booking"
+                class="suggestion-tag"
+                >Booking</span
+              >
+              <span
+                localization-key="help.suggestions.cancellation"
+                class="suggestion-tag"
+                >Cancellation</span
+              >
+              <span
+                localization-key="help.suggestions.password"
+                class="suggestion-tag"
+                >Password Reset</span
+              >
+              <span
+                localization-key="help.suggestions.refunds"
+                class="suggestion-tag"
+                >Refunds</span
+              >
+              <span
+                localization-key="help.suggestions.profile"
+                class="suggestion-tag"
+                >Profile Edit</span
+              >
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="contact-section" id="contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2 localization-key="help.contact.title" class="section-title">Still need help?</h2>
-                    <p localization-key="help.contact.description" class="section-desc">Our support team is available 24/7 to assist you with any questions.</p>
+      <section class="faq-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 localization-key="help.faq.title" class="section-title">
+              Frequently Asked Questions
+            </h2>
+            <p localization-key="help.faq.description" class="section-desc">
+              Quickly find the information you need by selecting a category
+              below.
+            </p>
+          </div>
+
+          <div class="faq-grid" id="faqGrid">
+            <!-- Reservations -->
+            <div class="faq-category">
+              <i class="fa-solid fa-calendar-check faq-category-icon"></i>
+              <h3 localization-key="help.category.reservations">
+                Reservations
+              </h3>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.reservations.q1.question"
+                      >How to book a table</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.reservations.q1.answer"
+                    class="faq-answer"
+                  >
+                    Simply use the search bar on the homepage to find a
+                    restaurant. Select your preferred date, time, and party
+                    size, then click "Book Now". You'll receive an instant
+                    confirmation via email.
+                  </div>
                 </div>
-
-                <div class="contact-grid">
-                    <div class="contact-method">
-                        <i class="fa-solid fa-envelope"></i>
-                        <h4 localization-key="help.contact.email.title">Email Support</h4>
-                        <p localization-key="help.contact.email.description">Our typical response time is within 2 hours.</p>
-                        <a href="mailto:support@reservehub.com" localization-key="help.contact.email.button" class="btn-contact">Send Email</a>
-                    </div>
-
-                    <div class="contact-method">
-                        <i class="fa-solid fa-comments"></i>
-                        <h4 localization-key="help.contact.chat.title">Live Chat</h4>
-                        <p localization-key="help.contact.chat.description">Chat with a member of our support team instantly.</p>
-                        <a href="#" localization-key="help.contact.chat.button" class="btn-contact">Start Chat</a>
-                    </div>
-
-                    <div class="contact-method">
-                        <i class="fa-solid fa-phone"></i>
-                        <h4 localization-key="help.contact.phone.title">Phone Support</h4>
-                        <p localization-key="help.contact.phone.description">Available Mon-Fri, 9am - 6pm (GMT).</p>
-                        <a href="contact.html" localization-key="help.contact.phone.button" class="btn-contact">View Contacts</a>
-                    </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.reservations.q2.question"
+                      >Modifying a booking</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.reservations.q2.answer"
+                    class="faq-answer"
+                  >
+                    You can modify your reservation by visiting your "My
+                    Profile" page. Locate the booking under "My Reservations"
+                    and click the edit icon to change the date or party size.
+                  </div>
                 </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.reservations.q3.question"
+                      >Cancellation policy</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.reservations.q3.answer"
+                    class="faq-answer"
+                  >
+                    Most restaurants allow free cancellations up to 24 hours
+                    before the booking. Specific policies for each restaurant
+                    are displayed during the booking process.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.reservations.q4.question"
+                      >Large group bookings</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.reservations.q4.answer"
+                    class="faq-answer"
+                  >
+                    For parties larger than 10, some restaurants require direct
+                    contact. This will be indicated on the restaurant's page.
+                    Alternatively, you can email our group booking desk.
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
+
+            <!-- Account -->
+            <div class="faq-category">
+              <i class="fa-solid fa-user-gear faq-category-icon"></i>
+              <h3 localization-key="help.category.account">Account</h3>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.account.q1.question"
+                      >Setting up your profile</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.account.q1.answer"
+                    class="faq-answer"
+                  >
+                    Click the user icon in the top right corner to access your
+                    profile. Here you can update your name, email, and
+                    notification preferences.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.account.q2.question"
+                      >Resetting your password</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.account.q2.answer"
+                    class="faq-answer"
+                  >
+                    If you've forgotten your password, click "Forgot Password"
+                    on the login page. We'll send a reset link to your
+                    registered email address.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.account.q3.question"
+                      >Deleting your account</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.account.q3.answer"
+                    class="faq-answer"
+                  >
+                    To delete your account, please contact our support team at
+                    support@reservehub.com. We will process your request within
+                    48 hours.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payments & Refunds -->
+            <div class="faq-category">
+              <i class="fa-solid fa-credit-card faq-category-icon"></i>
+              <h3 localization-key="help.category.payments">
+                Payments & Refunds
+              </h3>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.payments.q1.question"
+                      >Is there a booking fee?</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.payments.q1.answer"
+                    class="faq-answer"
+                  >
+                    ReserveHub is completely free for diners! We do not charge
+                    any booking fees. Some restaurants may require a deposit for
+                    special events or large groups.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.payments.q2.question"
+                      >How to request a refund</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.payments.q2.answer"
+                    class="faq-answer"
+                  >
+                    If you paid a deposit through ReserveHub and cancelled
+                    within the allowed window, the refund is processed
+                    automatically. It usually takes 5-10 business days.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.payments.q3.question"
+                      >Accepted payment methods</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.payments.q3.answer"
+                    class="faq-answer"
+                  >
+                    We accept all major credit/debit cards (Visa, Mastercard,
+                    AMEX) and digital wallets like Apple Pay and Google Pay for
+                    any required deposits.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Restaurant Partners -->
+            <div class="faq-category">
+              <i class="fa-solid fa-store faq-category-icon"></i>
+              <h3 localization-key="help.category.restaurants">
+                For Restaurants
+              </h3>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.restaurants.q1.question"
+                      >List your restaurant</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.restaurants.q1.answer"
+                    class="faq-answer"
+                  >
+                    Interested in joining our network? Visit our 'Partners' page
+                    and fill out the application form. Our team will contact you
+                    within 48 hours.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.restaurants.q2.question"
+                      >Managing your availability</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.restaurants.q2.answer"
+                    class="faq-answer"
+                  >
+                    Partners get access to the ReserveHub Merchant Dashboard to
+                    manage floor plans, block times, and view real-time booking
+                    data.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Technical Support -->
+            <div class="faq-category">
+              <i class="fa-solid fa-microchip faq-category-icon"></i>
+              <h3 localization-key="help.category.technical">
+                Technical Support
+              </h3>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.technical.q1.question"
+                      >Browser compatibility</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.technical.q1.answer"
+                    class="faq-answer"
+                  >
+                    ReserveHub works best on the latest versions of Chrome,
+                    Safari, Firefox, and Edge. Please ensure your browser is
+                    updated for the best experience.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.technical.q2.question"
+                      >Reporting a bug</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.technical.q2.answer"
+                    class="faq-answer"
+                  >
+                    Found something wrong? Please email
+                    tech-support@reservehub.com with a screenshot and a brief
+                    description of the issue.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Privacy -->
+            <div class="faq-category">
+              <i class="fa-solid fa-shield-halved faq-category-icon"></i>
+              <h3 localization-key="help.category.privacy">
+                Privacy & Security
+              </h3>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.privacy.q1.question"
+                      >How we use your data</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.privacy.q1.answer"
+                    class="faq-answer"
+                  >
+                    We use your data only to facilitate reservations and improve
+                    your experience. We never sell your personal information to
+                    third parties.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.privacy.q2.question"
+                      >Social login safety</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.privacy.q2.answer"
+                    class="faq-answer"
+                  >
+                    Using Google or Facebook to log in is completely secure. We
+                    only access your basic profile information (name and email)
+                    to create your account.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span localization-key="help.privacy.q3.question"
+                      >Managing cookies</span
+                    >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div
+                    localization-key="help.privacy.q3.answer"
+                    class="faq-answer"
+                  >
+                    You can manage your cookie preferences through your browser
+                    settings. Essential cookies are required for the platform to
+                    function correctly.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="container">
+          <div class="section-header">
+            <h2 localization-key="help.contact.title" class="section-title">
+              Still need help?
+            </h2>
+            <p localization-key="help.contact.description" class="section-desc">
+              Our support team is available 24/7 to assist you with any
+              questions.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-method">
+              <i class="fa-solid fa-envelope"></i>
+              <h4 localization-key="help.contact.email.title">Email Support</h4>
+              <p localization-key="help.contact.email.description">
+                Our typical response time is within 2 hours.
+              </p>
+              <a
+                href="mailto:support@reservehub.com"
+                localization-key="help.contact.email.button"
+                class="btn-contact"
+                >Send Email</a
+              >
+            </div>
+
+            <div class="contact-method">
+              <i class="fa-solid fa-comments"></i>
+              <h4 localization-key="help.contact.chat.title">Live Chat</h4>
+              <p localization-key="help.contact.chat.description">
+                Chat with a member of our support team instantly.
+              </p>
+              <a
+                href="#"
+                localization-key="help.contact.chat.button"
+                class="btn-contact"
+                >Start Chat</a
+              >
+            </div>
+
+            <div class="contact-method">
+              <i class="fa-solid fa-phone"></i>
+              <h4 localization-key="help.contact.phone.title">Phone Support</h4>
+              <p localization-key="help.contact.phone.description">
+                Available Mon-Fri, 9am - 6pm (GMT).
+              </p>
+              <a
+                href="contact.html"
+                localization-key="help.contact.phone.button"
+                class="btn-contact"
+                >View Contacts</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <img src="../pictures/reservehub-full-logo-light-mode.png" alt="ReserveHub Logo" class="footer-logo">
-                <p localization-key="footer.tagline" class="footer-tagline">"All Restaurants, One Booking"</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4 localization-key="footer.company">Company</h4>
-                    <a href="about.html" localization-key="footer.about">About Us</a>
-                </div>
-                <div class="footer-col">
-                    <h4 localization-key="footer.support">Support</h4>
-                    <a href="help-center.html" localization-key="footer.help">Help Center</a>
-                    <a href="privacy-policy.html" localization-key="footer.privacy">Privacy Policy</a>
-                    <a href="terms-of-service.html" localization-key="footer.terms">Terms of Service</a>
-                    <a href="admin.html" localization-key="footer.admin" id="footerAdminLink" style="color:var(--orange);">Admin Dashboard</a>
-                </div>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img
+            src="../pictures/reservehub-full-logo-light-mode.png"
+            alt="ReserveHub Logo"
+            class="footer-logo"
+          />
+          <p localization-key="footer.tagline" class="footer-tagline">
+            "All Restaurants, One Booking"
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p localization-key="footer.copyright">© 2026 ReserveHub. All rights reserved.</p>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4 localization-key="footer.company">Company</h4>
+            <a href="about.html" localization-key="footer.about">About Us</a>
+          </div>
+          <div class="footer-col">
+            <h4 localization-key="footer.support">Support</h4>
+            <a href="help-center.html" localization-key="footer.help"
+              >Help Center</a
+            >
+            <a href="privacy-policy.html" localization-key="footer.privacy"
+              >Privacy Policy</a
+            >
+            <a href="terms-of-service.html" localization-key="footer.terms"
+              >Terms of Service</a
+            >
+            <a
+              href="admin.html"
+              localization-key="footer.admin"
+              id="footerAdminLink"
+              style="color: var(--orange)"
+              >Admin Dashboard</a
+            >
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p localization-key="footer.copyright">
+          © 2026 ReserveHub. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="../js/theme.js"></script>
@@ -574,5 +872,5 @@
     <script src="../js/session.js"></script>
     <script src="../js/localization.js"></script>
     <script src="../js/help.js"></script>
-</body>
+  </body>
 </html>

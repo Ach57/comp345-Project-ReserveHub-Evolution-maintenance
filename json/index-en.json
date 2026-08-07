@@ -59,6 +59,11 @@
   "index.filters.steakhouse": "Steakhouse",
 
   "index.featured.loading": "Loading Featured Restaurants...",
+  "index.featured.noRestaurants": "No restaurants found in this category.",
+  "index.featured.serverError": "Could not connect to the server.",
+  "index.featured.noImage": "No Image Available",
+  "index.featured.reserve": "Reserve a Table",
+  "index.featured.openNow": "Open now",
   "index.featured.viewAll": "View All Restaurants",
 
   "index.testimonials.tag": "What Diners Say",
